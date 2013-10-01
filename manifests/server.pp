@@ -11,7 +11,7 @@ class selenium::server(
   $group        = $selenium::params::group,
   $install_path = $selenium::params::install_path,
 ) inherits selenium::params {
-  validate_string($user) 
+  validate_string($user)
   validate_string($group)
   validate_string($install_path)
 
