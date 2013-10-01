@@ -1,0 +1,11 @@
+---
+default_set: 'centos-64-x64'
+sets:
+  'centos-64-x64':
+    nodes:
+      'main.vm':
+        prefab: 'centos-64-x64'
+  'debian-607-x64':
+    nodes:
+      'main.vm':
+        prefab: 'debian-607-x64'
