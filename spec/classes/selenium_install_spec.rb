@@ -32,7 +32,12 @@ describe 'selenium::install' do
         'owner'  => 'root',
         'group'  => 'root',
       })
-      should contain_wget__fetch('selenium-server-standalone')
+      should contain_wget__fetch('selenium-server-standalone').with({
+        'source' => 'https://selenium.googlecode.com/files/selenium-server-standalone-2.35.0.jar',
+        'destination' => '/opt/selenium/jars/selenium-server-standalone-2.35.0.jar',
+        'timeout'     => '30',
+        'execuser'    => 'selenium',
+      })
     end
   end
 

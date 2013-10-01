@@ -71,7 +71,7 @@ class selenium::install(
 
   wget::fetch { 'selenium-server-standalone':
     source      => $jar_url,
-    destination => "${selenium::server::jar_path}/${jar_name}",
+    destination => "${jar_path}/${jar_name}",
     timeout     => 30,
     execuser    => $selenium::server::user,
     require     => File[$jar_path],
