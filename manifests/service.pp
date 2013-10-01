@@ -18,7 +18,7 @@
 # Joshua Hoblitt <jhoblitt@cpan.org>
 #
 #
-class selenium::service inherits selenium::server {
+class selenium::service {
 
   service { 'selenium':
     ensure     => running,

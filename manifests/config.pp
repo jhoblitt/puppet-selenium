@@ -18,7 +18,7 @@
 # Joshua Hoblitt <jhoblitt@cpan.org>
 #
 #
-class selenium::config inherits selenium::server {
+class selenium::config {
 
   file { '/etc/init.d/selenium':
     ensure  => 'file',

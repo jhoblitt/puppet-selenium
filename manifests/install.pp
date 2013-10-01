@@ -23,7 +23,7 @@
 class selenium::install(
   $version = '2.35.0',
   $url     = undef,
-) inherits selenium::server {
+) {
   validate_string($version)
   validate_string($url)
 
