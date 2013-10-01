@@ -1,0 +1,123 @@
+#!/bin/sh
+#
+# selenium <summary>
+#
+# chkconfig:   2345 99 99
+#
+# description: <description, split multiple lines with \
+#              a backslash>
+
+### BEGIN INIT INFO
+# Provides: 
+# Required-Start: 
+# Required-Stop: 
+# Should-Start: 
+# Should-Stop: 
+# Default-Start: 
+# Default-Stop: 
+# Short-Description: 
+# Description:      
+### END INIT INFO
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+#SLNM_DISPLAY=:<%= scope.lookupvar('display::display') %>
+SLNM_DISPLAY=:0
+#SLNM_USER=<%= @user %>
+SLNM_USER='selenium'
+SLNM_LOG='/opt/selenium/log/server.log'
+SLNM_ERROR_LOG='/opt/selenium/log/error.log'
+SLNM_JAR='/opt/selenium/jars/selenium-server-standalone-2.35.0.jar'
+SLNM_OPTIONS='-Dwebdriver.enable.native.events=1'
+
+prog="selenium"
+#config="<path to major config file>"
+
+#[ -e /etc/sysconfig/$prog ] && . /etc/sysconfig/$prog
+
+lockfile=/var/lock/subsys/$prog
+pidfile=/var/run/${prog}.pid
+
+# pidfile must be owned by selenium user
+exec="DISPLAY=${SLNM_DISPLAY} java -jar ${SLNM_JAR} ${SLNM_OPTIONS} > ${SLNM_LOG} 2> ${SLNM_ERROR_LOG} & "'echo $!'" > ${pidfile}"
+
+start() {
+#    [ -x $exec ] || exit 5
+#    [ -f $config ] || exit 6
+    # pidfile must be owned by selenium user
+    touch $pidfile
+    chown $SLNM_USER $pidfile
+    echo -n $"Starting $prog: "
+    # if not running, start it up here, usually something like "daemon $exec"
+    daemon --pidfile=${pidfile} --user=${SLNM_USER} ${exec}
+    retval=$?
+    echo
+    [ $retval -eq 0 ] && touch $lockfile
+    return $retval
+}
+
+stop() {
+    echo -n $"Stopping $prog: "
+    # stop it here, often "killproc $prog"
+    killproc -p $pidfile $prog
+    retval=$?
+    echo
+    [ $retval -eq 0 ] && rm -f $lockfile
+    return $retval
+}
+
+restart() {
+    stop
+    start
+}
+
+reload() {
+    restart
+}
+
+force_reload() {
+    restart
+}
+
+rh_status() {
+    # run checks to determine if the service is running or use generic status
+    status $prog
+}
+
+rh_status_q() {
+    rh_status >/dev/null 2>&1
+}
+
+
+case "$1" in
+    start)
+        rh_status_q && exit 0
+        $1
+        ;;
+    stop)
+        rh_status_q || exit 0
+        $1
+        ;;
+    restart)
+        $1
+        ;;
+    reload)
+        rh_status_q || exit 7
+        $1
+        ;;
+    force-reload)
+        force_reload
+        ;;
+    status)
+        rh_status
+        ;;
+    condrestart|try-restart)
+        rh_status_q || exit 0
+        restart
+        ;;
+    *)
+        echo $"Usage: $0 {start|stop|status|restart|condrestart|try-restart|reload|force-reload}"
+        exit 2
+esac
+exit $?
