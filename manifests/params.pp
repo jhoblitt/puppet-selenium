@@ -4,8 +4,9 @@
 #
 #
 class selenium::params {
-  $user  = 'selenium'
-  $group = $user
+  $user         = 'selenium'
+  $group        = $user
+  $install_path = '/opt/selenium'
 
   case $::osfamily {
     'redhat': {}
