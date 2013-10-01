@@ -15,7 +15,7 @@ class selenium::server(
   validate_string($group)
 
   user { $user:
-    gid        => [$group],
+    gid => [$group],
   }
   group { $group: }
 
