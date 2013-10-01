@@ -35,7 +35,7 @@ describe 'selenium::install' do
       should contain_wget__fetch('selenium-server-standalone').with({
         'source' => 'https://selenium.googlecode.com/files/selenium-server-standalone-2.35.0.jar',
         'destination' => '/opt/selenium/jars/selenium-server-standalone-2.35.0.jar',
-        'timeout'     => '30',
+        'timeout'     => '90',
         'execuser'    => 'selenium',
       })
     end
