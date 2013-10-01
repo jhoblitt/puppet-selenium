@@ -20,6 +20,22 @@ describe 'selenium::server', :type => :class do
       it_behaves_like 'server', 'selenium', 'selenium'
     end
 
+    context 'display => :42' do
+      let(:params) {{ :display => ':42' }}
+
+      it_behaves_like 'server', 'selenium', 'selenium'
+    end
+
+    context 'display => :42' do
+      let(:params) {{ :display => [] }}
+
+      it 'should fail' do
+        expect {
+          should contain_class('selenium::server')
+        }.to raise_error
+      end
+    end
+
     context 'user => foo' do
       let(:params) {{ :user => 'foo' }}
 

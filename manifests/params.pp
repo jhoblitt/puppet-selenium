@@ -4,6 +4,7 @@
 #
 #
 class selenium::params {
+  $display      = ':0'
   $user         = 'selenium'
   $group        = $user
   $install_path = '/opt/selenium'

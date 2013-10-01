@@ -22,13 +22,12 @@
 # Source function library.
 . /etc/rc.d/init.d/functions
 
-#SLNM_DISPLAY=:<%= scope.lookupvar('display::display') %>
-SLNM_DISPLAY=:0
-#SLNM_USER=<%= @user %>
-SLNM_USER='selenium'
-SLNM_LOG='/opt/selenium/log/server.log'
-SLNM_ERROR_LOG='/opt/selenium/log/error.log'
-SLNM_JAR='/opt/selenium/jars/selenium-server-standalone-2.35.0.jar'
+SLNM_INSTALL_PATH=<% scope.lookupvar('selenium::server::install_path') %>
+SLNM_DISPLAY=<% scope.lookupvar('selenium::server::display') %>
+SLNM_USER=<%= scope.lookupvar('selenium::server::user') %>
+SLNM_LOG="${SLNM_INSTALL_PATH}/log/server.log"
+SLNM_ERROR_LOG="${SLNM_INSTALL_PATH}/log/error.log"
+SLNM_JAR="${SLNM_INSTALL_PATH}/opt/selenium/jars/selenium-server-standalone-2.35.0.jar"
 SLNM_OPTIONS='-Dwebdriver.enable.native.events=1'
 
 prog="selenium"
