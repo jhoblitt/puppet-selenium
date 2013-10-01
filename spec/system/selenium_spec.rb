@@ -1,17 +1,17 @@
 require 'spec_helper_system'
 
-describe 'module_skel class' do
+describe 'selenium class' do
   case node.facts['osfamily']
   when 'RedHat', 'Debian'
-    package_name = 'module_skel'
-    service_name = 'module_skel'
+    package_name = 'selenium'
+    service_name = 'selenium'
   end
 
   describe 'running puppet code' do
     # Using puppet_apply as a helper
     it 'should work with no errors' do
       pp = <<-EOS
-        class { 'module_skel': }
+        class { 'selenium': }
       EOS
 
       # Run it twice and test for idempotency

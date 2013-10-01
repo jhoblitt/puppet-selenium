@@ -1,7 +1,7 @@
-Puppet module_skel Module
+Puppet selenium Module
 =========================
 
-[![Build Status](https://travis-ci.org/jhoblitt/puppet-module_skel.png)](https://travis-ci.org/jhoblitt/puppet-module_skel)
+[![Build Status](https://travis-ci.org/jhoblitt/puppet-selenium.png)](https://travis-ci.org/jhoblitt/puppet-selenium)
 
 #### Table of Contents
 
@@ -35,5 +35,5 @@ Support
 -------
 
 Please log tickets and issues at
-[github](https://github.com/jhoblitt/puppet-module_skel/issues)
+[github](https://github.com/jhoblitt/puppet-selenium/issues)
 
