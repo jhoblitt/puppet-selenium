@@ -56,6 +56,7 @@ class selenium::install(
     source      => $jar_url,
     destination => "${selenium::server::jar_path}/${jar_name}",
     timeout     => 30,
+    execuser    => $selenium::server::user,
     require     => File[$jar_path],
   }
 
