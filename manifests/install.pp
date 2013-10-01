@@ -29,6 +29,11 @@ class selenium::install(
 
   include wget
 
+  user { $selenium::server::user:
+    gid => [$selenium::server::group],
+  }
+  group { $selenium::server::group: }
+
   $jar_name = "selenium-server-standalone-${version}.jar"
 
   if $url {

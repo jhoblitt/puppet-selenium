@@ -15,11 +15,6 @@ class selenium::server(
   validate_string($group)
   validate_string($install_path)
 
-  user { $user:
-    gid => [$group],
-  }
-  group { $group: }
-
   class { 'selenium::install': } ->
   class { 'selenium::config': } ->
   class { 'selenium::service': } ->
