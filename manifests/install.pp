@@ -47,9 +47,21 @@ class selenium::install(
   }
 
   $jar_path = "${selenium::server::install_path}/jars"
+  $log_path = "${selenium::server::install_path}/log"
 
   file { $jar_path:
     ensure => directory,
+  }
+
+  file { $log_path:
+    ensure => directory,
+  }
+
+  file { '/var/log/selenium':
+    ensure => link,
+    owner  => 'root',
+    group  => 'root',
+    target => $log_path,
   }
 
   wget::fetch { 'selenium-server-standalone':
