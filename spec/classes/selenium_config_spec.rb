@@ -22,7 +22,8 @@ describe 'selenium::config', :type => :class do
           with_content(/SLNM_USER='selenium'/).
           with_content(/SLNM_INSTALL_PATH='\/opt\/selenium'/).
           with_content(/SLNM_JAR_NAME='selenium-server-standalone-2.35.0.jar'/).
-          with_content(/SLNM_OPTIONS='-Dwebdriver.enable.native.events=1'/)
+          with_content(/SLNM_OPTIONS='-Dwebdriver.enable.native.events=1'/).
+          with_content(/prog='selenium'/)
       end
     end
   end

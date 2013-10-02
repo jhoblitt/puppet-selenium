@@ -21,6 +21,7 @@
 class selenium::config {
 
   $options = '-Dwebdriver.enable.native.events=1'
+  $prog    = 'selenium'
 
   file { '/etc/init.d/selenium':
     ensure  => 'file',

@@ -32,7 +32,7 @@ SLNM_LOG="${SLNM_INSTALL_PATH}/log/server.log"
 SLNM_ERROR_LOG="${SLNM_INSTALL_PATH}/log/error.log"
 SLNM_JAR="${SLNM_INSTALL_PATH}/jars/${SLNM_JAR_NAME}"
 
-prog="selenium"
+prog='<%= scope.lookupvar('selenium::config::prog') %>'
 #config="<path to major config file>"
 
 #[ -e /etc/sysconfig/$prog ] && . /etc/sysconfig/$prog
