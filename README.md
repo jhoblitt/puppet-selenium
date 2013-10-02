@@ -20,6 +20,20 @@ Overview
 Description
 -----------
 
+https://github.com/adamgoucher/selenium-puppet
+
+Windows, no rspec-puppet tests
+
+https://github.com/StoryIQ/puppet-selenium-grid
+
+Debian, no rspec-puppet tests
+
+https://github.com/kayakco/puppet-selenium
+
+Unreleased deps, role like, debian-ish (Centos), doesn't appear ready
+
+
+
 
 Usage
 -----

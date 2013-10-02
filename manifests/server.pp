@@ -22,6 +22,7 @@ class selenium::server(
 
   include selenium
 
+  anchor { 'selenium::server::begin': }
   Class[ 'selenium' ] ->
   selenium::config{ 'server':
     display      => $display,
@@ -31,6 +32,5 @@ class selenium::server(
     options      => $options,
     java         => $selenium::java,
   } ->
-  Class[ 'selenium::server' ]
-
+  anchor { 'selenium::server::end': }
 }
