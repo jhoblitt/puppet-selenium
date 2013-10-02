@@ -20,6 +20,8 @@
 #
 class selenium::config {
 
+  $options = '-Dwebdriver.enable.native.events=1'
+
   file { '/etc/init.d/selenium':
     ensure  => 'file',
     owner   => 'root',
