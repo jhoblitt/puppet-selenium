@@ -2,14 +2,22 @@ require 'spec_helper'
 
 describe 'selenium::server', :type => :class do
 
-  shared_examples 'server' do |user, group|
+  shared_examples 'server' do |params|
+    p = {
+      :display => ':0',
+      :options => '-Dwebdriver.enable.native.events=1',
+    }
+
+    p.merge!(params) if params
+
     it do
-      should contain_class('selenium::server')
-      should contain_class('selenium::install')
-      should contain_file('/etc/init.d/seleniumstandalone')
+      should include_class('selenium')
+      should contain_selenium__config('seleniumstandalone').with({
+        'display' => p[:display],
+        'options' => p[:options],
+      })
       should contain_class('selenium::service')
-      should contain_user(user).with_gid(group)
-      should contain_group(group)
+      should contain_class('selenium::server')
     end
   end
 
@@ -17,13 +25,14 @@ describe 'selenium::server', :type => :class do
     let(:facts) {{ :osfamily => 'RedHat' }}
 
     context 'no params' do
-      it_behaves_like 'server', 'selenium', 'selenium'
+      it_behaves_like 'server', {}
     end
 
     context 'display => :42' do
-      let(:params) {{ :display => ':42' }}
+      p = { :display => ':42' }
+      let(:params) { p }
 
-      it_behaves_like 'server', 'selenium', 'selenium'
+      it_behaves_like 'server', p
     end
 
     context 'display => :42' do
@@ -36,86 +45,15 @@ describe 'selenium::server', :type => :class do
       end
     end
 
-    context 'user => foo' do
-      let(:params) {{ :user => 'foo' }}
-
-      it_behaves_like 'server', 'foo', 'selenium'
-    end
-
-    context 'user => []' do
-      let(:params) {{ :user => [] }}
-
-      it 'should fail' do
-        expect {
-          should contain_class('selenium::server')
-        }.to raise_error
-      end
-    end
-
-    context 'group => foo' do
-      let(:params) {{ :group => 'foo' }}
-
-      it_behaves_like 'server', 'selenium', 'foo'
-    end
-
-    context 'group => []' do
-      let(:params) {{ :group => [] }}
-
-      it 'should fail' do
-        expect {
-          should contain_class('selenium::server')
-        }.to raise_error
-      end
-    end
-
-    context 'install_root => /foo/selenium' do
-      let(:params) {{ :install_root => '/foo/selenium' }}
-
-      it_behaves_like 'server', 'selenium', 'selenium'
-
-      it do
-        should contain_file('/foo/selenium').with({
-          'ensure' => 'directory',
-          'owner'  => 'selenium',
-          'group'  => 'selenium',
-        })
-      end
-    end
-
-    context 'install_root => []' do
-      let(:params) {{ :install_root => [] }}
-
-      it 'should fail' do
-        expect {
-          should contain_class('selenium::server')
-        }.to raise_error
-      end
-    end
-
     context 'options => -foo' do
-      let(:params) {{ :options => '-foo' }}
+      p = { :options => '-foo' }
+      let(:params) { p }
 
-      it_behaves_like 'server', 'selenium', 'selenium'
+      it_behaves_like 'server', p
     end
 
     context 'options => []' do
       let(:params) {{ :options => [] }}
-
-      it 'should fail' do
-        expect {
-          should contain_class('selenium::server')
-        }.to raise_error
-      end
-    end
-
-    context 'java => /opt/java' do
-      let(:params) {{ :java => '/opt/java' }}
-
-      it_behaves_like 'server', 'selenium', 'selenium'
-    end
-
-    context 'java => []' do
-      let(:params) {{ :java => [] }}
 
       it 'should fail' do
         expect {

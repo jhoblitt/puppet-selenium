@@ -25,9 +25,9 @@ define selenium::config(
   $user         = $selenium::params::user,
   $group        = $selenium::params::group,
   $install_root = $selenium::params::install_root,
-  $options      = $selenium::params::default_options,
+  $options      = $selenium::params::server_options,
   $java         = $selenium::params::java,
-  $jar_name     = $selenium::install::jar_name,
+  $jar_name     = $selenium::jar_name,
 ) {
   validate_string($display)
   validate_string($user)
@@ -35,9 +35,10 @@ define selenium::config(
   validate_string($install_root)
   validate_string($options)
   validate_string($java)
+  validate_string($jar_name)
 
   # prog is the 'name' of the init.d script.
-  $prog     = $name
+  $prog = $name
 
   file { "/etc/init.d/${prog}":
     ensure  => 'file',

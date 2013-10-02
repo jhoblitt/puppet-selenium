@@ -5,7 +5,7 @@ describe 'selenium::config', :type => :define do
 
   shared_examples 'config' do |params|
     let :pre_condition do
-      "include selenium::params, selenium::install"
+      "include selenium"
     end
 
     p = {
@@ -17,9 +17,7 @@ describe 'selenium::config', :type => :define do
       :java         => 'java',
     }
     
-    if params
-      p.merge!(params)
-    end
+    p.merge!(params) if params
 
     it do
       should contain_file("/etc/init.d/#{title}").with({

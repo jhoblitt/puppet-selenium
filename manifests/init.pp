@@ -1,8 +1,4 @@
-# == Class: megaraid::lsiget
-#
-# installs the `lsiget` utility for LSI MegaRAID controllers
-#
-# See: http://mycusthelp.info/LSI/_cs/AnswerDetail.aspx?inc=8264
+# == Class: selenium
 #
 #
 # === Parameters
@@ -12,7 +8,7 @@
 #
 # === Examples
 #
-#    class{ 'megaraid::lsiget': }
+#    class{ 'selenium': }
 #
 #
 # === Authors
@@ -20,19 +16,27 @@
 # Joshua Hoblitt <jhoblitt@cpan.org>
 #
 #
-class selenium::install(
-  $version = '2.35.0',
-  $url     = undef,
-) {
+class selenium(
+  $user         = $selenium::params::user,
+  $group        = $selenium::params::group,
+  $install_root = $selenium::params::install_root,
+  $java         = $selenium::params::java,
+  $version      = $selenium::params::version,
+  $url          = undef,
+) inherits selenium::params {
+  validate_string($user)
+  validate_string($group)
+  validate_string($install_root)
+  validate_string($java)
   validate_string($version)
   validate_string($url)
 
   include wget
 
-  user { $selenium::server::user:
-    gid => [$selenium::server::group],
+  user { $user:
+    gid => [$group],
   }
-  group { $selenium::server::group: }
+  group { $group: }
 
   $jar_name = "selenium-server-standalone-${version}.jar"
 
@@ -43,16 +47,16 @@ class selenium::install(
   }
 
   File {
-    owner => $selenium::server::user,
-    group => $selenium::server::group,
+    owner => $user,
+    group => $group,
   }
 
-  file { $selenium::server::install_root:
+  file { $install_root:
     ensure => directory,
   }
 
-  $jar_path = "${selenium::server::install_root}/jars"
-  $log_path = "${selenium::server::install_root}/log"
+  $jar_path = "${install_root}/jars"
+  $log_path = "${install_root}/log"
 
   file { $jar_path:
     ensure => directory,
@@ -73,7 +77,7 @@ class selenium::install(
     source      => $jar_url,
     destination => "${jar_path}/${jar_name}",
     timeout     => 90,
-    execuser    => $selenium::server::user,
+    execuser    => $user,
     require     => File[$jar_path],
   }
 

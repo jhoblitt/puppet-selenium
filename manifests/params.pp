@@ -8,8 +8,10 @@ class selenium::params {
   $user            = 'selenium'
   $group           = $user
   $install_root    = '/opt/selenium'
-  $default_options = '-Dwebdriver.enable.native.events=1'
+  $server_options  = '-Dwebdriver.enable.native.events=1'
+  $hub_options     = '-role hub'
   $java            = 'java'
+  $version         = '2.35.0'
 
   case $::osfamily {
     'redhat': {}
