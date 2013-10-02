@@ -16,12 +16,6 @@ describe 'selenium::server', :type => :class do
         'display' => p[:display],
         'options' => p[:options],
       })
-      should contain_service('seleniumserver').with({
-        :ensure     => 'running',
-        :hasstatus  => 'true',
-        :hasrestart => 'true',
-        :enable     => 'true',
-      })
       should contain_class('selenium::server')
     end
   end

@@ -35,6 +35,12 @@ describe 'selenium::config', :type => :define do
         with_content(/SLNM_JAVA='#{p[:java]}'/).
         with_content(/SLNM_LOG_NAME='#{title}'/).
         with_content(/prog='selenium#{title}'/)
+      should contain_service("selenium#{title}").with({
+        :ensure     => 'running',
+        :hasstatus  => 'true',
+        :hasrestart => 'true',
+        :enable     => 'true',
+      })
     end
   end
 

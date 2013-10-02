@@ -31,12 +31,6 @@ class selenium::server(
     options      => $options,
     java         => $selenium::java,
   } ->
-  service { 'seleniumserver':
-    ensure     => running,
-    hasstatus  => true,
-    hasrestart => true,
-    enable     => true,
-  } ->
   Class[ 'selenium::server' ]
 
 }

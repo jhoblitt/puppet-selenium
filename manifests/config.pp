@@ -46,6 +46,12 @@ define selenium::config(
     group   => 'root',
     mode    => '0755',
     content => template("${module_name}/init.d/selenium.erb"),
+  } ->
+  service { $prog:
+    ensure     => running,
+    hasstatus  => true,
+    hasrestart => true,
+    enable     => true,
   }
 
 }
