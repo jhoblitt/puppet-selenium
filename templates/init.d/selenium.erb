@@ -28,10 +28,11 @@ SLNM_INSTALL_ROOT='<%= @install_root %>'
 SLNM_JAR_NAME='<%= @jar_name %>'
 SLNM_OPTIONS='<%= @options %>'
 SLNM_JAVA='<%= @java %>'
+SLNM_LOG_NAME='<%= @name %>'
 prog='<%= @prog %>'
 
-SLNM_LOG="${SLNM_INSTALL_ROOT}/log/${prog}_stdout.log"
-SLNM_ERROR_LOG="${SLNM_INSTALL_ROOT}/log/${prog)_stderr.log"
+SLNM_LOG="${SLNM_INSTALL_ROOT}/log/${SLNM_LOG_NAME}_stdout.log"
+SLNM_ERROR_LOG="${SLNM_INSTALL_ROOT}/log/${SLNM_LOG_NAME}_stderr.log"
 SLNM_JAR="${SLNM_INSTALL_ROOT}/jars/${SLNM_JAR_NAME}"
 
 #config="<path to major config file>"

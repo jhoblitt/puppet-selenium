@@ -12,7 +12,7 @@ describe 'selenium::server', :type => :class do
 
     it do
       should include_class('selenium')
-      should contain_selenium__config('seleniumstandalone').with({
+      should contain_selenium__config('server').with({
         'display' => p[:display],
         'options' => p[:options],
       })

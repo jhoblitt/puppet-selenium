@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'selenium::config', :type => :define do
-  let(:title) { 'seleniumstandalone' }
+  let(:title) { 'server' }
 
   shared_examples 'config' do |params|
     let :pre_condition do
@@ -20,20 +20,21 @@ describe 'selenium::config', :type => :define do
     p.merge!(params) if params
 
     it do
-      should contain_file("/etc/init.d/#{title}").with({
+      should contain_file("/etc/init.d/selenium#{title}").with({
         'ensure' => 'file',
         'owner'  => 'root',
         'group'  => 'root',
         'mode'   => '0755',
       }).
-        with_content(/# #{title} Selenium server init script/).
+        with_content(/# selenium#{title} Selenium server init script/).
         with_content(/SLNM_DISPLAY='#{p[:display]}'/).
         with_content(/SLNM_USER='#{p[:user]}'/).
         with_content(/SLNM_INSTALL_ROOT='#{p[:install_root]}'/).
         with_content(/SLNM_JAR_NAME='#{p[:jar_name]}'/).
         with_content(/SLNM_OPTIONS='#{p[:options]}'/).
         with_content(/SLNM_JAVA='#{p[:java]}'/).
-        with_content(/prog='#{title}'/)
+        with_content(/SLNM_LOG_NAME='#{title}'/).
+        with_content(/prog='selenium#{title}'/)
     end
   end
 

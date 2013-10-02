@@ -16,7 +16,7 @@ class selenium::server(
   include selenium
 
   Class[ 'selenium' ] ->
-  selenium::config{ 'seleniumstandalone':
+  selenium::config{ 'server':
     display      => $display,
     user         => $selenium::user,
     group        => $selenium::group,
