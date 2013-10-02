@@ -2,9 +2,16 @@
 #
 # simple template
 #
+#
 # === Examples
 #
 # include selenium::server
+#
+#
+# === Authors
+#
+# Joshua Hoblitt <jhoblitt@cpan.org>
+#
 #
 class selenium::server(
   $display      = $selenium::params::display,
@@ -24,7 +31,12 @@ class selenium::server(
     options      => $options,
     java         => $selenium::java,
   } ->
-  class { 'selenium::service': } ->
+  service { 'seleniumserver':
+    ensure     => running,
+    hasstatus  => true,
+    hasrestart => true,
+    enable     => true,
+  } ->
   Class[ 'selenium::server' ]
 
 }
