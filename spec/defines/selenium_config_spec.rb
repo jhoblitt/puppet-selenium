@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 describe 'selenium::config', :type => :define do
-  let(:title) { 'server' }
-
   shared_examples 'config' do |params|
     let :pre_condition do
       "include selenium"
@@ -47,23 +45,50 @@ describe 'selenium::config', :type => :define do
   context 'for osfamily RedHat' do
     let(:facts) {{ :osfamily => 'RedHat' }}
 
-    context 'no params' do
-      it_behaves_like 'config', {}
+    context "server" do
+      let(:title) { 'server' }
+
+      context 'no params' do
+        it_behaves_like 'config', {}
+      end
+
+      context 'all params' do
+        params = {
+          :display      => 'X:0',
+          :user         => 'Xselenium',
+          :install_root => 'X/opt/selenium',
+          :jar_name     => 'Xselenium-server-standalone-2.35.0.jar',
+          :options      => 'X-Dwebdriver.enable.native.events=1',
+          :java         => 'Xjava',
+        }
+
+        let(:params) { params }
+
+        it_behaves_like 'config', params
+      end
     end
 
-    context 'all params' do
-      params = {
-        :display      => 'X:0',
-        :user         => 'Xselenium',
-        :install_root => 'X/opt/selenium',
-        :jar_name     => 'Xselenium-server-standalone-2.35.0.jar',
-        :options      => 'X-Dwebdriver.enable.native.events=1',
-        :java         => 'Xjava',
-      }
+    context "hub" do
+      let(:title) { 'hub' }
 
-      let(:params) { params }
+      context 'no params' do
+        it_behaves_like 'config', {}
+      end
 
-      it_behaves_like 'config', params
+      context 'all params' do
+        params = {
+          :display      => 'X:0',
+          :user         => 'Xselenium',
+          :install_root => 'X/opt/selenium',
+          :jar_name     => 'Xselenium-server-standalone-2.35.0.jar',
+          :options      => 'X-Dwebdriver.enable.native.events=1',
+          :java         => 'Xjava',
+        }
+
+        let(:params) { params }
+
+        it_behaves_like 'config', params
+      end
     end
   end
 
