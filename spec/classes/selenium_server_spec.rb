@@ -6,7 +6,7 @@ describe 'selenium::server', :type => :class do
     it do
       should contain_class('selenium::server')
       should contain_class('selenium::install')
-      should contain_class('selenium::config')
+      should contain_file('/etc/init.d/seleniumstandalone')
       should contain_class('selenium::service')
       should contain_user(user).with_gid(group)
       should contain_group(group)
@@ -68,8 +68,8 @@ describe 'selenium::server', :type => :class do
       end
     end
 
-    context 'install_path => /foo/selenium' do
-      let(:params) {{ :install_path => '/foo/selenium' }}
+    context 'install_root => /foo/selenium' do
+      let(:params) {{ :install_root => '/foo/selenium' }}
 
       it_behaves_like 'server', 'selenium', 'selenium'
 
@@ -82,8 +82,40 @@ describe 'selenium::server', :type => :class do
       end
     end
 
-    context 'install_path => []' do
-      let(:params) {{ :install_path => [] }}
+    context 'install_root => []' do
+      let(:params) {{ :install_root => [] }}
+
+      it 'should fail' do
+        expect {
+          should contain_class('selenium::server')
+        }.to raise_error
+      end
+    end
+
+    context 'options => -foo' do
+      let(:params) {{ :options => '-foo' }}
+
+      it_behaves_like 'server', 'selenium', 'selenium'
+    end
+
+    context 'options => []' do
+      let(:params) {{ :options => [] }}
+
+      it 'should fail' do
+        expect {
+          should contain_class('selenium::server')
+        }.to raise_error
+      end
+    end
+
+    context 'java => /opt/java' do
+      let(:params) {{ :java => '/opt/java' }}
+
+      it_behaves_like 'server', 'selenium', 'selenium'
+    end
+
+    context 'java => []' do
+      let(:params) {{ :java => [] }}
 
       it 'should fail' do
         expect {

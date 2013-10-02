@@ -47,12 +47,12 @@ class selenium::install(
     group => $selenium::server::group,
   }
 
-  file { $selenium::server::install_path:
+  file { $selenium::server::install_root:
     ensure => directory,
   }
 
-  $jar_path = "${selenium::server::install_path}/jars"
-  $log_path = "${selenium::server::install_path}/log"
+  $jar_path = "${selenium::server::install_root}/jars"
+  $log_path = "${selenium::server::install_root}/log"
 
   file { $jar_path:
     ensure => directory,

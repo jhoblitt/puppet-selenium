@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# selenium <summary>
+# <%= @prog %> Selenium server init script
 #
 # chkconfig:   2345 99 99
 #
@@ -22,17 +22,18 @@
 # Source function library.
 . /etc/rc.d/init.d/functions
 
-SLNM_DISPLAY='<%= scope.lookupvar('selenium::server::display') %>'
-SLNM_USER='<%= scope.lookupvar('selenium::server::user') %>'
-SLNM_INSTALL_PATH='<%= scope.lookupvar('selenium::server::install_path') %>'
-SLNM_JAR_NAME='<%= scope.lookupvar('selenium::install::jar_name') %>'
-SLNM_OPTIONS='<%= scope.lookupvar('selenium::config::options') %>'
+SLNM_DISPLAY='<%= @display %>'
+SLNM_USER='<%= @user %>'
+SLNM_INSTALL_ROOT='<%= @install_root %>'
+SLNM_JAR_NAME='<%= @jar_name %>'
+SLNM_OPTIONS='<%= @options %>'
+SLNM_JAVA='<%= @java %>'
+prog='<%= @prog %>'
 
-SLNM_LOG="${SLNM_INSTALL_PATH}/log/server.log"
-SLNM_ERROR_LOG="${SLNM_INSTALL_PATH}/log/error.log"
-SLNM_JAR="${SLNM_INSTALL_PATH}/jars/${SLNM_JAR_NAME}"
+SLNM_LOG="${SLNM_INSTALL_ROOT}/log/${prog}_stdout.log"
+SLNM_ERROR_LOG="${SLNM_INSTALL_ROOT}/log/${prog)_stderr.log"
+SLNM_JAR="${SLNM_INSTALL_ROOT}/jars/${SLNM_JAR_NAME}"
 
-prog='<%= scope.lookupvar('selenium::config::prog') %>'
 #config="<path to major config file>"
 
 #[ -e /etc/sysconfig/$prog ] && . /etc/sysconfig/$prog

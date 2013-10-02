@@ -10,15 +10,25 @@ class selenium::server(
   $display      = $selenium::params::display,
   $user         = $selenium::params::user,
   $group        = $selenium::params::group,
-  $install_path = $selenium::params::install_path,
+  $install_root = $selenium::params::install_root,
+  $options      = $selenium::params::default_options,
+  $java         = $selenium::params::java,
 ) inherits selenium::params {
   validate_string($display)
   validate_string($user)
   validate_string($group)
-  validate_string($install_path)
+  validate_string($install_root)
+  validate_string($options)
+  validate_string($java)
 
   class { 'selenium::install': } ->
-  class { 'selenium::config': } ->
+  selenium::config{ 'seleniumstandalone':
+    display      => $display,
+    user         => $user,
+    group        => $group,
+    install_root => $install_root,
+    java         => $java,
+  } ->
   class { 'selenium::service': } ->
   Class[ 'selenium::server' ]
 
