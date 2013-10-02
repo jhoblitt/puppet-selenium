@@ -1,17 +1,14 @@
 require 'spec_helper'
 
 describe 'selenium::params', :type => :class do
-  describe 'for osfamily RedHat' do
-    let :facts do
-      {
-        :osfamily => 'RedHat',
-      }
-    end
+
+  context 'for osfamily RedHat' do
+    let(:facts) {{ :osfamily => 'RedHat' }}
 
     it { should include_class('selenium::params') }
   end
 
-  describe 'unsupported osfamily' do
+  context 'unsupported osfamily' do
     let :facts do 
       {
         :osfamily        => 'Debian',
