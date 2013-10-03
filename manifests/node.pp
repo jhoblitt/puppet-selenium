@@ -26,7 +26,7 @@ class selenium::node(
 
   $safe_options = "${options} -hub ${hub}"
 
-  anchor { 'selenium::node::begin': }
+  anchor { 'selenium::node::begin': } ->
   Class[ 'selenium' ] ->
   selenium::config{ 'node':
     display      => $display,

@@ -20,7 +20,7 @@ class selenium::hub(
 
   include selenium
 
-  anchor { 'selenium::hub::begin': }
+  anchor { 'selenium::hub::begin': } ->
   Class[ 'selenium' ] ->
   selenium::config{ 'hub':
     user         => $selenium::user,

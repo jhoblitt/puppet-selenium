@@ -22,7 +22,7 @@ class selenium::server(
 
   include selenium
 
-  anchor { 'selenium::server::begin': }
+  anchor { 'selenium::server::begin': } ->
   Class[ 'selenium' ] ->
   selenium::config{ 'server':
     display      => $display,
