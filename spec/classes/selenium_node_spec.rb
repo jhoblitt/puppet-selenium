@@ -5,7 +5,7 @@ describe 'selenium::node', :type => :class do
   shared_examples 'node' do |params|
     p = {
       :display => ':0',
-      :options => '-role node',
+      :options => '-Dwebdriver.enable.native.events=1 -role node',
       :hub     => 'http://localhost:4444/grid/register',
     }
 

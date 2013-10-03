@@ -10,7 +10,7 @@ class selenium::params {
   $install_root    = '/opt/selenium'
   $server_options  = '-Dwebdriver.enable.native.events=1'
   $hub_options     = '-role hub'
-  $node_options    = '-role node'
+  $node_options    = "${server_options} -role node"
   $java            = 'java'
   $version         = '2.35.0'
   $default_hub     = 'http://localhost:4444/grid/register'
