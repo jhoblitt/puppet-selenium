@@ -45,15 +45,15 @@ Usage
 Stand alone server setup with display `:99` (default is `:0`).
 
 ```puppet
-class { 'selenium::server: display => ':99' }
+class { 'selenium::server': display => ':99' }
 ```
 
 Grid in a box setup with the Selenium `node` talking to the `hub` via
 `127.0.0.1`.
 
 ```puppet
-class { 'selenium::hub: }
-class { 'selenium::node: }
+class { 'selenium::hub': }
+class { 'selenium::node': }
 ```
 
 ### Files
