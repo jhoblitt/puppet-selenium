@@ -11,13 +11,14 @@ Puppet selenium Module
     * [Simple](#simple)
     * [Files](#files)
     * [`selenium`](#selenium)
-    * [`selenium::server`](#selenium--server)
-    * [`selenium::hub`](#selenium--hub)
-    * [`selenium::node`](#selenium--node)
+    * [`selenium::server`](#seleniumserver)
+    * [`selenium::hub`](#seleniumhub)
+    * [`selenium::node`](#seleniumnode)
 4. [Why Another Module?](#why-another-module)
 5. [Limitations](#limitations)
     * [Tested Platforms](#tested-platforms)
 6. [Support](#support)
+7. [See Also](#see-also)
 
 
 Overview
