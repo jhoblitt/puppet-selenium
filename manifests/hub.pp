@@ -9,8 +9,7 @@
 # ```puppet
 # # defaults
 # class { 'selenium::hub':
-#     display   => ':0',
-#       options => '-Dwebdriver.enable.native.events=1',
+#   options => '-role hub',
 # }
 # ```
 #
