@@ -1,11 +1,26 @@
 # == Class: selenium::hub
 #
-# simple template
+# === Parameters
 #
+# Note that by default `selenium::server` and `selenium::hub` will try to
+# listen on the same TCP port (`4444`) and only one of them will be able to
+# function.
 #
-# === Examples
+# ```puppet
+# # defaults
+# class { 'selenium::hub':
+#     display   => ':0',
+#       options => '-Dwebdriver.enable.native.events=1',
+# }
+# ```
 #
-# include selenium::hub
+# #### `options`
+#
+# `String`
+#
+# Options passed to Selenium Server Hub at startup.
+#
+# defaults to: `-role hub`
 #
 #
 # === Authors

@@ -1,11 +1,40 @@
 # == Class: selenium::node
 #
-# simple template
+# === Parameters
 #
+# ```puppet
+# # defaults
+# class { 'selenium::node':
+#   display => ':0',
+#   options => '-Dwebdriver.enable.native.events=1 -role node',
+#   hub     => 'http://localhost:4444/grid/register',
+# }
+# ```
 #
-# === Examples
+# #### `display`
 #
-# include selenium::node
+# `String`
+#
+# The name of the `X` display to render too.  This is set as an environment
+# variable passed to Selenium Server
+#
+# defaults to: `:0`
+#
+# #### `options`
+#
+# `String`
+#
+# Options passed to Selenium Server Node at startup.
+#
+# defaults to: `-Dwebdriver.enable.native.events=1 -role node`
+#
+# #### `hub`
+#
+# `String`
+#
+# The URL of the Selenium Server Hub to connect to.
+#
+# defaults to: `http://localhost:4444/grid/register`
 #
 #
 # === Authors
