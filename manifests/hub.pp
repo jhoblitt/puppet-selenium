@@ -15,11 +15,9 @@
 #
 # #### `options`
 #
-# `String`
+# `String` defaults to: `-role hub`
 #
 # Options passed to Selenium Server Hub at startup.
-#
-# defaults to: `-role hub`
 #
 #
 # === Authors

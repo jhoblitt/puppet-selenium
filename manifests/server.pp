@@ -12,20 +12,16 @@
 #
 # #### `display`
 #
-# `String`
+# `String` defaults to: `:0`
 #
 # The name of the `X` display to render too.  This is set as an environment
 # variable passed to Selenium Server
 #
-# defaults to: `:0`
-#
 # #### `options`
 #
-# `String`
+# `String` defaults to: `-Dwebdriver.enable.native.events=1`
 #
 # Options passed to Selenium Server at startup.
-#
-# defaults to: `-Dwebdriver.enable.native.events=1`
 #
 #
 # === Authors

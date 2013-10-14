@@ -21,57 +21,45 @@
 #
 # #### `user`
 #
-# `String`
+# `String` defaults to: `selenium`
 #
 # The name/uid of the system role account to execute the server process under
 # and will have ownership of files.
 #
-# defaults to: `selenium`
-#
 # #### `group`
 #
-# `String`
+# `String` defaults to: `selenium`
 #
 # The group/gid of the system role account and group ownership of files.
 #
-# defaults to: `selenium`
-#
 # #### `install_root`
 #
-# `String`
+# `String` defaults to: `/opt/selenium`
 #
 # The dirname under which Selenium Server files (including logs) will be
 # created.
 #
-# defaults to: `/opt/selenium`
-#
 # #### `java`
 #
-# `String`
+# `String` defaults to: `java`
 #
 # The path of the `java` interpreter to use.
 #
-# defaults to: `java`
-#
 # #### `version`
 #
-# `String`
+# `String` defaults to: `2.35.0` (the latest release as of 2013-10-08)
 #
 # The version of Selenium Server to download.  Used to form the URL used to
 # fetch the jar file.
 #
-# defaults to: `2.35.0` (the latest release as of 2013-10-08)
-#
 # #### `url`
 #
-# `String`
+# `String` defaults to: `undef`
 #
 # If defined, `url` will be used to download the Selenium Server jar file.
 # However, the `version` parameter just match the version of the downloaded
 # file as this information is needed when starting up the server (this may
 # change to be be automatically parsed from the `url` in a later release).
-#
-# defaults to: `undef`
 #
 #
 # === Authors

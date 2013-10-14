@@ -1,5 +1,5 @@
 Puppet selenium Module
-=========================
+======================
 
 [![Build Status](https://travis-ci.org/jhoblitt/puppet-selenium.png)](https://travis-ci.org/jhoblitt/puppet-selenium)
 
@@ -17,8 +17,9 @@ Puppet selenium Module
 4. [Why Another Module?](#why-another-module)
 5. [Limitations](#limitations)
     * [Tested Platforms](#tested-platforms)
-6. [Support](#support)
-7. [See Also](#see-also)
+6. [Versioning](#versioning)
+7. [Support](#support)
+8. [See Also](#see-also)
 
 
 Overview
@@ -59,7 +60,9 @@ class { 'selenium::node': }
 
 ### Files
 
-Unless class `selenium` has `$install_root` changed from the default, these files paths will be used.  Note that the log files and init scripts are only created for the relevant configured service.
+Unless class `selenium` has `$install_root` changed from the default, these
+files paths will be used.  Note that the log files and init scripts are only
+created for the relevant configured service.
 
 The log files will have the mode `0644` so that they can be inspected by users
 other than the selenium role account.
@@ -99,54 +102,47 @@ class { 'selenium':
 }
 ```
 
-#### `user`
+* `user`
 
-`String`
+    `String` defaults to: `selenium`
 
-The name/uid of the system role account to execute the server process under and
-will have ownership of files.
+    The name/uid of the system role account to execute the server process under
+    and will have ownership of files.
 
-defaults to: `selenium`
+* `group`
 
-#### `group`
+    `String` defaults to: `selenium`
 
-`String`
+    The group/gid of the system role account and group ownership of files.
 
-The group/gid of the system role account and group ownership of files.
+* `install_root`
 
-defaults to: `selenium`
+    `String` defaults to: `/opt/selenium`
 
-#### `install_root`
+    The dirname under which Selenium Server files (including logs) will be
+    created.
 
-`String`
+* `java`
 
-The dirname under which Selenium Server files (including logs) will be created.
+    `String` defaults to: `java`
 
-defaults to: `/opt/selenium`
+    The path of the `java` interpreter to use.
 
-#### `java`
+* `version`
 
-`String`
+    `String` defaults to: `2.35.0` (the latest release as of 2013-10-08)
 
-The path of the `java` interpreter to use.
+    The version of Selenium Server to download.  Used to form the URL used to
+    fetch the jar file.
 
-defaults to: `java`
+* `url`
 
-#### `version`
+    `String` defaults to: `undef`
 
-`String`
-
-The version of Selenium Server to download.  Used to form the URL used to fetch the jar file.
-
-defaults to: `2.35.0` (the latest release as of 2013-10-08)
-
-#### `url`
-
-`String`
-
-If defined, `url` will be used to download the Selenium Server jar file.  However, the `version` parameter just match the version of the downloaded file as this information is needed when starting up the server (this may change to be be automatically parsed from the `url` in a later release).
-
-defaults to: `undef`
+    If defined, `url` will be used to download the Selenium Server jar file.
+    However, the `version` parameter just match the version of the downloaded file
+    as this information is needed when starting up the server (this may change to
+    be be automatically parsed from the `url` in a later release).
 
 ### `selenium::server`
 
@@ -158,22 +154,18 @@ class { 'selenium::server':
 }
 ```
 
-#### `display`
+* `display`
 
-`String`
+    `String` defaults to: `:0`
 
-The name of the `X` display to render too.  This is set as an environment
-variable passed to Selenium Server
+    The name of the `X` display to render too.  This is set as an environment
+    variable passed to Selenium Server
 
-defaults to: `:0`
+* `options`
 
-#### `options`
+    `String` defaults to: `-Dwebdriver.enable.native.events=1`
 
-`String`
-
-Options passed to Selenium Server at startup.
-
-defaults to: `-Dwebdriver.enable.native.events=1`
+    Options passed to Selenium Server at startup.
 
 ### `selenium::hub`
 
@@ -187,13 +179,11 @@ class { 'selenium::hub':
 }
 ```
 
-#### `options`
+* options`
 
-`String`
+    `String` defaults to: `-role hub`
 
-Options passed to Selenium Server Hub at startup.
-
-defaults to: `-role hub`
+    Options passed to Selenium Server Hub at startup.
 
 ### `selenium::node`
 
@@ -206,30 +196,24 @@ class { 'selenium::node':
 }
 ```
 
-#### `display`
+* `display`
 
-`String`
+    `String` defaults to: `:0`
 
-The name of the `X` display to render too.  This is set as an environment
-variable passed to Selenium Server
+    The name of the `X` display to render too.  This is set as an environment
+    variable passed to Selenium Server
 
-defaults to: `:0`
+* `options`
 
-#### `options`
+    `String` defaults to: `-Dwebdriver.enable.native.events=1 -role node`
 
-`String`
+    Options passed to Selenium Server Node at startup.
 
-Options passed to Selenium Server Node at startup.
+* `hub`
 
-defaults to: `-Dwebdriver.enable.native.events=1 -role node`
+    `String` defaults to: `http://localhost:4444/grid/register`
 
-#### `hub`
-
-`String`
-
-The URL of the Selenium Server Hub to connect to.
-
-defaults to: `http://localhost:4444/grid/register`
+    The URL of the Selenium Server Hub to connect to.
 
 
 Why Another Module?
@@ -275,11 +259,19 @@ specific init scripts.
 * el6.x
 
 
+Versioning
+----------
+
+This module is versioned according to the [Semantic Versioning
+2.0.0](http://semver.org/spec/v2.0.0.html) specification.
+
+
 Support
 -------
 
 Please log tickets and issues at
 [github](https://github.com/jhoblitt/puppet-selenium/issues)
+
 
 See Also
 --------

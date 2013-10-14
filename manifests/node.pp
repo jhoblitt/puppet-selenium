@@ -13,28 +13,22 @@
 #
 # #### `display`
 #
-# `String`
+# `String` defaults to: `:0`
 #
 # The name of the `X` display to render too.  This is set as an environment
 # variable passed to Selenium Server
 #
-# defaults to: `:0`
-#
 # #### `options`
 #
-# `String`
+# `String` defaults to: `-Dwebdriver.enable.native.events=1 -role node`
 #
 # Options passed to Selenium Server Node at startup.
 #
-# defaults to: `-Dwebdriver.enable.native.events=1 -role node`
-#
 # #### `hub`
 #
-# `String`
+# `String` defaults to: `http://localhost:4444/grid/register`
 #
 # The URL of the Selenium Server Hub to connect to.
-#
-# defaults to: `http://localhost:4444/grid/register`
 #
 #
 # === Authors
