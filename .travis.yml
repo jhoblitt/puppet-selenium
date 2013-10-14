@@ -28,5 +28,9 @@ matrix:
       env: PUPPET_GEM_VERSION="~> 3.0.0"
     - rvm: ruby-head
       env: PUPPET_GEM_VERSION="~> 3.1.0"
+    - rvm: ruby-head
+      env: PUPPET_GEM_VERSION="~> 3.2.1"
+    - rvm: ruby-head
+      env: PUPPET_GEM_VERSION="~> 3.3.0"
 notifications:
   email: false
