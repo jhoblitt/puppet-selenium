@@ -132,4 +132,15 @@ class selenium(
     require     => File[$jar_path],
   }
 
+  logrotate::rule { 'selenium':
+    path          => $log_path,
+    rotate_every  => 'weekly',
+    missingok     => true,
+    rotate        => 4,
+    compress      => true,
+    delaycompress => true,
+    copytruncate  => true,
+    minsize       => '100k',
+  }
+
 }

@@ -6,5 +6,8 @@ fixtures:
     "wget":
       repo: "git://github.com/maestrodev/puppet-wget.git"
       ref: "v1.2.2"
+    "logrotate":
+      repo: "git://github.com/rodjek/puppet-logrotate.git"
+      ref: "1.1.1"
   symlinks:
     "selenium": "#{source_dir}"
