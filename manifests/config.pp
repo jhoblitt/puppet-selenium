@@ -52,6 +52,7 @@ define selenium::config(
     hasstatus  => true,
     hasrestart => true,
     enable     => true,
+    provider   => 'init',
   }
 
 }
