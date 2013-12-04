@@ -61,8 +61,8 @@ class { 'selenium::node': }
 
 ### Example "profiles"/"roles"
 
-Here are some examples "profiles" that might be used to compose a role per
-[profile/role](http://www.craigdunn.org/2012/05/239/).
+Here are some examples "profiles" and "roles" based on Craig Dunn's blog post
+on [Designing Puppet – Roles and Profiles.](http://www.craigdunn.org/2012/05/239/).
 
 These examples assume the presence of these two modules in your Puppet
 environment.
