@@ -183,47 +183,47 @@ class { 'selenium':
 }
 ```
 
-* `user`
+ * `user`
 
     `String` defaults to: `selenium`
 
     The name/uid of the system role account to execute the server process under
     and will have ownership of files.
 
-* `group`
+ * `group`
 
     `String` defaults to: `selenium`
 
     The group/gid of the system role account and group ownership of files.
 
-* `install_root`
+ * `install_root`
 
     `String` defaults to: `/opt/selenium`
 
     The dirname under which Selenium Server files (including logs) will be
     created.
 
-* `java`
+ * `java`
 
     `String` defaults to: `java`
 
     The path of the `java` interpreter to use.
 
-* `version`
+ * `version`
 
     `String` defaults to: `2.37.0` (the latest release as of 2013-12-04)
 
     The version of Selenium Server to download.  Used to form the URL used to
     fetch the jar file.
 
-* `url`
+ * `url`
 
     `String` defaults to: `undef`
 
     If defined, `url` will be used to download the Selenium Server jar file.
-    However, the `version` parameter just match the version of the downloaded file
-    as this information is needed when starting up the server (this may change to
-    be be automatically parsed from the `url` in a later release).
+    However, the `version` parameter just match the version of the downloaded
+    file as this information is needed when starting up the server (this may
+    change to be be automatically parsed from the `url` in a later release).
 
 ### `selenium::server`
 
@@ -235,14 +235,14 @@ class { 'selenium::server':
 }
 ```
 
-* `display`
+ * `display`
 
     `String` defaults to: `:0`
 
     The name of the `X` display to render too.  This is set as an environment
     variable passed to Selenium Server
 
-* `options`
+ * `options`
 
     `String` defaults to: `-Dwebdriver.enable.native.events=1`
 
@@ -260,7 +260,7 @@ class { 'selenium::hub':
 }
 ```
 
-* options`
+ * options`
 
     `String` defaults to: `-role hub`
 
@@ -277,20 +277,20 @@ class { 'selenium::node':
 }
 ```
 
-* `display`
+ * `display`
 
     `String` defaults to: `:0`
 
     The name of the `X` display to render too.  This is set as an environment
     variable passed to Selenium Server
 
-* `options`
+ * `options`
 
     `String` defaults to: `-Dwebdriver.enable.native.events=1 -role node`
 
     Options passed to Selenium Server Node at startup.
 
-* `hub`
+ * `hub`
 
     `String` defaults to: `http://localhost:4444/grid/register`
 
@@ -302,12 +302,13 @@ Why Another Module?
 
 At the time work on this module was started, there were no other Selenium
 Server modules published on the Puppet Forge.  A number of existing modules
-were identified on github but none of them fit the authors needs of:
+were identified on github but none of them fit the author's needs of:
 
-* Allowing the external setup of things like `Xvfb`, `java`, etc.
-* Supporting a mixed environment of Scientific, Centos, and RedHat Linux
-  (basically `$::osfamily == 'RedHat'`
-* Enough `rspec-puppet` coverage to prevent regressions
+ * Allowing the external setup of things like `Xvfb`, `java`, etc. and to allow
+   the composition of site specific profiles/roles.
+ * Supporting a mixed environment of Scientific, Centos, and RedHat Linux
+   (basically `$::osfamily == 'RedHat'`
+ * Enough `rspec-puppet` coverage to prevent regressions
 
 The later is the most important issue.  Attempting to add additional
 `$::operatingsystem/$::osfamily` support to a puppet module without
@@ -315,13 +316,13 @@ The later is the most important issue.  Attempting to add additional
 
 The modules that were identified were:
 
-* [adamgoucher/selenium-puppet](https://github.com/adamgoucher/selenium-puppet)
+ * [adamgoucher/selenium-puppet](https://github.com/adamgoucher/selenium-puppet)
     - Mostly aimed at Windows but with some Linux/POSIX support
     - no `rspec-puppet` tests (deal breaker)
-* [StoryIQ/puppet-selenium-grid](https://github.com/StoryIQ/puppet-selenium-grid)
+ * [StoryIQ/puppet-selenium-grid](https://github.com/StoryIQ/puppet-selenium-grid)
     - Debian only
     - no `rspec-puppet` tests (deal breaker)
-* [kayakco/puppet-selenium](https://github.com/kayakco/puppet-selenium)
+ * [kayakco/puppet-selenium](https://github.com/kayakco/puppet-selenium)
     - Unreleased deps (deal breaker)
     - Very role like with lots of magic setup (deal breaker)
     - debian-ish (may support Centos)
@@ -337,7 +338,7 @@ specific init scripts.
 
 ### Tested Platforms
 
-* el6.x
+ * el6.x
 
 
 Versioning
@@ -357,4 +358,7 @@ Please log tickets and issues at
 See Also
 --------
 
-* [Selenium](http://docs.seleniumhq.org/)
+ * [Selenium](http://docs.seleniumhq.org/)
+ * [Designing Puppet – Roles and Profiles.](http://www.craigdunn.org/2012/05/239/).
+ * [`puppetlabs-java`](https://github.com/puppetlabs/puppetlabs-java)
+ * [`p0deje/display`](https://github.com/p0deje/puppet-display)
