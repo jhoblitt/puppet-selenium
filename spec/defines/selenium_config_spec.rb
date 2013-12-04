@@ -10,7 +10,7 @@ describe 'selenium::config', :type => :define do
       :display      => ':0',
       :user         => 'selenium',
       :install_root => '/opt/selenium',
-      :jar_name     => 'selenium-server-standalone-2.35.0.jar',
+      :jar_name     => 'selenium-server-standalone-2.37.0.jar',
       :options      => '-Dwebdriver.enable.native.events=1',
       :java         => 'java',
     }
@@ -57,7 +57,7 @@ describe 'selenium::config', :type => :define do
           :display      => 'X:0',
           :user         => 'Xselenium',
           :install_root => 'X/opt/selenium',
-          :jar_name     => 'Xselenium-server-standalone-2.35.0.jar',
+          :jar_name     => 'Xselenium-server-standalone-2.37.0.jar',
           :options      => 'X-Dwebdriver.enable.native.events=1',
           :java         => 'Xjava',
         }
@@ -80,7 +80,7 @@ describe 'selenium::config', :type => :define do
           :display      => 'X:0',
           :user         => 'Xselenium',
           :install_root => 'X/opt/selenium',
-          :jar_name     => 'Xselenium-server-standalone-2.35.0.jar',
+          :jar_name     => 'Xselenium-server-standalone-2.37.0.jar',
           :options      => 'X-Dwebdriver.enable.native.events=1',
           :java         => 'Xjava',
         }
