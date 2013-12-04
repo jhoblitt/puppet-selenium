@@ -9,6 +9,7 @@ Puppet selenium Module
 2. [Description](#description)
 3. [Usage](#usage)
     * [Simple](#simple)
+    * [Example "profiles/roles"](#example-profiles/roles)
     * [Files](#files)
     * [`selenium`](#selenium)
     * [`selenium::server`](#seleniumserver)
@@ -37,7 +38,7 @@ automation package.  Support is provided for configuring Selenium Server in
 
 The design intent of this module is to only manage Selenium server and not any
 of the other packages that might be required to required to create a selenium
-server [role](http://www.craigdunn.org/2012/05/239/).
+server [profile/role](http://www.craigdunn.org/2012/05/239/).
 
 Usage
 -----
@@ -56,6 +57,86 @@ Grid in a box setup with the Selenium `node` talking to the `hub` via
 ```puppet
 class { 'selenium::hub': }
 class { 'selenium::node': }
+```
+
+### Example "profiles/roles"
+
+Here are some examples "profiles" that might be used to compose a role per
+[profile/role](http://www.craigdunn.org/2012/05/239/).
+
+These examples assume the presence of these two modules in your Puppet
+environment.
+
+ * [`puppetlabs-java`](https://github.com/puppetlabs/puppetlabs-java)
+ * [`p0deje/display`]https://github.com/p0deje/puppet-display)
+
+#### Selenium Server Profile
+
+```puppet
+class mysite::profile::seleniumserver {
+  include java
+
+  # WSXGA+ 1680x1050 -- should nicely fit on a 1920x1280 screen
+  class { 'display':
+    width  => 1680,
+    height => 1050,
+  } ->
+  class { 'selenium::server': }
+
+  Class['java'] -> Class['selenium::server']
+}
+```
+
+#### Selenium Hub Profile
+
+```puppet
+class mysite::profile::seleniumhub {
+  include java
+
+  class { 'selenium::hub': }
+
+  Class['java'] -> Class['selenium::hub']
+}
+```
+
+#### Selenium Node Profile
+
+```puppet
+class mysite::profile::seleniumnode {
+  include java
+
+  # WSXGA+ 1680x1050 -- should nicely fit on a 1920x1280 screen
+  class { 'display':
+    width  => 1680,
+    height => 1050,
+  } ->
+  class { 'selenium::node':
+    # If your intending to have node(s) that don't sit on the same system as
+    # the hub, you need to point the node at a hub by passing in the hub's url
+    # in or using an exported resource from the hub system. Eg.
+    # hub => 'http://<myseleniumhub>:4444/grid/register',
+  }
+
+  Class['java'] -> Class['selenium::node']
+}
+
+```
+
+#### Selenium Server Role
+
+```puppet
+class mysite::role::seleniumserver {
+  include mysite::profile::seleniumserver
+}
+```
+
+#### Selenium Hub Role
+
+```puppet
+class mysite::role::seleniumhub {
+  include mysite::profile::seleniumhub
+  include mysite::profile::seleniumnode
+}
 ```
 
 ### Files
