@@ -9,7 +9,7 @@ Puppet selenium Module
 2. [Description](#description)
 3. [Usage](#usage)
     * [Simple](#simple)
-    * [Example "profiles/roles"](#example-profiles/roles)
+    * [Example "profiles/roles"](#example-profilesroles)
     * [Files](#files)
     * [`selenium`](#selenium)
     * [`selenium::server`](#seleniumserver)
@@ -59,7 +59,7 @@ class { 'selenium::hub': }
 class { 'selenium::node': }
 ```
 
-### Example "profiles/roles"
+### Example "profiles"/"roles"
 
 Here are some examples "profiles" that might be used to compose a role per
 [profile/role](http://www.craigdunn.org/2012/05/239/).
@@ -68,7 +68,7 @@ These examples assume the presence of these two modules in your Puppet
 environment.
 
  * [`puppetlabs-java`](https://github.com/puppetlabs/puppetlabs-java)
- * [`p0deje/display`]https://github.com/p0deje/puppet-display)
+ * [`p0deje/display`](https://github.com/p0deje/puppet-display)
 
 #### Selenium Server Profile
 
