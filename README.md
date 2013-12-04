@@ -362,3 +362,5 @@ See Also
  * [Designing Puppet – Roles and Profiles.](http://www.craigdunn.org/2012/05/239/).
  * [`puppetlabs-java`](https://github.com/puppetlabs/puppetlabs-java)
  * [`p0deje/display`](https://github.com/p0deje/puppet-display)
+ * [`maestrodev/wget`](https://github.com/maestrodev/puppet-wget)
+ * [`rodjek/logrotate`](https://github.com/rodjek/puppet-logrotate)
