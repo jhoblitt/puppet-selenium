@@ -11,7 +11,7 @@ describe 'selenium::server', :type => :class do
     p.merge!(params) if params
 
     it do
-      should include_class('selenium')
+      should contain_class('selenium')
       should contain_selenium__config('server').with({
         'display' => p[:display],
         'options' => p[:options],

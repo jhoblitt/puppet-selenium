@@ -20,7 +20,7 @@ describe 'selenium', :type => :class do
     it do
       should contain_user(p[:user]).with_gid(p[:group])
       should contain_group(p[:group])
-      should include_class('wget')
+      should contain_class('wget')
       should contain_class('selenium').with_version(p[:version])
       should contain_file("#{p[:install_root]}").with({
         'ensure' => 'directory',
