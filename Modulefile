@@ -1,5 +1,5 @@
 name    'jhoblitt-selenium'
-version '0.1.5'
+version '0.1.6'
 
 author 'Joshua Hoblitt <jhoblitt@cpan.org>'
 license 'Apache'
