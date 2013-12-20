@@ -9,7 +9,7 @@ describe 'selenium', :type => :class do
       :group        => 'selenium',
       :install_root => '/opt/selenium',
       :java         => 'java',
-      :version      => '2.37.0',
+      :version      => '2.39.0',
       :url          => '',
     }
 
@@ -20,7 +20,7 @@ describe 'selenium', :type => :class do
     it do
       should contain_user(p[:user]).with_gid(p[:group])
       should contain_group(p[:group])
-      should include_class('wget')
+      should contain_class('wget')
       should contain_class('selenium').with_version(p[:version])
       should contain_file("#{p[:install_root]}").with({
         'ensure' => 'directory',
