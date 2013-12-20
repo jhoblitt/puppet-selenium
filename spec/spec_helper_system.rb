@@ -4,9 +4,6 @@ require 'rspec-system-serverspec/helpers'
 
 include RSpecSystemPuppet::Helpers
 
-include Serverspec::Helper::RSpecSystem
-include Serverspec::Helper::DetectOS
-
 RSpec.configure do |c|
   # Project root
   proj_root = File.expand_path(File.join(File.dirname(__FILE__), '..'))
@@ -24,5 +21,8 @@ RSpec.configure do |c|
     # Install modules and dependencies
     puppet_module_install(:source => proj_root, :module_name => 'selenium')
     shell('puppet module install puppetlabs-stdlib')
+    shell('puppet module install maestrodev-wget')
+    shell('puppet module install rodjek-logrotate')
+    shell('puppet module install puppetlabs-java')
   end
 end

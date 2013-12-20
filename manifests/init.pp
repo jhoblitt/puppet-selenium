@@ -85,9 +85,11 @@ class selenium(
   include wget
 
   user { $user:
-    gid => [$group],
+    gid    => $group,
   }
-  group { $group: }
+  group { $group:
+    ensure => present,
+  }
 
   $jar_name = "selenium-server-standalone-${version}.jar"
 
