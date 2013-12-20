@@ -159,6 +159,7 @@ other than the selenium role account.
     |-- node_stdout.log
     |-- server_stderr.log
     `-- server_stdout.log
+/var/log/selenium -> /opt/selenium/log
 /etc/init.d/seleniumhub
 /etc/init.d/seleniumnode
 /etc/init.d/seleniumserver
