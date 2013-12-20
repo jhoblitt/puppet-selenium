@@ -14,7 +14,7 @@
 #   group        => 'selenium',
 #   install_root => '/opt/selenium',
 #   java         => 'java',
-#   version      => '2.35.0',
+#   version      => '2.39.0',
 #   url          => undef,
 # }
 # ```
@@ -47,7 +47,7 @@
 #
 # #### `version`
 #
-# `String` defaults to: `2.35.0` (the latest release as of 2013-10-08)
+# `String` defaults to: `2.39.0` (the latest release as of 2013-12-20)
 #
 # The version of Selenium Server to download.  Used to form the URL used to
 # fetch the jar file.

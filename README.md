@@ -151,7 +151,7 @@ other than the selenium role account.
 ```
 /opt/selenium
 |-- jars
-|   `-- selenium-server-standalone-2.37.0.jar
+|   `-- selenium-server-standalone-x.xx.x.jar
 `-- log
     |-- hub_stderr.log
     |-- hub_stdout.log
@@ -178,7 +178,7 @@ class { 'selenium':
   group        => 'selenium',
   install_root => '/opt/selenium',
   java         => 'java',
-  version      => '2.37.0',
+  version      => '2.39.0',
   url          => undef,
 }
 ```
@@ -211,7 +211,7 @@ class { 'selenium':
 
  * `version`
 
-    `String` defaults to: `2.37.0` (the latest release as of 2013-12-04)
+    `String` defaults to: `2.39.0` (the latest release as of 2013-12-20)
 
     The version of Selenium Server to download.  Used to form the URL used to
     fetch the jar file.

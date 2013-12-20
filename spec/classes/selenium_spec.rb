@@ -9,7 +9,7 @@ describe 'selenium', :type => :class do
       :group        => 'selenium',
       :install_root => '/opt/selenium',
       :java         => 'java',
-      :version      => '2.37.0',
+      :version      => '2.39.0',
       :url          => '',
     }
 
