@@ -45,7 +45,7 @@ define selenium::config(
     owner   => 'root',
     group   => 'root',
     mode    => '0755',
-    content => template("${module_name}/init.d/${selenium::params::service_template"),
+    content => template("${module_name}/init.d/${selenium::params::service_template}"),
   } ~>
   service { $prog:
     ensure     => running,
