@@ -16,8 +16,12 @@ class selenium::params {
   $default_hub     = 'http://localhost:4444/grid/register'
 
   case $::osfamily {
-    'redhat': {}
-    'debian': {}
+    'redhat': {
+      $service_template = 'redhat.selenium.erb'
+    }
+    'debian': {
+      $service_template = 'debian.selenium.erb'
+    }
     default: {
       fail("Module ${module_name} is not supported on ${::operatingsystem}")
     }
