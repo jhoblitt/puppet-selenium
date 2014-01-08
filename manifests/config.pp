@@ -38,7 +38,7 @@ define selenium::config(
   validate_string($jar_name)
 
   # prog is the 'name' of the init.d script.
-  $prog = "selenium${name}"
+  $prog = "selenium-${name}"
 
   file { "/etc/init.d/${prog}":
     ensure  => 'file',
