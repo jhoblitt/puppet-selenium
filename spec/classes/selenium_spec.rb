@@ -5,12 +5,13 @@ describe 'selenium', :type => :class do
   shared_examples 'selenium' do |params|
     # XXX need to test $url
     p = {
-      :user         => 'selenium',
-      :group        => 'selenium',
-      :install_root => '/opt/selenium',
-      :java         => 'java',
-      :version      => '2.39.0',
-      :url          => '',
+      :user             => 'selenium',
+      :group            => 'selenium',
+      :install_root     => '/opt/selenium',
+      :java             => 'java',
+      :version          => '2.39.0',
+      :url              => '',
+      :download_timeout => '90',
     }
 
     if params
@@ -46,7 +47,7 @@ describe 'selenium', :type => :class do
       should contain_wget__fetch('selenium-server-standalone').with({
         'source'      => "https://selenium.googlecode.com/files/selenium-server-standalone-#{p[:version]}.jar",
         'destination' => "#{p[:install_root]}/jars/selenium-server-standalone-#{p[:version]}.jar",
-        'timeout'     => '90',
+        'timeout'     => p[:download_timeout],
         'execuser'    => p[:user],
       })
       should contain_logrotate__rule('selenium').with({
@@ -132,6 +133,24 @@ describe 'selenium', :type => :class do
 
     context 'java => []' do
       p = { :java => [] }
+      let(:params) { p }
+
+      it 'should fail' do
+        expect {
+          should contain_class('selenium')
+        }.to raise_error
+      end
+    end
+
+    context 'download_timeout => 42' do
+      p = { :download_timeout => '42' }
+      let(:params) { p }
+
+      it_behaves_like 'selenium', p
+    end
+
+    context 'download_timeout => []' do
+      p = { :download_timeout => [] }
       let(:params) { p }
 
       it 'should fail' do

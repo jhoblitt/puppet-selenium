@@ -88,6 +88,7 @@ class selenium(
   validate_string($java)
   validate_string($version)
   validate_string($url)
+  validate_string($download_timeout)
 
   include wget
 
