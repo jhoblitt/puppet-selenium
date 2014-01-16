@@ -16,6 +16,7 @@
 #   java         => 'java',
 #   version      => '2.39.0',
 #   url          => undef,
+#   timeout      => '90'
 # }
 # ```
 #
@@ -74,6 +75,7 @@ class selenium(
   $java         = $selenium::params::java,
   $version      = $selenium::params::version,
   $url          = undef,
+  $timeout      = $selenium::params::download_timeout
 ) inherits selenium::params {
   validate_string($user)
   validate_string($group)
@@ -129,7 +131,7 @@ class selenium(
   wget::fetch { 'selenium-server-standalone':
     source      => $jar_url,
     destination => "${jar_path}/${jar_name}",
-    timeout     => 90,
+    timeout     => "${timeout}",
     execuser    => $user,
     require     => File[$jar_path],
   }
