@@ -10,13 +10,13 @@
 # ```puppet
 # # defaults
 # class { 'selenium':
-#   user         => 'selenium',
-#   group        => 'selenium',
-#   install_root => '/opt/selenium',
-#   java         => 'java',
-#   version      => '2.39.0',
-#   url          => undef,
-#   timeout      => '90',
+#   user             => 'selenium',
+#   group            => 'selenium',
+#   install_root     => '/opt/selenium',
+#   java             => 'java',
+#   version          => '2.39.0',
+#   url              => undef,
+#   download_timeout => '90',
 # }
 # ```
 #
@@ -62,6 +62,11 @@
 # file as this information is needed when starting up the server (this may
 # change to be be automatically parsed from the `url` in a later release).
 #
+# #### `download_timeout`
+#
+# `String` defaults to: `90`
+#
+# Timeout to download of the package.
 #
 # === Authors
 #
@@ -69,13 +74,13 @@
 #
 #
 class selenium(
-  $user         = $selenium::params::user,
-  $group        = $selenium::params::group,
-  $install_root = $selenium::params::install_root,
-  $java         = $selenium::params::java,
-  $version      = $selenium::params::version,
-  $url          = undef,
-  $timeout      = $selenium::params::download_timeout,
+  $user             = $selenium::params::user,
+  $group            = $selenium::params::group,
+  $install_root     = $selenium::params::install_root,
+  $java             = $selenium::params::java,
+  $version          = $selenium::params::version,
+  $url              = undef,
+  $download_timeout = $selenium::params::download_timeout,
 ) inherits selenium::params {
   validate_string($user)
   validate_string($group)
@@ -131,7 +136,7 @@ class selenium(
   wget::fetch { 'selenium-server-standalone':
     source      => $jar_url,
     destination => "${jar_path}/${jar_name}",
-    timeout     => "${timeout}",
+    timeout     => $download_timeout,
     execuser    => $user,
     require     => File[$jar_path],
   }
