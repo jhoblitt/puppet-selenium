@@ -175,12 +175,13 @@ override the default values.
 ```puppet
 # defaults
 class { 'selenium':
-  user         => 'selenium',
-  group        => 'selenium',
-  install_root => '/opt/selenium',
-  java         => 'java',
-  version      => '2.39.0',
-  url          => undef,
+  user             => 'selenium',
+  group            => 'selenium',
+  install_root     => '/opt/selenium',
+  java             => 'java',
+  version          => '2.39.0',
+  url              => undef,
+  download_timeout => '90',
 }
 ```
 
@@ -225,6 +226,12 @@ class { 'selenium':
     However, the `version` parameter just match the version of the downloaded
     file as this information is needed when starting up the server (this may
     change to be be automatically parsed from the `url` in a later release).
+
+ * `download_timeout`
+
+    `String` defaults to: `90`
+
+    Timeout to download of the package.
 
 ### `selenium::server`
 
