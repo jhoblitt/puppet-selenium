@@ -16,7 +16,7 @@
 #   java         => 'java',
 #   version      => '2.39.0',
 #   url          => undef,
-#   timeout      => '90'
+#   timeout      => '90',
 # }
 # ```
 #
@@ -75,7 +75,7 @@ class selenium(
   $java         = $selenium::params::java,
   $version      = $selenium::params::version,
   $url          = undef,
-  $timeout      = $selenium::params::download_timeout
+  $timeout      = $selenium::params::download_timeout,
 ) inherits selenium::params {
   validate_string($user)
   validate_string($group)
