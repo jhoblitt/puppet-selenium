@@ -17,7 +17,12 @@ class selenium::params {
   $download_timeout = '90'
 
   case $::osfamily {
-    'redhat': {}
+    'redhat': {
+      $service_template = 'redhat.selenium.erb'
+    }
+    'debian': {
+      $service_template = 'debian.selenium.erb'
+    }
     default: {
       fail("Module ${module_name} is not supported on ${::operatingsystem}")
     }

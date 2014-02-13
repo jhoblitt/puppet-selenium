@@ -38,14 +38,14 @@ define selenium::config(
   validate_string($jar_name)
 
   # prog is the 'name' of the init.d script.
-  $prog = "selenium${name}"
+  $prog = "selenium-${name}"
 
   file { "/etc/init.d/${prog}":
     ensure  => 'file',
     owner   => 'root',
     group   => 'root',
     mode    => '0755',
-    content => template("${module_name}/init.d/selenium.erb"),
+    content => template("${module_name}/init.d/${selenium::params::service_template}"),
   } ~>
   service { $prog:
     ensure     => running,
