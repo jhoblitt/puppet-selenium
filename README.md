@@ -44,7 +44,12 @@ server [profile/role](http://www.craigdunn.org/2012/05/239/).
 Usage
 -----
 
-The `selenium::server` class is used to setup a `standalone` Selnium instances to use a single server as a test node. The `selenium::hub` class acts as a proxy in front of one or more `selenium::node` instances. A hub + node(s) setup is refered to as a `Selenium grid`. Running `selenium::server` is similar to creating a `Selenium grid` by declaring `selenium::hub` and `selenium::node` on the same host.
+The `selenium::server` class is used to setup a `standalone` Selenium instance
+to allow the use of a single server as a test node. The `selenium::hub` class
+acts as a proxy in front of one or more `selenium::node` instances. A hub +
+node(s) setup is refered to as a `Selenium grid`. Running `selenium::server` is
+similar to creating a `Selenium grid` by declaring `selenium::hub` and
+`selenium::node` on the same host.
 
 It is highly recommend that you read the [Selenium Grid
 documentation](http://docs.seleniumhq.org/docs/07_selenium_grid.jsp#what-is-selenium-grid)
