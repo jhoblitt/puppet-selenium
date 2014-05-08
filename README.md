@@ -34,7 +34,8 @@ Description
 This is a puppet module for installation and configuration of the [Selenium
 Server](http://docs.seleniumhq.org/docs/07_selenium_grid.jsp) 2 browser
 automation package.  Support is provided for configuring Selenium Server in
-`standalone` mode along with the grid modes of `hub` and `node`.
+`standalone` mode or as a `Selenium grid` with composed of the `hub` and `node`
+modes.
 
 The design intent of this module is to only manage Selenium server and not any
 of the other packages that might be required to required to create a selenium
@@ -42,6 +43,12 @@ server [profile/role](http://www.craigdunn.org/2012/05/239/).
 
 Usage
 -----
+
+The `selenium::server` class is used to setup a `standalone` Selnium instances to use a single server as a test node. The `selenium::hub` class acts as a proxy in front of one or more `selenium::node` instances. A hub + node(s) setup is refered to as a `Selenium grid`. Running `selenium::server` is similar to creating a `Selenium grid` by declaring `selenium::hub` and `selenium::node` on the same host.
+
+It is highly recommend that you read the [Selenium Grid
+documentation](http://docs.seleniumhq.org/docs/07_selenium_grid.jsp#what-is-selenium-grid)
+to determine what the best approach for your usage case(s) is. 
 
 ### Simple
 
