@@ -1,5 +1,18 @@
 
 #### [Current]
+ * [a93d574](../../commit/a93d574) - __(Joshua Hoblitt)__ update rspec to cover PR [#9](../../issues/9)
+ * [e070184](../../commit/e070184) - __(Joshua Hoblitt)__ Merge pull request [#9](../../issues/9) from KlavsKlavsen/master
+ * [eb5c321](../../commit/eb5c321) - __(Joshua Hoblitt)__ update .gitignore
+ * [57625be](../../commit/57625be) - __(Klavs Klavsen)__ ensure selenium log folder is writable by its owner
+ * [3d59e1d](../../commit/3d59e1d) - __(Joshua Hoblitt)__ fix a few README typos
+ * [4c04708](../../commit/4c04708) - __(Joshua Hoblitt)__ add a standalone vs grid blurb to the README
+
+Based on question raised in https://github.com/jhoblitt/puppet-selenium/issues/7
+
+ * [a917ef6](../../commit/a917ef6) - __(Joshua Hoblitt)__ update copyright notice year (-2014)
+
+#### v0.2.0
+ * [392f32f](../../commit/392f32f) - __(Joshua Hoblitt)__ bump version to v0.2.0
  * [8ac1df0](../../commit/8ac1df0) - __(Joshua Hoblitt)__ add validation + rspec of selenium class download_timeout param
  * [4c446af](../../commit/4c446af) - __(Joshua Hoblitt)__ update boilerplate .gitignore
  * [e881e3e](../../commit/e881e3e) - __(Joshua Hoblitt)__ add selenium class download_timeout param to README
