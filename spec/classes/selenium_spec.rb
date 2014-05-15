@@ -37,6 +37,7 @@ describe 'selenium', :type => :class do
         'ensure' => 'directory',
         'owner'  => p[:user],
         'group'  => p[:group],
+        'mode'   => '0755',
       })
       should contain_file('/var/log/selenium').with({
         'ensure' => 'link',
