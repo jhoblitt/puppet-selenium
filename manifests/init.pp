@@ -125,6 +125,7 @@ class selenium(
 
   file { $log_path:
     ensure => directory,
+    mode => 0755,
   }
 
   file { '/var/log/selenium':
