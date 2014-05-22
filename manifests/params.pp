@@ -12,7 +12,7 @@ class selenium::params {
   $hub_options      = '-role hub'
   $node_options     = "${server_options} -role node"
   $java             = 'java'
-  $version          = '2.39.0'
+  $version          = '2.41.0'
   $default_hub      = 'http://localhost:4444/grid/register'
   $download_timeout = '90'
 
