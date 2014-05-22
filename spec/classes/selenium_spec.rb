@@ -9,7 +9,7 @@ describe 'selenium', :type => :class do
       :group            => 'selenium',
       :install_root     => '/opt/selenium',
       :java             => 'java',
-      :version          => '2.39.0',
+      :version          => '2.41.0',
       :url              => '',
       :download_timeout => '90',
     }
