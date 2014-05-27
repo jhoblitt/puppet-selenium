@@ -1,5 +1,22 @@
 
 #### [Current]
+ * [5f10d31](../../commit/5f10d31) - __(Joshua Hoblitt)__ minor README grammar tweak
+ * [48bc2ce](../../commit/48bc2ce) - __(Joshua Hoblitt)__ change README MD so class parameters are a subsection
+
+Changing the class parameters markup from a list to a
+sub-sub-sub-sub-subsection creates a direct HTML anchor that is useful
+to cut'n'paste as a URL.
+
+ * [8a40c58](../../commit/8a40c58) - __(Joshua Hoblitt)__ Merge pull request [#11](../../issues/11) from jhoblitt/feature/jar-2.41.0
+
+update default selenium jar version to 2.41.0
+ * [c6daae6](../../commit/c6daae6) - __(Joshua Hoblitt)__ update default selenium jar version to 2.41.0
+
+#### v0.2.1
+ * [fa644ee](../../commit/fa644ee) - __(Joshua Hoblitt)__ Merge pull request [#10](../../issues/10) from jhoblitt/feature/v0.2.1
+
+bump version to v0.2.1
+ * [a19c6ca](../../commit/a19c6ca) - __(Joshua Hoblitt)__ bump version to v0.2.1
  * [a93d574](../../commit/a93d574) - __(Joshua Hoblitt)__ update rspec to cover PR [#9](../../issues/9)
  * [e070184](../../commit/e070184) - __(Joshua Hoblitt)__ Merge pull request [#9](../../issues/9) from KlavsKlavsen/master
  * [eb5c321](../../commit/eb5c321) - __(Joshua Hoblitt)__ update .gitignore
