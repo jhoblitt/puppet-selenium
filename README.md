@@ -158,7 +158,7 @@ Unless class `selenium` has `$install_root` changed from the default, these
 files paths will be used.  Note that the log files and init scripts are only
 created for the relevant configured service.
 
-The log files will have the mode `0644` so that they can be inspected by users
+The log files are set to mode `0644`, so that they can be inspected by users
 other than the selenium role account.
 
 ```
