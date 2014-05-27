@@ -11,10 +11,11 @@ Puppet selenium Module
     * [Simple](#simple)
     * [Example "profiles/roles"](#example-profilesroles)
     * [Files](#files)
-    * [`selenium`](#selenium)
-    * [`selenium::server`](#seleniumserver)
-    * [`selenium::hub`](#seleniumhub)
-    * [`selenium::node`](#seleniumnode)
+    * [Classes](#classes)
+        * [`selenium`](#selenium)
+        * [`selenium::server`](#seleniumserver)
+        * [`selenium::hub`](#seleniumhub)
+        * [`selenium::node`](#seleniumnode)
 4. [Why Another Module?](#why-another-module)
 5. [Limitations](#limitations)
     * [Tested Platforms](#tested-platforms)
@@ -177,7 +178,9 @@ other than the selenium role account.
 /etc/init.d/seleniumserver
 ```
 
-### `selenium`
+### Classes
+
+#### `selenium`
 
 This class controls common configuration values used by the
 `selenium::{server,hub,node}` classes.  It is automatically included in the
@@ -197,55 +200,55 @@ class { 'selenium':
 }
 ```
 
- * `user`
+##### `user`
 
-    `String` defaults to: `selenium`
+`String` defaults to: `selenium`
 
-    The name/uid of the system role account to execute the server process under
-    and will have ownership of files.
+The name/uid of the system role account to execute the server process under and
+will have ownership of files.
 
- * `group`
+##### `group`
 
-    `String` defaults to: `selenium`
+`String` defaults to: `selenium`
 
-    The group/gid of the system role account and group ownership of files.
+The group/gid of the system role account and group ownership of files.
 
- * `install_root`
+##### `install_root`
 
-    `String` defaults to: `/opt/selenium`
+`String` defaults to: `/opt/selenium`
 
-    The dirname under which Selenium Server files (including logs) will be
-    created.
+The dirname under which Selenium Server files (including logs) will be
+created.
 
- * `java`
+##### `java`
 
-    `String` defaults to: `java`
+`String` defaults to: `java`
 
-    The path of the `java` interpreter to use.
+The path of the `java` interpreter to use.
 
- * `version`
+##### `version`
 
-    `String` defaults to: `2.41.0` (the latest release as of 2014-05-22)
+`String` defaults to: `2.41.0` (the latest release as of 2014-05-22)
 
-    The version of Selenium Server to download.  Used to form the URL used to
-    fetch the jar file.
+The version of Selenium Server to download.  Used to form the URL used to fetch
+the jar file.
 
- * `url`
+##### `url`
 
-    `String` defaults to: `undef`
+`String` defaults to: `undef`
 
-    If defined, `url` will be used to download the Selenium Server jar file.
-    However, the `version` parameter just match the version of the downloaded
-    file as this information is needed when starting up the server (this may
-    change to be be automatically parsed from the `url` in a later release).
+If defined, `url` will be used to download the Selenium Server jar file.
+However, the `version` parameter just match the version of the downloaded file
+as this information is needed when starting up the server (this may change to
+be be automatically parsed from the `url` in a later release).
 
- * `download_timeout`
+##### `download_timeout`
 
-    `String` defaults to: `90`
+`String` defaults to: `90`
 
-    Timeout to download of the package.
+Timeout to download of the package.
 
-### `selenium::server`
+#### `selenium::server`
 
 ```puppet
 # defaults
@@ -255,20 +258,20 @@ class { 'selenium::server':
 }
 ```
 
- * `display`
+##### `display`
 
-    `String` defaults to: `:0`
+`String` defaults to: `:0`
 
-    The name of the `X` display to render too.  This is set as an environment
-    variable passed to Selenium Server
+The name of the `X` display to render too.  This is set as an environment
+variable passed to Selenium Server
 
- * `options`
+##### `options`
 
-    `String` defaults to: `-Dwebdriver.enable.native.events=1`
+`String` defaults to: `-Dwebdriver.enable.native.events=1`
 
-    Options passed to Selenium Server at startup.
+Options passed to Selenium Server at startup.
 
-### `selenium::hub`
+#### `selenium::hub`
 
 Note that by default `selenium::server` and `selenium::hub` will try to listen
 on the same TCP port (`4444`) and only one of them will be able to function.
@@ -280,13 +283,13 @@ class { 'selenium::hub':
 }
 ```
 
- * options`
+##### `options`
 
-    `String` defaults to: `-role hub`
+`String` defaults to: `-role hub`
 
-    Options passed to Selenium Server Hub at startup.
+Options passed to Selenium Server Hub at startup.
 
-### `selenium::node`
+#### `selenium::node`
 
 ```puppet
 # defaults
@@ -297,24 +300,24 @@ class { 'selenium::node':
 }
 ```
 
- * `display`
+##### `display`
 
-    `String` defaults to: `:0`
+`String` defaults to: `:0`
 
-    The name of the `X` display to render too.  This is set as an environment
-    variable passed to Selenium Server
+The name of the `X` display to render too.  This is set as an environment
+variable passed to Selenium Server
 
- * `options`
+##### `options`
 
-    `String` defaults to: `-Dwebdriver.enable.native.events=1 -role node`
+`String` defaults to: `-Dwebdriver.enable.native.events=1 -role node`
 
-    Options passed to Selenium Server Node at startup.
+Options passed to Selenium Server Node at startup.
 
- * `hub`
+##### `hub`
 
-    `String` defaults to: `http://localhost:4444/grid/register`
+`String` defaults to: `http://localhost:4444/grid/register`
 
-    The URL of the Selenium Server Hub to connect to.
+The URL of the Selenium Server Hub to connect to.
 
 
 Why Another Module?
