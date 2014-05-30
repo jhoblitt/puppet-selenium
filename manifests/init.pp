@@ -104,7 +104,7 @@ class selenium(
   if $url {
     $jar_url = $url
   } else {
-    $jar_url = "https://selenium.googlecode.com/files/${jar_name}"
+    $jar_url = "http://selenium-release.storage.googleapis.com/${version}/${jar_name}"
   }
 
   File {
