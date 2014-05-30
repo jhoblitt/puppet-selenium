@@ -46,7 +46,7 @@ describe 'selenium', :type => :class do
         'target' => "#{p[:install_root]}/log",
       })
       should contain_wget__fetch('selenium-server-standalone').with({
-        'source'      => "https://selenium.googlecode.com/files/selenium-server-standalone-#{p[:version]}.jar",
+        'source'      => "https://selenium-release.storage.googleapis.com/#{p[:version]}/selenium-server-standalone-#{p[:version]}.jar",
         'destination' => "#{p[:install_root]}/jars/selenium-server-standalone-#{p[:version]}.jar",
         'timeout'     => p[:download_timeout],
         'execuser'    => p[:user],
