@@ -1,4 +1,4 @@
-require 'spec_helper_system'
+require 'spec_helper_acceptance'
 
 describe 'selenium class' do
   describe 'running puppet code' do
@@ -12,11 +12,8 @@ describe 'selenium class' do
       EOS
 
       # Run it twice and test for idempotency
-      puppet_apply(pp) do |r|
-        r.exit_code.should_not == 1
-        r.refresh
-        r.exit_code.should be_zero
-      end
+      expect(apply_manifest(pp, :catch_failures => true).stderr).to eq("")
+      expect(apply_manifest(pp, :catch_changes => true).stderr).to eq("")
     end
   end
 
@@ -33,7 +30,7 @@ describe 'selenium class' do
     it { should be_linked_to '/opt/selenium/log' }
   end
 
-  describe file('/opt/selenium/jars/selenium-server-standalone-2.39.0.jar') do
+  describe file('/opt/selenium/jars/selenium-server-standalone-2.41.0.jar') do
     it { should be_file }
     it { should be_owned_by 'selenium' }
     it { should be_grouped_into 'selenium' }
