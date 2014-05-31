@@ -1,0 +1,1 @@
+DEFAULT_VERSION = '2.42.1'
