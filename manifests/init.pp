@@ -29,12 +29,13 @@ class selenium(
     ensure => present,
   }
 
-  $jar_name = "selenium-server-standalone-${version}.jar"
+  $jar_name     = "selenium-server-standalone-${version}.jar"
+  $path_version = regsubst($version, '^(\d+\.\d+)\.\d+$', '\1')
 
   if $url {
     $jar_url = $url
   } else {
-    $jar_url = "https://selenium-release.storage.googleapis.com/${version}/${jar_name}"
+    $jar_url = "https://selenium-release.storage.googleapis.com/${path_version}/${jar_name}"
   }
 
   File {
