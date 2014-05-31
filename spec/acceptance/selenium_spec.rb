@@ -30,7 +30,7 @@ describe 'selenium class' do
     it { should be_linked_to '/opt/selenium/log' }
   end
 
-  describe file('/opt/selenium/jars/selenium-server-standalone-2.41.0.jar') do
+  describe file("/opt/selenium/jars/selenium-server-standalone-#{DEFAULT_VERSION}.jar") do
     it { should be_file }
     it { should be_owned_by 'selenium' }
     it { should be_grouped_into 'selenium' }

@@ -1,5 +1,6 @@
 require 'beaker-rspec/spec_helper'
 require 'beaker-rspec/helpers/serverspec'
+require 'spec_helper_common'
 
 unless ENV['RS_PROVISION'] == 'no' or ENV['BEAKER_provision'] == 'no'
   if hosts.first.is_pe?

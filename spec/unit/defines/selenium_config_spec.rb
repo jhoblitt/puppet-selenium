@@ -10,7 +10,7 @@ describe 'selenium::config', :type => :define do
       :display      => ':0',
       :user         => 'selenium',
       :install_root => '/opt/selenium',
-      :jar_name     => 'selenium-server-standalone-2.41.0.jar',
+      :jar_name     => "selenium-server-standalone-#{DEFAULT_VERSION}.jar",
       :options      => '-Dwebdriver.enable.native.events=1',
       :java         => 'java',
     }
