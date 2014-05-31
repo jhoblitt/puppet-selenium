@@ -18,6 +18,12 @@ describe 'selenium', :type => :class do
       p.merge!(params)
     end
 
+    # The new download URL has the major.minor version as a path component but
+    # excludes the .patch. Eg.
+    # https://selenium-release.storage.googleapis.com/<major>.<minor>/selenium-server-standalone-<major>.<minor>.<patch>.jar
+
+    path_version = p[:version].match(/^(\d+\.\d+)\./)[1]
+
     it do
       should contain_user(p[:user]).with_gid(p[:group])
       should contain_group(p[:group])
@@ -46,7 +52,7 @@ describe 'selenium', :type => :class do
         'target' => "#{p[:install_root]}/log",
       })
       should contain_wget__fetch('selenium-server-standalone').with({
-        'source'      => "https://selenium.googlecode.com/files/selenium-server-standalone-#{p[:version]}.jar",
+        'source'      => "https://selenium-release.storage.googleapis.com/#{path_version}/selenium-server-standalone-#{p[:version]}.jar",
         'destination' => "#{p[:install_root]}/jars/selenium-server-standalone-#{p[:version]}.jar",
         'timeout'     => p[:download_timeout],
         'execuser'    => p[:user],
