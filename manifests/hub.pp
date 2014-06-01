@@ -1,28 +1,7 @@
 # == Class: selenium::hub
 #
-# === Parameters
-#
-# Note that by default `selenium::server` and `selenium::hub` will try to
-# listen on the same TCP port (`4444`) and only one of them will be able to
-# function.
-#
-# ```puppet
-# # defaults
-# class { 'selenium::hub':
-#   options => '-role hub',
-# }
-# ```
-#
-# #### `options`
-#
-# `String` defaults to: `-role hub`
-#
-# Options passed to Selenium Server Hub at startup.
-#
-#
-# === Authors
-#
-# Joshua Hoblitt <jhoblitt@cpan.org>
+# Please refer to https://github.com/jhoblitt/puppet-selenium#seleniumhub for
+# parameter documentation.
 #
 #
 class selenium::hub(

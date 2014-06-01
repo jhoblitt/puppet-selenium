@@ -1,7 +1,8 @@
 # == Class: selenium
 #
-# Please refer to https://github.com/jhoblitt/puppet-selenium#usage for
+# Please refer to https://github.com/jhoblitt/puppet-selenium#selenium for
 # parameter documentation.
+#
 #
 class selenium(
   $user             = $selenium::params::user,

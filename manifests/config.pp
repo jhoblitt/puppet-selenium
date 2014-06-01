@@ -2,24 +2,6 @@
 #
 # This define should be considered private.
 #
-# Note that selenium::params && selnenium::install must be included in the
-# manifest before this define may be used.
-#
-# === Parameters
-#
-# Accepts no parameters.
-#
-#
-# === Examples
-#
-#    selenium::config{ 'seleniumstandalone': }
-#
-#
-# === Authors
-#
-# Joshua Hoblitt <jhoblitt@cpan.org>
-#
-#
 define selenium::config(
   $display      = $selenium::params::display,
   $user         = $selenium::params::user,
