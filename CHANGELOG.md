@@ -1,5 +1,39 @@
 
 #### [Current]
+ * [6c79540](../../commit/6c79540) - __(Joshua Hoblitt)__ bump version to v0.2.3
+ * [e12054a](../../commit/e12054a) - __(Joshua Hoblitt)__ remove all in class/define parameter docs
+
+Replace with URLs to section anchors in README
+
+ * [b81f8fa](../../commit/b81f8fa) - __(Joshua Hoblitt)__ fix linter warnings
+ * [d9efd4d](../../commit/d9efd4d) - __(Joshua Hoblitt)__ Merge pull request [#15](../../issues/15) from jhoblitt/feature/jar_2.42.1
+
+update default selenium jar version to 2.42.1
+ * [3adad1c](../../commit/3adad1c) - __(Joshua Hoblitt)__ update default selenium jar version to 2.42.1
+ * [c46f6eb](../../commit/c46f6eb) - __(Joshua Hoblitt)__ Merge pull request [#14](../../issues/14) from jhoblitt/feature/beaker
+
+convert from rspec-systerm -> beaker
+ * [c62e058](../../commit/c62e058) - __(Joshua Hoblitt)__ convert from rspec-systerm -> beaker
+
++ update acceptance tests
+
+ * [c500ad7](../../commit/c500ad7) - __(Joshua Hoblitt)__ Merge pull request [#13](../../issues/13) from enxebre/defaul-url
+ * [51e71cb](../../commit/51e71cb) - __(Joshua Hoblitt)__ fix new download URL path version component
+
+The new download URL has the major.minor version as a path component but
+excludes the .patch. Eg.
+
+    https://selenium-release.storage.googleapis.com/<major>.<minor>/selenium-server-standalone-<major>.<minor>.<patch>.jar
+
+ * [931a531](../../commit/931a531) - __(alamela)__ fixing specs
+ * [b9aa097](../../commit/b9aa097) - __(Enxebre)__ default url on https
+ * [39ac34b](../../commit/39ac34b) - __(Enxebre)__ changing borken default url
+
+#### v0.2.2
+ * [d43f99c](../../commit/d43f99c) - __(Joshua Hoblitt)__ Merge pull request [#12](../../issues/12) from jhoblitt/feature/v0.2.2
+
+Feature/v0.2.2
+ * [36ecd00](../../commit/36ecd00) - __(Joshua Hoblitt)__ bump version to v0.2.2
  * [5f10d31](../../commit/5f10d31) - __(Joshua Hoblitt)__ minor README grammar tweak
  * [48bc2ce](../../commit/48bc2ce) - __(Joshua Hoblitt)__ change README MD so class parameters are a subsection
 
