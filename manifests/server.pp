@@ -1,32 +1,7 @@
 # == Class: selenium::server
 #
-# === Parameters
-#
-# ```puppet
-# # defaults
-# class { 'selenium::server':
-#   display => ':0',
-#   options => '-Dwebdriver.enable.native.events=1',
-# }
-# ```
-#
-# #### `display`
-#
-# `String` defaults to: `:0`
-#
-# The name of the `X` display to render too.  This is set as an environment
-# variable passed to Selenium Server
-#
-# #### `options`
-#
-# `String` defaults to: `-Dwebdriver.enable.native.events=1`
-#
-# Options passed to Selenium Server at startup.
-#
-#
-# === Authors
-#
-# Joshua Hoblitt <jhoblitt@cpan.org>
+# Please refer to https://github.com/jhoblitt/puppet-selenium#seleniumserver
+# for parameter documentation.
 #
 #
 class selenium::server(
