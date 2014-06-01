@@ -35,7 +35,8 @@ class selenium(
   if $url {
     $jar_url = $url
   } else {
-    $jar_url = "https://selenium-release.storage.googleapis.com/${path_version}/${jar_name}"
+    $variant = "${path_version}/${jar_name}"
+    $jar_url = "https://selenium-release.storage.googleapis.com/${variant}"
   }
 
   File {
@@ -56,7 +57,7 @@ class selenium(
 
   file { $log_path:
     ensure => directory,
-    mode => 0755,
+    mode   => '0755',
   }
 
   file { '/var/log/selenium':
