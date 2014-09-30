@@ -19,6 +19,14 @@ define selenium::config(
   validate_string($java)
   validate_string($jar_name)
 
+  case $::osfamily {
+    'debian': {
+      package { "daemon":
+        ensure => "installed"
+      }
+    }
+  }
+
   # prog is the 'name' of the init.d script.
   $prog = "selenium${name}"
 
@@ -27,7 +35,7 @@ define selenium::config(
     owner   => 'root',
     group   => 'root',
     mode    => '0755',
-    content => template("${module_name}/init.d/selenium.erb"),
+    content => template("${module_name}/init.d/${selenium::params::service_template}"),
   } ~>
   service { $prog:
     ensure     => running,
