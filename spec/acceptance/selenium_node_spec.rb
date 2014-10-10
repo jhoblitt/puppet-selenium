@@ -16,8 +16,8 @@ describe 'selenium::node class' do
       EOS
 
       # Run it twice and test for idempotency
-      expect(apply_manifest(pp, :catch_failures => true).stderr).to eq("")
-      expect(apply_manifest(pp, :catch_changes => true).stderr).to eq("")
+      apply_manifest(pp, :catch_failures => true)
+      apply_manifest(pp, :catch_changes => true)
     end
   end
 
