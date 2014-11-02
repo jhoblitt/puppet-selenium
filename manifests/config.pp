@@ -21,17 +21,18 @@ define selenium::config(
 
   case $::osfamily {
     'debian': {
-      package { "daemon":
-        ensure => "installed"
-      }
+      ensure_packages(["daemon"])
+      Package["daemon"] -> File["init-script"]
     }
+    default : {}
   }
 
   # prog is the 'name' of the init.d script.
   $prog = "selenium${name}"
 
-  file { "/etc/init.d/${prog}":
+  file { "init-script":
     ensure  => 'file',
+    path   => "/etc/init.d/${prog}",
     owner   => 'root',
     group   => 'root',
     mode    => '0755',
