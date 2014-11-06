@@ -24,7 +24,8 @@ class selenium(
   include wget
 
   user { $user:
-    gid    => $group,
+    gid        => $group,
+    managehome => true,
   }
   group { $group:
     ensure => present,
@@ -69,11 +70,12 @@ class selenium(
   }
 
   wget::fetch { 'selenium-server-standalone':
-    source      => $jar_url,
-    destination => "${jar_path}/${jar_name}",
-    timeout     => $download_timeout,
-    execuser    => $user,
-    require     => File[$jar_path],
+    source             => $jar_url,
+    destination        => "${jar_path}/${jar_name}",
+    timeout            => $download_timeout,
+    execuser           => $user,
+    require            => File[$jar_path],
+    nocheckcertificate => true,
   }
 
   logrotate::rule { 'selenium':
