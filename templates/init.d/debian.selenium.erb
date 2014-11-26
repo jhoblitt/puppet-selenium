@@ -54,7 +54,7 @@ pidfile=/var/run/${prog}.pid
 [ -r /etc/default/$NAME ] && . /etc/default/$NAME
 
 DAEMON=/usr/bin/daemon
-DAEMON_ARGS="--name=$NAME --inherit --output=$SELENIUMNODE_SLAVE_LOG --pidfile=$PIDFILE"
+DAEMON_ARGS=" --inherit --output=$SELENIUMNODE_SLAVE_LOG --pidfile=$PIDFILE"
 
 SU=/bin/su
 
