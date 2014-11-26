@@ -28,9 +28,11 @@ PIDFILE=/var/run/seleniumnode/seleniumnode.pid
 
 # user id to be invoked as (otherwise will run as root; not wise!)
 SLNM_USER='<%= @user %>'
+
 # selenium home location
-SLNM_HOME='<%= @install_root %>'
-SLNM_JAR='<%= @jar_name %>'
+SLNM_INSTALL_ROOT='<%= @install_root %>'
+SLNM_JAR_NAME='<%= @jar_name %>'
+
 # location of the selenium jar file
 SLNM_ARGS='<%= @options %>'
 
