@@ -24,7 +24,8 @@ class selenium(
   include wget
 
   user { $user:
-    gid    => $group,
+    gid         => $group,
+    managehome  => true,
   }
   group { $group:
     ensure => present,

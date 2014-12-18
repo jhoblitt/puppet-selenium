@@ -15,6 +15,7 @@ class selenium::params {
   $version          = '2.42.1'
   $default_hub      = 'http://localhost:4444/grid/register'
   $download_timeout = '90'
+  $initsystem       = 'sysv'
 
   case $::osfamily {
     'redhat': {}

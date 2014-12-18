@@ -5,8 +5,9 @@
 #
 #
 class selenium::server(
-  $display = $selenium::params::display,
-  $options = $selenium::params::server_options,
+  $display    = $selenium::params::display,
+  $options    = $selenium::params::server_options,
+  $initsystem = $selenium::params::initsystem,
 ) inherits selenium::params {
   validate_string($display)
   validate_string($options)
@@ -22,6 +23,7 @@ class selenium::server(
     install_root => $selenium::install_root,
     options      => $options,
     java         => $selenium::java,
+    initsystem   => $initsystem,
   } ->
   anchor { 'selenium::server::end': }
 }

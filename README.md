@@ -253,8 +253,9 @@ Timeout to download of the package.
 ```puppet
 # defaults
 class { 'selenium::server':
-  display => ':0',
-  options => '-Dwebdriver.enable.native.events=1',
+  display    => ':0',
+  options    => '-Dwebdriver.enable.native.events=1',
+  initsystem => 'sysv',
 }
 ```
 
@@ -271,6 +272,13 @@ variable passed to Selenium Server
 
 Options passed to Selenium Server at startup.
 
+##### `initsystem`
+
+`String` defaults to: `sysv`
+
+Possible values are `systemd` and `sysv`.
+Creates and uses sysv init scripts or new systemd scripts.
+
 #### `selenium::hub`
 
 Note that by default `selenium::server` and `selenium::hub` will try to listen
@@ -279,7 +287,8 @@ on the same TCP port (`4444`) and only one of them will be able to function.
 ```puppet
 # defaults
 class { 'selenium::hub':
-  options => '-role hub',
+  options    => '-role hub',
+  initsystem => 'sysv',
 }
 ```
 
@@ -288,6 +297,13 @@ class { 'selenium::hub':
 `String` defaults to: `-role hub`
 
 Options passed to Selenium Server Hub at startup.
+
+##### `initsystem`
+
+`String` defaults to: `sysv`
+
+Possible values are `systemd` and `sysv`.
+Creates and uses sysv init scripts or new systemd scripts.
 
 #### `selenium::node`
 
@@ -318,6 +334,13 @@ Options passed to Selenium Server Node at startup.
 `String` defaults to: `http://localhost:4444/grid/register`
 
 The URL of the Selenium Server Hub to connect to.
+
+##### `initsystem`
+
+`String` defaults to: `sysv`
+
+Possible values are `systemd` and `sysv`.
+Creates and uses sysv init scripts or new systemd scripts.
 
 
 Why Another Module?
@@ -362,7 +385,7 @@ specific init scripts.
 ### Tested Platforms
 
  * el6.x
-
+ * Fedora 21
 
 Versioning
 ----------
