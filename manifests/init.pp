@@ -5,13 +5,14 @@
 #
 #
 class selenium(
-  $user             = $selenium::params::user,
-  $group            = $selenium::params::group,
-  $install_root     = $selenium::params::install_root,
-  $java             = $selenium::params::java,
-  $version          = $selenium::params::version,
-  $url              = undef,
-  $download_timeout = $selenium::params::download_timeout,
+  $user               = $selenium::params::user,
+  $group              = $selenium::params::group,
+  $install_root       = $selenium::params::install_root,
+  $java               = $selenium::params::java,
+  $version            = $selenium::params::version,
+  $url                = undef,
+  $download_timeout   = $selenium::params::download_timeout,
+  $nocheckcertificate = false,
 ) inherits selenium::params {
   validate_string($user)
   validate_string($group)
@@ -20,6 +21,7 @@ class selenium(
   validate_string($version)
   validate_string($url)
   validate_string($download_timeout)
+  validate_bool($nocheckcertificate)
 
   include wget
 
@@ -74,6 +76,7 @@ class selenium(
     timeout     => $download_timeout,
     execuser    => $user,
     require     => File[$jar_path],
+    nocheckcertificate => $nocheckcertificate,
   }
 
   logrotate::rule { 'selenium':
