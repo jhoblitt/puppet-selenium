@@ -1,4 +1,6 @@
+sudo: false
 language: ruby
+bundler_args: --without beaker
 rvm:
   - 1.8.7
   - 1.9.3
