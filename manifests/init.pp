@@ -71,12 +71,12 @@ class selenium(
   }
 
   wget::fetch { 'selenium-server-standalone':
-    source      => $jar_url,
-    destination => "${jar_path}/${jar_name}",
-    timeout     => $download_timeout,
-    execuser    => $user,
-    require     => File[$jar_path],
+    source             => $jar_url,
+    destination        => "${jar_path}/${jar_name}",
+    timeout            => $download_timeout,
     nocheckcertificate => $nocheckcertificate,
+    execuser           => $user,
+    require            => File[$jar_path],
   }
 
   logrotate::rule { 'selenium':
