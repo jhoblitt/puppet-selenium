@@ -1,6 +1,41 @@
 
 #### [Current]
- * [6c79540](../../commit/6c79540) - __(Joshua Hoblitt)__ bump version to v0.2.3
+ * [6090f31](../../commit/6090f31) - __(Joshua Hoblitt)__ update fixtures stdlib to 4.2.0
+ * [1260914](../../commit/1260914) - __(Joshua Hoblitt)__ replace Modulefile vs metadata.json
+ * [eb0f399](../../commit/eb0f399) - __(Joshua Hoblitt)__ update rspec-puppet to v2.0.0
+ * [4d50d4a](../../commit/4d50d4a) - __(Joshua Hoblitt)__ Merge pull request [#31](../../issues/31) from jhoblitt/feature/jar_2.44.0
+
+Feature/jar 2.44.0
+ * [1b74629](../../commit/1b74629) - __(Joshua Hoblitt)__ update beaker nodesets from puppet-module_skel
+ * [85a9295](../../commit/85a9295) - __(Joshua Hoblitt)__ update default selenium jar version to 2.44.0
+ * [e28b863](../../commit/e28b863) - __(Joshua Hoblitt)__ Merge pull request [#30](../../issues/30) from jhoblitt/feature/travis_1.8.7
+
+fix travis ruby 1.8.7 runs
+ * [b5a9110](../../commit/b5a9110) - __(Joshua Hoblitt)__ enable travis container based builds
+ * [6b8949f](../../commit/6b8949f) - __(Joshua Hoblitt)__ fix travis ruby 1.8.7 runs
+
+By excluding beaker related gems that pull in deps now incompatible with
+1.8.7.
+
+ * [6310705](../../commit/6310705) - __(Joshua Hoblitt)__ Merge pull request [#28](../../issues/28) from tayzlor/future-parser-fixes
+
+Fixes required for compatibility with 3.7.x puppet and future parser
+ * [b0b38f1](../../commit/b0b38f1) - __(Graham Taylor)__ Fixes required for compatibility with 3.7.x puppet and future parser
+ * [62f74d6](../../commit/62f74d6) - __(Joshua Hoblitt)__ Merge pull request [#22](../../issues/22) from jhoblitt/feature/future_parser
+
+add future parser to travis matrix
+ * [37d72d4](../../commit/37d72d4) - __(Joshua Hoblitt)__ add future parser to travis matrix
+ * [aaa9adc](../../commit/aaa9adc) - __(Joshua Hoblitt)__ Merge pull request [#18](../../issues/18) from jhoblitt/feature/beaker_update
+
+Feature/beaker update
+ * [0e51725](../../commit/0e51725) - __(Joshua Hoblitt)__ ignore puppet warnings during acceptance tests
+ * [cd44a66](../../commit/cd44a66) - __(Joshua Hoblitt)__ ignore beaker log dir
+
+#### v0.2.3
+ * [889e77c](../../commit/889e77c) - __(Joshua Hoblitt)__ Merge pull request [#16](../../issues/16) from jhoblitt/feature/v0.2.3
+
+Feature/v0.2.3
+ * [3be4bcc](../../commit/3be4bcc) - __(Joshua Hoblitt)__ bump version to v0.2.3
  * [e12054a](../../commit/e12054a) - __(Joshua Hoblitt)__ remove all in class/define parameter docs
 
 Replace with URLs to section anchors in README

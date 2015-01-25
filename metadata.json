@@ -1,6 +1,6 @@
 {
   "name": "jhoblitt-selenium",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "author": "Joshua Hoblitt <jhoblitt@cpan.org>",
   "summary": "Manages Selenium Server 2 - Standalone and Grid",
   "license": "Apache-2.0",
