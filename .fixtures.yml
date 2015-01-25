@@ -1,13 +1,13 @@
 fixtures:
   repositories:
-    "stdlib":
-      repo: "git://github.com/puppetlabs/puppetlabs-stdlib.git"
-      ref: "3.0.0"
-    "wget":
-      repo: "git://github.com/maestrodev/puppet-wget.git"
-      ref: "v1.2.2"
-    "logrotate":
-      repo: "git://github.com/rodjek/puppet-logrotate.git"
-      ref: "1.1.1"
+    stdlib:
+      repo: 'git://github.com/puppetlabs/puppetlabs-stdlib.git'
+      ref: '4.2.0'
+    wget:
+      repo: 'git://github.com/maestrodev/puppet-wget.git'
+      ref: 'v1.2.2'
+    logrotate:
+      repo: 'git://github.com/rodjek/puppet-logrotate.git'
+      ref: '1.1.1'
   symlinks:
-    "selenium": "#{source_dir}"
+    selenium: "#{source_dir}"
