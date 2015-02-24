@@ -6,6 +6,12 @@ else
   gem 'puppet', :require => false
 end
 
+if facterversion = ENV['FACTER_GEM_VERSION']
+  gem 'facter', facterversion, :require => false
+else
+  gem 'facter', :require => false
+end
+
 group :development, :test do
   gem 'rake',                    :require => false
   gem 'puppetlabs_spec_helper',  :require => false
