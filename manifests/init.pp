@@ -6,7 +6,9 @@
 #
 class selenium(
   $user               = $selenium::params::user,
+  $manage_user        = $selenium::params::manage_user,
   $group              = $selenium::params::group,
+  $manage_group       = $selenium::params::manage_group,
   $install_root       = $selenium::params::install_root,
   $java               = $selenium::params::java,
   $version            = $selenium::params::version,
@@ -25,11 +27,16 @@ class selenium(
 
   include wget
 
-  user { $user:
-    gid    => $group,
+  if $manage_user {
+    user { $user:
+      gid => $group,
+    }
   }
-  group { $group:
-    ensure => present,
+
+  if $manage_group {
+    group { $group:
+      ensure => present,
+    }
   }
 
   $jar_name     = "selenium-server-standalone-${version}.jar"
