@@ -207,11 +207,23 @@ class { 'selenium':
 The name/uid of the system role account to execute the server process under and
 will have ownership of files.
 
+##### `manage_user`
+
+`Boolean` defaults to: `true`
+
+Wether or not this module should manage the system role account to execute the server process under.
+
 ##### `group`
 
 `String` defaults to: `selenium`
 
 The group/gid of the system role account and group ownership of files.
+
+##### `manage_group`
+
+`Boolean` defaults to: `true`
+
+Wether or not this module should manage the group of the system role account.
 
 ##### `install_root`
 
