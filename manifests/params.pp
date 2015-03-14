@@ -6,7 +6,9 @@
 class selenium::params {
   $display          = ':0'
   $user             = 'selenium'
+  $manage_user      = true
   $group            = $user
+  $manage_group     = true
   $install_root     = '/opt/selenium'
   $server_options   = '-Dwebdriver.enable.native.events=1'
   $hub_options      = '-role hub'
