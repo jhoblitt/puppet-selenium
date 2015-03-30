@@ -14,6 +14,8 @@ end
 
 group :development, :test do
   gem 'rake',                    :require => false
+  # https://github.com/rspec/rspec-core/issues/1864
+  gem 'rspec', '< 3.2.0', {"platforms"=>["ruby_18"]}
   gem 'puppetlabs_spec_helper',  :require => false
   gem 'puppet-lint', '>= 1.1.0', :require => false
   gem 'puppet-syntax',           :require => false
