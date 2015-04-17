@@ -8,7 +8,9 @@ describe 'selenium class' do
         include java
         Class['java'] -> Class['selenium']
 
-        class { 'selenium': }
+        class { 'selenium':
+          nocheckcertificate => true 
+        }
       EOS
 
       # Run it twice and test for idempotency
@@ -19,28 +21,28 @@ describe 'selenium class' do
 
   %w[/opt/selenium /opt/selenium/jars /opt/selenium/log].each do |file|
     describe file(file) do
-      it { should be_directory }
-      it { should be_owned_by 'selenium' }
-      it { should be_grouped_into 'selenium' }
-      it { should be_mode 755 }
+      it { is_expected.to be_directory }
+      it { is_expected.to be_owned_by 'selenium' }
+      it { is_expected.to be_grouped_into 'selenium' }
+      it { is_expected.to be_mode 755 }
     end
   end
 
   describe file('/var/log/selenium') do
-    it { should be_linked_to '/opt/selenium/log' }
+    it { is_expected.to be_linked_to '/opt/selenium/log' }
   end
 
   describe file("/opt/selenium/jars/selenium-server-standalone-#{DEFAULT_VERSION}.jar") do
-    it { should be_file }
-    it { should be_owned_by 'selenium' }
-    it { should be_grouped_into 'selenium' }
-    it { should be_mode 644 }
+    it { is_expected.to be_file }
+    it { is_expected.to be_owned_by 'selenium' }
+    it { is_expected.to be_grouped_into 'selenium' }
+    it { is_expected.to be_mode 644 }
   end
 
   describe file('/etc/logrotate.d/selenium') do
-    it { should be_file }
-    it { should be_owned_by 'root' }
-    it { should be_grouped_into 'root' }
-    it { should be_mode 444 }
+    it { is_expected.to be_file }
+    it { is_expected.to be_owned_by 'root' }
+    it { is_expected.to be_grouped_into 'root' }
+    it { is_expected.to be_mode 444 }
   end
 end

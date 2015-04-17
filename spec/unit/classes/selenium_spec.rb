@@ -26,40 +26,40 @@ describe 'selenium', :type => :class do
     path_version = p[:version].match(/^(\d+\.\d+)\./)[1]
 
     it do
-      should contain_user(p[:user]).with_gid(p[:group])
-      should contain_group(p[:group])
-      should contain_class('wget')
-      should contain_class('selenium').with_version(p[:version])
-      should contain_file("#{p[:install_root]}").with({
+      is_expected.to contain_user(p[:user]).with_gid(p[:group])
+      is_expected.to contain_group(p[:group])
+      is_expected.to contain_class('wget')
+      is_expected.to contain_class('selenium').with_version(p[:version])
+      is_expected.to contain_file("#{p[:install_root]}").with({
         'ensure' => 'directory',
         'owner'  => p[:user],
         'group'  => p[:group],
       })
-      should contain_file("#{p[:install_root]}/jars").with({
+      is_expected.to contain_file("#{p[:install_root]}/jars").with({
         'ensure' => 'directory',
         'owner'  => p[:user],
         'group'  => p[:group],
       })
-      should contain_file("#{p[:install_root]}/log").with({
+      is_expected.to contain_file("#{p[:install_root]}/log").with({
         'ensure' => 'directory',
         'owner'  => p[:user],
         'group'  => p[:group],
         'mode'   => '0755',
       })
-      should contain_file('/var/log/selenium').with({
+      is_expected.to contain_file('/var/log/selenium').with({
         'ensure' => 'link',
         'owner'  => 'root',
         'group'  => 'root',
         'target' => "#{p[:install_root]}/log",
       })
-      should contain_wget__fetch('selenium-server-standalone').with({
+      is_expected.to contain_wget__fetch('selenium-server-standalone').with({
         'source'             => "https://selenium-release.storage.googleapis.com/#{path_version}/selenium-server-standalone-#{p[:version]}.jar",
         'destination'        => "#{p[:install_root]}/jars/selenium-server-standalone-#{p[:version]}.jar",
         'timeout'            => p[:download_timeout],
         'nocheckcertificate' => p[:nocheckcertificate],
         'execuser'           => p[:user],
       })
-      should contain_logrotate__rule('selenium').with({
+      is_expected.to contain_logrotate__rule('selenium').with({
         :path          => "#{p[:install_root]}/log",
         :rotate_every  => 'weekly',
         :missingok     => true,
@@ -92,7 +92,7 @@ describe 'selenium', :type => :class do
 
       it 'should fail' do
         expect {
-          should contain_class('selenium')
+          is_expected.to contain_class('selenium')
         }.to raise_error
       end
     end
@@ -110,7 +110,7 @@ describe 'selenium', :type => :class do
 
       it 'should fail' do
         expect {
-          should contain_class('selenium')
+          is_expected.to contain_class('selenium')
         }.to raise_error
       end
     end
@@ -128,7 +128,7 @@ describe 'selenium', :type => :class do
 
       it 'should fail' do
         expect {
-          should contain_class('selenium')
+          is_expected.to contain_class('selenium')
         }.to raise_error
       end
     end
@@ -146,7 +146,7 @@ describe 'selenium', :type => :class do
 
       it 'should fail' do
         expect {
-          should contain_class('selenium')
+          is_expected.to contain_class('selenium')
         }.to raise_error
       end
     end
@@ -164,7 +164,7 @@ describe 'selenium', :type => :class do
 
       it 'should fail' do
         expect {
-          should contain_class('selenium')
+          is_expected.to contain_class('selenium')
         }.to raise_error
       end
     end
@@ -182,7 +182,7 @@ describe 'selenium', :type => :class do
 
       it 'should fail' do
         expect {
-          should contain_class('selenium')
+          is_expected.to contain_class('selenium')
         }.to raise_error
       end
     end

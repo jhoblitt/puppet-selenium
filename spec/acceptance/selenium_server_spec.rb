@@ -11,7 +11,9 @@ describe 'selenium::server class' do
       pp = <<-EOS
         include java
         Class['java'] -> Class['selenium::server']
-
+        class { 'selenium':
+          nocheckcertificate => true
+        }        
         class { 'selenium::server': }
       EOS
 
@@ -22,34 +24,34 @@ describe 'selenium::server class' do
   end
 
   describe file('/etc/init.d/seleniumserver') do
-    it { should be_file }
-    it { should be_owned_by 'root' }
-    it { should be_grouped_into 'root' }
-    it { should be_mode 755 }
+    it { is_expected.to be_file }
+    it { is_expected.to be_owned_by 'root' }
+    it { is_expected.to be_grouped_into 'root' }
+    it { is_expected.to be_mode 755 }
   end
 
   %w[server_stdout.log server_stderr.log].each do |file|
     describe file("/opt/selenium/log/#{file}") do
-      it { should be_file }
-      it { should be_owned_by 'selenium' }
-      it { should be_grouped_into 'selenium' }
-      it { should be_mode 644}
+      it { is_expected.to be_file }
+      it { is_expected.to be_owned_by 'selenium' }
+      it { is_expected.to be_grouped_into 'selenium' }
+      it { is_expected.to be_mode 644}
     end
   end
 
   describe service('seleniumserver') do
-    it { should be_running }
-    it { should be_enabled }
+    it { is_expected.to be_running }
+    it { is_expected.to be_enabled }
   end
 
   describe process('java') do
-    its(:args) { should match /-Dwebdriver.enable.native.events=1/ }
-    it { should be_running }
+    its(:args) { is_expected.to match /-Dwebdriver.enable.native.events=1/ }
+    it { is_expected.to be_running }
   end
 
-  pending('daemon is very slow to start listening') do
+  skip('daemon is very slow to start listening') do
     describe port(4444) do
-      it { should be_listening.with('tcp') }
+      it { is_expected.to be_listening.with('tcp') }
     end
   end
 end

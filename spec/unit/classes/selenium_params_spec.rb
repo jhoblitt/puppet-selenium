@@ -5,7 +5,7 @@ describe 'selenium::params', :type => :class do
   context 'for osfamily RedHat' do
     let(:facts) {{ :osfamily => 'RedHat' }}
 
-    it { should contain_class('selenium::params') }
+    it { is_expected.to contain_class('selenium::params') }
   end
 
   context 'unsupported osfamily' do
@@ -17,7 +17,7 @@ describe 'selenium::params', :type => :class do
     end
   
     it 'should fail' do
-      expect { should contain_class('selenium::params') }.
+      expect { is_expected.to contain_class('selenium::params') }.
         to raise_error(Puppet::Error, /not supported on Debian/)
     end
   end
