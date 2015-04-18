@@ -12,11 +12,11 @@ describe 'selenium::node', :type => :class do
     p.merge!(params) if params
 
     it do
-      should contain_class('selenium')
-      should contain_selenium__config('node').with({
+      is_expected.to contain_class('selenium')
+      is_expected.to contain_selenium__config('node').with({
         'options' => "#{p[:options]} -hub #{p[:hub]}",
       })
-      should contain_class('selenium::node')
+      is_expected.to contain_class('selenium::node')
     end
   end
 
@@ -39,7 +39,7 @@ describe 'selenium::node', :type => :class do
 
       it 'should fail' do
         expect {
-          should contain_class('selenium::node')
+          is_expected.to contain_class('selenium::node')
         }.to raise_error
       end
     end
@@ -56,7 +56,7 @@ describe 'selenium::node', :type => :class do
 
       it 'should fail' do
         expect {
-          should contain_class('selenium::node')
+          is_expected.to contain_class('selenium::node')
         }.to raise_error
       end
     end
@@ -73,7 +73,7 @@ describe 'selenium::node', :type => :class do
 
       it 'should fail' do
         expect {
-          should contain_class('selenium::node')
+          is_expected.to contain_class('selenium::node')
         }.to raise_error
       end
     end

@@ -11,12 +11,12 @@ describe 'selenium::server', :type => :class do
     p.merge!(params) if params
 
     it do
-      should contain_class('selenium')
-      should contain_selenium__config('server').with({
+      is_expected.to contain_class('selenium')
+      is_expected.to contain_selenium__config('server').with({
         'display' => p[:display],
         'options' => p[:options],
       })
-      should contain_class('selenium::server')
+      is_expected.to contain_class('selenium::server')
     end
   end
 
@@ -39,7 +39,7 @@ describe 'selenium::server', :type => :class do
 
       it 'should fail' do
         expect {
-          should contain_class('selenium::server')
+          is_expected.to contain_class('selenium::server')
         }.to raise_error
       end
     end
@@ -56,7 +56,7 @@ describe 'selenium::server', :type => :class do
 
       it 'should fail' do
         expect {
-          should contain_class('selenium::server')
+          is_expected.to contain_class('selenium::server')
         }.to raise_error
       end
     end

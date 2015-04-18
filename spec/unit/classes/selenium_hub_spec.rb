@@ -10,11 +10,11 @@ describe 'selenium::hub', :type => :class do
     p.merge!(params) if params
 
     it do
-      should contain_class('selenium')
-      should contain_selenium__config('hub').with({
+      is_expected.to contain_class('selenium')
+      is_expected.to contain_selenium__config('hub').with({
         'options' => p[:options],
       })
-      should contain_class('selenium::hub')
+      is_expected.to contain_class('selenium::hub')
     end
   end
 
@@ -37,7 +37,7 @@ describe 'selenium::hub', :type => :class do
 
       it 'should fail' do
         expect {
-          should contain_class('selenium::hub')
+          is_expected.to contain_class('selenium::hub')
         }.to raise_error
       end
     end

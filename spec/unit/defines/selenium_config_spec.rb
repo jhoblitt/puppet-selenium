@@ -18,7 +18,7 @@ describe 'selenium::config', :type => :define do
     p.merge!(params) if params
 
     it do
-      should contain_file("/etc/init.d/selenium#{title}").with({
+      is_expected.to contain_file("/etc/init.d/selenium#{title}").with({
         'ensure' => 'file',
         'owner'  => 'root',
         'group'  => 'root',
@@ -33,7 +33,7 @@ describe 'selenium::config', :type => :define do
         with_content(/SLNM_JAVA='#{p[:java]}'/).
         with_content(/SLNM_LOG_NAME='#{title}'/).
         with_content(/prog='selenium#{title}'/)
-      should contain_service("selenium#{title}").with({
+      is_expected.to contain_service("selenium#{title}").with({
         :ensure     => 'running',
         :hasstatus  => 'true',
         :hasrestart => 'true',
