@@ -1,5 +1,7 @@
 .bundle
 Gemfile.lock
+junit/
+log/
 *.orig
 *.patch
 pkg/
@@ -8,4 +10,3 @@ spec/fixtures/manifests/
 spec/fixtures/modules/
 *.swp
 .vagrant
-log/
