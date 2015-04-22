@@ -4,9 +4,8 @@ Gemfile.lock
 *.patch
 pkg/
 *.rej
-.rspec_system/
 spec/fixtures/manifests/
 spec/fixtures/modules/
 *.swp
 .vagrant
-log
+log/
