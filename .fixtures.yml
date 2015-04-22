@@ -8,6 +8,9 @@ fixtures:
       ref: 'v1.2.2'
     logrotate:
       repo: 'git://github.com/rodjek/puppet-logrotate.git'
-      ref: '1.1.1'
+      # The current forge release (1.1.1) of logrotate is not compatible with
+      # the future parser. See:
+      # https://github.com/rodjek/puppet-logrotate/pull/39
+      ref: 'd569bcee1b43fa1af816c21afb5664d8e5235553'
   symlinks:
     selenium: "#{source_dir}"
