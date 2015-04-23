@@ -1,9 +1,9 @@
 HOSTS:
-  centos-7.0:
+  ubuntu-14.04:
     roles:
       - master
-    platform: el-7-x86_64
-    box: chef/centos-7.0
+    platform: ubuntu-14.04-amd64
+    box: chef/ubuntu-14.04
     hypervisor: vagrant
 CONFIG:
   type: foss
