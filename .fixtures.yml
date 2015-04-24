@@ -4,10 +4,10 @@ fixtures:
       repo: 'https://github.com/puppetlabs/puppetlabs-stdlib.git'
       ref:  '4.6.0'
     wget:
-      repo: 'git://github.com/maestrodev/puppet-wget.git'
+      repo: 'https://github.com/maestrodev/puppet-wget.git'
       ref: 'v1.2.2'
     logrotate:
-      repo: 'git://github.com/rodjek/puppet-logrotate.git'
+      repo: 'https://github.com/rodjek/puppet-logrotate.git'
       # The current forge release (1.1.1) of logrotate is not compatible with
       # the future parser. See:
       # https://github.com/rodjek/puppet-logrotate/pull/39
