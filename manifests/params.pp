@@ -20,6 +20,7 @@ class selenium::params {
 
   case $::osfamily {
     'redhat': {}
+    'Debian': {}
     default: {
       fail("Module ${module_name} is not supported on ${::operatingsystem}")
     }

@@ -16,10 +16,7 @@ describe 'selenium::params', :type => :class do
       }
     end
   
-    it 'should fail' do
-      expect { should contain_class('selenium::params') }.
-        to raise_error(Puppet::Error, /not supported on Debian/)
-    end
+    it {should contain_class('selenium::params')}
   end
 
 end
