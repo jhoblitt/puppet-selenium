@@ -14,12 +14,13 @@ describe 'selenium::config', :type => :define do
       :options      => '-Dwebdriver.enable.native.events=1',
       :java         => 'java',
     }
-    
+
     p.merge!(params) if params
 
     it do
-      should contain_file("/etc/init.d/selenium#{title}").with({
+      should contain_file('init-script').with({
         'ensure' => 'file',
+        'path'   => "/etc/init.d/selenium#{title}",
         'owner'  => 'root',
         'group'  => 'root',
         'mode'   => '0755',
