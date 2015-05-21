@@ -16,8 +16,8 @@ describe 'selenium::server class' do
       EOS
 
       # Run it twice and test for idempotency
-      expect(apply_manifest(pp, :catch_failures => true).stderr).to eq("")
-      expect(apply_manifest(pp, :catch_changes => true).stderr).to eq("")
+      apply_manifest(pp, :catch_failures => true)
+      apply_manifest(pp, :catch_changes => true)
     end
   end
 
@@ -33,7 +33,11 @@ describe 'selenium::server class' do
       it { should be_file }
       it { should be_owned_by 'selenium' }
       it { should be_grouped_into 'selenium' }
-      it { should be_mode 644}
+      if fact('operatingsystem') == 'Ubuntu'
+        it { should be_mode 664 }
+      else
+        it { should be_mode 644 }
+      end
     end
   end
 
