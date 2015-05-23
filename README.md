@@ -371,6 +371,11 @@ At present, only support for `$::osfamily == 'RedHat'` has been implemented.
 Adding other Linux distributions will required the addition of platform
 specific init scripts.
 
+When running this module you may encounter "certificate validation errors".
+This suggests that the certifcates for that operating systems are out of date. 
+This does not occur on default nodeset for acceptance tests. $nocheckcertificate 
+can be set to avoid the error.
+
 ### Tested Platforms
 
  * el6.x
