@@ -7,7 +7,7 @@ describe 'selenium::params', :type => :class do
 
     it { should contain_class('selenium::params') }
   end
-  
+
   context 'for osfamily Debian' do
     let(:facts) {{ :osfamily => 'Debian' }}
 
@@ -21,7 +21,7 @@ describe 'selenium::params', :type => :class do
         :operatingsystem => 'SuSE',
       }
     end
-  
+
     it 'should fail' do
       expect { should contain_class('selenium::params') }.
         to raise_error(Puppet::Error, /not supported on SuSE/)
