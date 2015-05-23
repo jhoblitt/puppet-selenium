@@ -194,7 +194,7 @@ class { 'selenium':
   group            => 'selenium',
   install_root     => '/opt/selenium',
   java             => 'java',
-  version          => '2.42.1',
+  version          => '2.45.0',
   url              => undef,
   download_timeout => '90',
 }
@@ -240,7 +240,7 @@ The path of the `java` interpreter to use.
 
 ##### `version`
 
-`String` defaults to: `2.42.1` (the latest release as of 2014-05-31)
+`String` defaults to: `2.45.0` (the latest release as of 2015-05-23)
 
 The version of Selenium Server to download.  Used to form the URL used to fetch
 the jar file.
