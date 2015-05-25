@@ -28,6 +28,7 @@ group :beaker do
   gem 'beaker',                   :require => false
   gem 'beaker-rspec',             :require => false
   gem 'pry',                      :require => false
+  gem 'travis-lint',              :require => false
 end
 
 # vim:ft=ruby
