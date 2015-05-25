@@ -382,6 +382,14 @@ The modules that were identified were:
 Limitations
 -----------
 
+### Tested Platforms
+
+ * el6.x
+ * el7.x
+ * Debian 7
+ * Ubuntu 12.04
+ * Ubuntu 14.04
+
 ### Puppet Version Compatibility
 
 Versions | Puppet 2.7 | Puppet 3.x | Puppet 4.x
@@ -399,10 +407,6 @@ errors do not occur on the nodesets used for acceptance tests.  The
 [`nocheckcertificate`](#nocheckcertificate) param may be set to `true` to
 bypass this error but be sure the security implications of this setting are
 well understood before enabling it.
-
-### Tested Platforms
-
- * el6.x
 
 
 Versioning
