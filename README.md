@@ -191,13 +191,16 @@ override the default values.
 ```puppet
 # defaults
 class { 'selenium':
-  user             => 'selenium',
-  group            => 'selenium',
-  install_root     => '/opt/selenium',
-  java             => 'java',
-  version          => '2.45.0',
-  url              => undef,
-  download_timeout => '90',
+  user               => 'selenium',
+  manage_user        => true,
+  group              => 'selenium',
+  manage_group       => true,
+  install_root       => '/opt/selenium',
+  java               => 'java',
+  version            => '2.45.0',
+  url                => undef,
+  download_timeout   => '90',
+  nocheckcertificate => false,
 }
 ```
 
@@ -260,6 +263,15 @@ be be automatically parsed from the `url` in a later release).
 `String` defaults to: `90`
 
 Timeout to download of the package.
+
+##### `nocheckcertificate`
+
+`Boolean` defaults to: `false`
+
+Disables validation of the x509 certificate the Selenium jar file is retrieved
+from.
+
+See [Certificate Errors](#certificate-errors)
 
 #### `selenium::server`
 
@@ -368,14 +380,16 @@ The modules that were identified were:
 Limitations
 -----------
 
-At present, only support for `$::osfamily == 'RedHat'` has been implemented.
-Adding other Linux distributions will required the addition of platform
-specific init scripts.
+### Certificate Errors
 
-When running this module you may encounter "certificate validation errors".
-This suggests that the certifcates for that operating systems are out of date. 
-This does not occur on default nodeset for acceptance tests. $nocheckcertificate 
-can be set to avoid the error.
+A number of users have reported "certificate validation errors" when this
+module downloads the Selenium jar file.  The most likely explanation is that
+the CA certificates on that node are out of date.  _It may also be an
+indication of a MITM attack on the TLS connection._ Certificate validation
+errors do not occur on the nodesets used for acceptance tests.  The
+[`nocheckcertificate`](#nocheckcertificate) param may be set to `true` to
+bypass this error but be sure the security implications of this setting are
+well understood before enabling it.
 
 ### Tested Platforms
 
