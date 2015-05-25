@@ -9,6 +9,10 @@ PuppetLint::RakeTask.new :lint do |config|
   config.fail_on_warnings = true
 end
 
+task :travis_lint do
+  sh "travis-lint"
+end
+
 task :default => [
   :validate,
   :lint,

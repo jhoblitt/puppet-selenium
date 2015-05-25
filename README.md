@@ -19,9 +19,12 @@ Puppet selenium Module
 4. [Why Another Module?](#why-another-module)
 5. [Limitations](#limitations)
     * [Tested Platforms](#tested-platforms)
+    * [Puppet Version Compatibility](#puppet-version-compatibility)
+    * [Certificate Errors](#certificate-errors)
 6. [Versioning](#versioning)
 7. [Support](#support)
-8. [See Also](#see-also)
+8. [Contributing](#contributing)
+9. [See Also](#see-also)
 
 
 Overview
@@ -48,7 +51,7 @@ Usage
 The `selenium::server` class is used to setup a `standalone` Selenium instance
 to allow the use of a single server as a test node. The `selenium::hub` class
 acts as a proxy in front of one or more `selenium::node` instances. A hub +
-node(s) setup is refered to as a `Selenium grid`. Running `selenium::server` is
+node(s) setup is referred to as a `Selenium grid`. Running `selenium::server` is
 similar to creating a `Selenium grid` by declaring `selenium::hub` and
 `selenium::node` on the same host.
 
@@ -190,13 +193,16 @@ override the default values.
 ```puppet
 # defaults
 class { 'selenium':
-  user             => 'selenium',
-  group            => 'selenium',
-  install_root     => '/opt/selenium',
-  java             => 'java',
-  version          => '2.45.0',
-  url              => undef,
-  download_timeout => '90',
+  user               => 'selenium',
+  manage_user        => true,
+  group              => 'selenium',
+  manage_group       => true,
+  install_root       => '/opt/selenium',
+  java               => 'java',
+  version            => '2.45.0',
+  url                => undef,
+  download_timeout   => '90',
+  nocheckcertificate => false,
 }
 ```
 
@@ -211,7 +217,7 @@ will have ownership of files.
 
 `Boolean` defaults to: `true`
 
-Wether or not this module should manage the system role account to execute the server process under.
+Whether or not this module should manage the system role account to execute the server process under.
 
 ##### `group`
 
@@ -223,7 +229,7 @@ The group/gid of the system role account and group ownership of files.
 
 `Boolean` defaults to: `true`
 
-Wether or not this module should manage the group of the system role account.
+Weather or not this module should manage the group of the system role account.
 
 ##### `install_root`
 
@@ -259,6 +265,15 @@ be be automatically parsed from the `url` in a later release).
 `String` defaults to: `90`
 
 Timeout to download of the package.
+
+##### `nocheckcertificate`
+
+`Boolean` defaults to: `false`
+
+Disables validation of the x509 certificate the Selenium jar file is retrieved
+from.
+
+See [Certificate Errors](#certificate-errors)
 
 #### `selenium::server`
 
@@ -367,18 +382,31 @@ The modules that were identified were:
 Limitations
 -----------
 
-At present, only support for `$::osfamily == 'RedHat'` has been implemented.
-Adding other Linux distributions will required the addition of platform
-specific init scripts.
-
-When running this module you may encounter "certificate validation errors".
-This suggests that the certifcates for that operating systems are out of date. 
-This does not occur on default nodeset for acceptance tests. $nocheckcertificate 
-can be set to avoid the error.
-
 ### Tested Platforms
 
  * el6.x
+ * el7.x
+ * Debian 7
+ * Ubuntu 12.04
+ * Ubuntu 14.04
+
+### Puppet Version Compatibility
+
+Versions | Puppet 2.7 | Puppet 3.x | Puppet 4.x
+:--------|:----------:|:----------:|:----------:
+**0.x**  | **yes**    | **yes**    | no
+**1.x**  | no         | **yes**    | **yes**
+
+### Certificate Errors
+
+A number of users have reported "certificate validation errors" when this
+module downloads the Selenium jar file.  The most likely explanation is that
+the CA certificates on that node are out of date.  _It may also be an
+indication of a MITM attack on the TLS connection._ Certificate validation
+errors do not occur on the nodesets used for acceptance tests.  The
+[`nocheckcertificate`](#nocheckcertificate) param may be set to `true` to
+bypass this error but be sure the security implications of this setting are
+well understood before enabling it.
 
 
 Versioning
@@ -393,6 +421,26 @@ Support
 
 Please log tickets and issues at
 [github](https://github.com/jhoblitt/puppet-selenium/issues)
+
+
+Contributing
+------------
+
+1. Fork it on github
+2. Make a local clone of your fork
+3. Create a topic branch.  Eg, `feature/mousetrap`
+4. Make/commit changes
+    * Commit messages should be in [imperative tense](http://git-scm.com/book/ch5-2.html)
+    * Check that linter warnings or errors are not introduced - `bundle exec rake lint`
+    * Check that `Rspec-puppet` unit tests are not broken and coverage is added for new
+      features - `bundle exec rake spec`
+    * Documentation of API/features is updated as appropriate in the README
+    * If present, `beaker` acceptance tests should be run and potentially
+      updated - `bundle exec rake beaker`
+5. When the feature is complete, rebase / squash the branch history as
+   necessary to remove "fix typo", "oops", "whitespace" and other trivial commits
+6. Push the topic branch to github
+7. Open a Pull Request (PR) from the *topic branch* onto parent repo's `master` branch
 
 
 See Also
