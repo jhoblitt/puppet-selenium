@@ -19,6 +19,8 @@ Puppet selenium Module
 4. [Why Another Module?](#why-another-module)
 5. [Limitations](#limitations)
     * [Tested Platforms](#tested-platforms)
+    * [Puppet Version Compatibility](#puppet-version-compatibility)
+    * [Certificate Errors](#certificate-errors)
 6. [Versioning](#versioning)
 7. [Support](#support)
 8. [Contributing](#contributing)
@@ -379,6 +381,13 @@ The modules that were identified were:
 
 Limitations
 -----------
+
+### Puppet Version Compatibility
+
+Versions | Puppet 2.7 | Puppet 3.x | Puppet 4.x
+:--------|:----------:|:----------:|:----------:
+**0.x**  | **yes**    | **yes**    | no
+**1.x**  | no         | **yes**    | **yes**
 
 ### Certificate Errors
 
