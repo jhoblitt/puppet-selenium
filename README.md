@@ -49,7 +49,7 @@ Usage
 The `selenium::server` class is used to setup a `standalone` Selenium instance
 to allow the use of a single server as a test node. The `selenium::hub` class
 acts as a proxy in front of one or more `selenium::node` instances. A hub +
-node(s) setup is refered to as a `Selenium grid`. Running `selenium::server` is
+node(s) setup is referred to as a `Selenium grid`. Running `selenium::server` is
 similar to creating a `Selenium grid` by declaring `selenium::hub` and
 `selenium::node` on the same host.
 
@@ -212,7 +212,7 @@ will have ownership of files.
 
 `Boolean` defaults to: `true`
 
-Wether or not this module should manage the system role account to execute the server process under.
+Whether or not this module should manage the system role account to execute the server process under.
 
 ##### `group`
 
@@ -224,7 +224,7 @@ The group/gid of the system role account and group ownership of files.
 
 `Boolean` defaults to: `true`
 
-Wether or not this module should manage the group of the system role account.
+Weather or not this module should manage the group of the system role account.
 
 ##### `install_root`
 
