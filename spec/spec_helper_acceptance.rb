@@ -15,6 +15,11 @@ unless ENV['RS_PROVISION'] == 'no' or ENV['BEAKER_provision'] == 'no'
 
   hosts.each do |host|
     on hosts, "mkdir -p #{host['distmoduledir']}"
+    if host['platform'] =~ /windows/
+       on host, 'curl.exe https://www.geotrust.com/resources/root_certificates/certificates/GeoTrust_Global_CA.pem --output GeoTrust_Global_CA.pem'
+       on host, 'certutil -addstore Root GeoTrust_Global_CA.pem'
+
+    end 
   end
 end
 
@@ -34,6 +39,7 @@ RSpec.configure do |c|
       on host, puppet('module', 'install', 'maestrodev-wget'), { :acceptable_exit_codes => [0, 1] }
       on host, puppet('module', 'install', 'rodjek-logrotate'), { :acceptable_exit_codes => [0, 1] }
       on host, puppet('module', 'install', 'puppetlabs-java'), { :acceptable_exit_codes => [0, 1] }
+      on host, puppet('module', 'install', 'counsyl-windows'), { :acceptable_exit_codes => [0, 1] }
     end
   end
 end
