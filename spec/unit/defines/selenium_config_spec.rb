@@ -18,7 +18,7 @@ describe 'selenium::config', :type => :define do
     p.merge!(params) if params
 
     it do
-      should contain_file('init-script').with({
+      should contain_file("init-script-#{title}").with({
         'ensure' => 'file',
         'path'   => "/etc/init.d/selenium#{title}",
         'owner'  => 'root',
