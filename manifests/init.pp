@@ -31,6 +31,11 @@ class selenium(
     user { $user:
       gid => $group,
     }
+    file { "/home/$user":
+      ensure => 'directory',
+      owner => $user,
+      group => $group,
+    }
   }
 
   if $manage_group {
