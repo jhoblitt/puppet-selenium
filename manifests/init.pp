@@ -29,7 +29,8 @@ class selenium(
 
   if $manage_user {
     user { $user:
-      gid => $group,
+      gid        => $group,
+      managehome => true,
     }
   }
 
