@@ -19,20 +19,18 @@ define selenium::config(
   validate_string($java)
   validate_string($jar_name)
 
-  $init_script = "init-script-${name}"
+  # prog is the 'name' of the init.d script.
+  $prog = "selenium${name}"
 
   case $::osfamily {
     'debian': {
       ensure_packages(['daemon'])
-      Package['daemon'] -> File[$init_script]
+      Package['daemon'] -> File[$prog]
     }
     default : {}
   }
 
-  # prog is the 'name' of the init.d script.
-  $prog = "selenium${name}"
-
-  file { $init_script:
+  file { $prog:
     ensure  => 'file',
     path    => "/etc/init.d/${prog}",
     owner   => 'root',
