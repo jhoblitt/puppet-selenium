@@ -29,13 +29,17 @@ class selenium(
 
   if $manage_user {
     user { $user:
-      gid => $group,
+      gid        => $group,
+      system     => true,
+      managehome => true,
+      home       => '/var/lib/selenium'
     }
   }
 
   if $manage_group {
     group { $group:
       ensure => present,
+      system => true,
     }
   }
 
