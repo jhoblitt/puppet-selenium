@@ -1,5 +1,40 @@
 
 #### [Current]
+ * [4f74a38](../../commit/4f74a38) - __(Joshua Hoblitt)__ Merge pull request [#52](../../issues/52) from jhoblitt/maint/plumbing
+
+Maint/plumbing
+ * [6e27f73](../../commit/6e27f73) - __(Joshua Hoblitt)__ Merge pull request [#51](../../issues/51) from jhoblitt/i11-user-managehome
+
+I11 user managehome
+ * [659cb9c](../../commit/659cb9c) - __(Joshua Hoblitt)__ update rspec-puppet gem version to ~> 2.2
+
+For bugfixes and to allow the 2.x version to float as the API stability has
+been better than with the 1.x series.
+
+ * [9380db4](../../commit/9380db4) - __(Joshua Hoblitt)__ remove default nodset symlink
+
+To resolve this PMT error:
+    Puppet::ModuleTool::Errors::ModuleToolError: Found symlinks. Symlinks in modules are not allowed, please remove them.
+
+ * [b8ba280](../../commit/b8ba280) - __(Joshua Hoblitt)__ add puppet-blacksmith gem
+ * [80638ae](../../commit/80638ae) - __(Joshua Hoblitt)__ set selenium user home to /var/lib/selenium
+ * [ad7e240](../../commit/ad7e240) - __(Joshua Hoblitt)__ make selenium user/group "system" accounts
+ * [c569f5b](../../commit/c569f5b) - __(Joshua Hoblitt)__ Merge pull request [#50](../../issues/50) from jhoblitt/bugfix/hub-and-node-on-same-host
+
+acceptance test coverage of hub+node on the same host
+ * [97f1fe2](../../commit/97f1fe2) - __(Joshua Hoblitt)__ add acceptance test coverage of combined hub+node
+ * [9b69415](../../commit/9b69415) - __(Joshua Hoblitt)__ add $::osfamily == debian unit test coverage for selenium::config
+ * [44d05e7](../../commit/44d05e7) - __(Ilja Bobkevic)__ Manage users home
+ * [afe1d8c](../../commit/afe1d8c) - __(Joshua Hoblitt)__ Merge pull request [#46](../../issues/46) from anho/bugfix/node-and-hub-on-same-server
+
+make file for init-script unique
+ * [56db553](../../commit/56db553) - __(anho)__ make file for init-script unique
+
+#### v1.0.0
+ * [e2ed805](../../commit/e2ed805) - __(Joshua Hoblitt)__ Merge pull request [#44](../../issues/44) from jhoblitt/feature/v1.0.0
+
+Feature/v1.0.0
+ * [cc7128f](../../commit/cc7128f) - __(Joshua Hoblitt)__ bump version to v1.0.0
  * [3e5db68](../../commit/3e5db68) - __(Joshua Hoblitt)__ add travis_lint rake target
  * [d162ebe](../../commit/d162ebe) - __(Joshua Hoblitt)__ update operatingsystem support list include Debian
  * [f6d8406](../../commit/f6d8406) - __(Joshua Hoblitt)__ add Puppet Version Compatibility subsection to README
