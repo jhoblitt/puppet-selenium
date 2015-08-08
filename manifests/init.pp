@@ -32,6 +32,7 @@ class selenium(
       gid        => $group,
       system     => true,
       managehome => true,
+      home       => '/var/lib/selenium'
     }
   }
 

@@ -43,4 +43,14 @@ describe 'selenium class' do
     it { should be_grouped_into 'root' }
     it { should be_mode 444 }
   end
+
+  describe user('selenium') do
+    it { should exist }
+    it { should belong_to_group 'selenium' }
+    it { should have_home_directory '/var/lib/selenium' }
+  end
+
+  describe group('selenium') do
+    it { should exist }
+  end
 end

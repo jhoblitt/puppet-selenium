@@ -29,7 +29,8 @@ describe 'selenium', :type => :class do
       should contain_user(p[:user]).with(
         :gid        => p[:group],
         :system     => true,
-        :managehome => true
+        :managehome => true,
+        :home       => '/var/lib/selenium'
       )
       should contain_group(p[:group]).with(
         :system => true
