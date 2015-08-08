@@ -93,4 +93,14 @@ describe 'selenium::config', :type => :define do
     end
   end
 
+  context 'for osfamily Debian' do
+    let(:title) { 'server' }
+    let(:facts) {{ :osfamily => 'Debian' }}
+    let :pre_condition do
+      "include selenium"
+    end
+
+    it { should contain_package('daemon').with_ensure('present') }
+  end
+
 end
