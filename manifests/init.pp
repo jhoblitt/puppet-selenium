@@ -30,6 +30,7 @@ class selenium(
   if $manage_user {
     user { $user:
       gid        => $group,
+      system     => true,
       managehome => true,
     }
   }
@@ -37,6 +38,7 @@ class selenium(
   if $manage_group {
     group { $group:
       ensure => present,
+      system => true,
     }
   }
 

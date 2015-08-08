@@ -26,8 +26,14 @@ describe 'selenium', :type => :class do
     path_version = p[:version].match(/^(\d+\.\d+)\./)[1]
 
     it do
-      should contain_user(p[:user]).with_gid(p[:group])
-      should contain_group(p[:group])
+      should contain_user(p[:user]).with(
+        :gid        => p[:group],
+        :system     => true,
+        :managehome => true
+      )
+      should contain_group(p[:group]).with(
+        :system => true
+      )
       should contain_class('wget')
       should contain_class('selenium').with_version(p[:version])
       should contain_file("#{p[:install_root]}").with({
