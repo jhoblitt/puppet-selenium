@@ -9,8 +9,7 @@ describe 'selenium::server class' do
     # Using puppet_apply as a helper
     it 'should work with no errors' do
       pp = <<-EOS
-        include java
-        Class['java'] -> Class['selenium::server']
+        Class['windows::java'] -> Class['selenium::server']
 
         class { 'selenium::server': }
       EOS

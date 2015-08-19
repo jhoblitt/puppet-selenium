@@ -5,9 +5,7 @@ describe 'selenium class' do
     # Using puppet_apply as a helper
     it 'should work with no errors' do
       pp = <<-EOS
-        include java
-        Class['java'] -> Class['selenium']
-
+        class { 'windows::java': }
         class { 'selenium': }
       EOS
 
