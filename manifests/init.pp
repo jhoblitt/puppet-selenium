@@ -15,6 +15,8 @@ class selenium(
   $url                = undef,
   $download_timeout   = $selenium::params::download_timeout,
   $nocheckcertificate = false,
+  $manage_logrotate   = true,
+  $package            = undef,
 ) inherits selenium::params {
   validate_string($user)
   validate_string($group)
@@ -24,6 +26,8 @@ class selenium(
   validate_string($url)
   validate_string($download_timeout)
   validate_bool($nocheckcertificate)
+  validate_bool($manage_logrotate)
+  validate_string($package)
 
   include wget
 
@@ -81,24 +85,47 @@ class selenium(
     target => $log_path,
   }
 
-  wget::fetch { 'selenium-server-standalone':
-    source             => $jar_url,
-    destination        => "${jar_path}/${jar_name}",
-    timeout            => $download_timeout,
-    nocheckcertificate => $nocheckcertificate,
-    execuser           => $user,
-    require            => File[$jar_path],
+  if $package != undef {
+
+    package {$package:
+      ensure => installed,
+    }
+
+  } else {
+
+    if (!defined(Package['wget'])) {
+      package {'wget':
+        ensure => installed,
+      }
+    }
+
+    if $nocheckcertificate {
+      $_nocheckcertificate = '--no-check-certificate'
+    } else {
+      $_nocheckcertificate = ''
+    }
+
+    exec {'fetch selenium-server-standalone':
+      path    => '/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin',
+      user    => $user,
+      command => "wget -T ${download_timeout} ${_nocheckcertificate} -O ${jar_path}/${jar_name} ${jar_url}",
+      creates => "${jar_path}/${jar_name}",
+      require => [File[$jar_path], Package['wget']],
+    }
+
   }
 
-  logrotate::rule { 'selenium':
-    path          => $log_path,
-    rotate_every  => 'weekly',
-    missingok     => true,
-    rotate        => '4',
-    compress      => true,
-    delaycompress => true,
-    copytruncate  => true,
-    minsize       => '100k',
+  if $manage_logrotate {
+    logrotate::rule { 'selenium':
+      path          => $log_path,
+      rotate_every  => 'weekly',
+      missingok     => true,
+      rotate        => '4',
+      compress      => true,
+      delaycompress => true,
+      copytruncate  => true,
+      minsize       => '100k',
+    }
   }
 
 }
