@@ -57,7 +57,7 @@ similar to creating a `Selenium grid` by declaring `selenium::hub` and
 
 It is highly recommend that you read the [Selenium Grid
 documentation](http://docs.seleniumhq.org/docs/07_selenium_grid.jsp#what-is-selenium-grid)
-to determine what the best approach for your usage case(s) is. 
+to determine what the best approach for your usage case(s) is.
 
 ### Simple
 
@@ -203,6 +203,7 @@ class { 'selenium':
   url                => undef,
   download_timeout   => '90',
   nocheckcertificate => false,
+  manage_logrotate   => true,
 }
 ```
 
