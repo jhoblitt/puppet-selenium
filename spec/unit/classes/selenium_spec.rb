@@ -13,6 +13,7 @@ describe 'selenium', :type => :class do
       :url                => '',
       :download_timeout   => '90',
       :nocheckcertificate => false,
+      :manage_logrotate   => true,
     }
 
     if params
