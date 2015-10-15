@@ -193,17 +193,18 @@ override the default values.
 ```puppet
 # defaults
 class { 'selenium':
-  user               => 'selenium',
-  manage_user        => true,
-  group              => 'selenium',
-  manage_group       => true,
-  install_root       => '/opt/selenium',
-  java               => 'java',
-  version            => '2.45.0',
-  url                => undef,
-  download_timeout   => '90',
-  nocheckcertificate => false,
-  manage_logrotate   => true,
+  user                => 'selenium',
+  manage_user         => true,
+  group               => 'selenium',
+  manage_group        => true,
+  install_root        => '/opt/selenium',
+  java                => 'java',
+  version             => '2.45.0',
+  url                 => undef,
+  download_timeout    => '90',
+  nocheckcertificate  => false,
+  manage_logrotate    => true,
+  manage_installation => true,
 }
 ```
 
@@ -274,13 +275,19 @@ Timeout to download of the package.
 Disables validation of the x509 certificate the Selenium jar file is retrieved
 from.
 
+See [Certificate Errors](#certificate-errors)
+
 ##### `manage_logrotate`
 
 `Boolean` defaults to: `true`
 
 Uses the Logrotate module to rotate the log file of Selenium.
 
-See [Certificate Errors](#certificate-errors)
+##### `manage_installation`
+
+`Boolean` defaults to: `true`
+
+Let the module handle the installation of the Selenium jar file.
 
 #### `selenium::server`
 

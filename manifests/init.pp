@@ -5,17 +5,18 @@
 #
 #
 class selenium(
-  $user               = $selenium::params::user,
-  $manage_user        = $selenium::params::manage_user,
-  $group              = $selenium::params::group,
-  $manage_group       = $selenium::params::manage_group,
-  $install_root       = $selenium::params::install_root,
-  $java               = $selenium::params::java,
-  $version            = $selenium::params::version,
-  $url                = undef,
-  $download_timeout   = $selenium::params::download_timeout,
-  $nocheckcertificate = false,
-  $manage_logrotate   = true,
+  $user                = $selenium::params::user,
+  $manage_user         = $selenium::params::manage_user,
+  $group               = $selenium::params::group,
+  $manage_group        = $selenium::params::manage_group,
+  $install_root        = $selenium::params::install_root,
+  $java                = $selenium::params::java,
+  $version             = $selenium::params::version,
+  $url                 = undef,
+  $download_timeout    = $selenium::params::download_timeout,
+  $nocheckcertificate  = false,
+  $manage_logrotate    = true,
+  $manage_installation = true,
 ) inherits selenium::params {
   validate_string($user)
   validate_string($group)
@@ -26,6 +27,7 @@ class selenium(
   validate_string($download_timeout)
   validate_bool($nocheckcertificate)
   validate_bool($manage_logrotate)
+  validate_bool($manage_installation)
 
   include wget
 
@@ -83,13 +85,15 @@ class selenium(
     target => $log_path,
   }
 
-  wget::fetch { 'selenium-server-standalone':
-    source             => $jar_url,
-    destination        => "${jar_path}/${jar_name}",
-    timeout            => $download_timeout,
-    nocheckcertificate => $nocheckcertificate,
-    execuser           => $user,
-    require            => File[$jar_path],
+  if $manage_installation {
+    wget::fetch { 'selenium-server-standalone':
+      source             => $jar_url,
+      destination        => "${jar_path}/${jar_name}",
+      timeout            => $download_timeout,
+      nocheckcertificate => $nocheckcertificate,
+      execuser           => $user,
+      require            => File[$jar_path],
+    }
   }
 
   if $manage_logrotate {
