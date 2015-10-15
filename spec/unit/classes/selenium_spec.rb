@@ -5,14 +5,16 @@ describe 'selenium', :type => :class do
   shared_examples 'selenium' do |params|
     # XXX need to test $url
     p = {
-      :user               => 'selenium',
-      :group              => 'selenium',
-      :install_root       => '/opt/selenium',
-      :java               => 'java',
-      :version            => DEFAULT_VERSION,
-      :url                => '',
-      :download_timeout   => '90',
-      :nocheckcertificate => false,
+      :user                 => 'selenium',
+      :group                => 'selenium',
+      :install_root         => '/opt/selenium',
+      :java                 => 'java',
+      :version              => DEFAULT_VERSION,
+      :url                  => '',
+      :download_timeout     => '90',
+      :nocheckcertificate   => false,
+      :manage_logrotate     => true,
+      :manage_installation  => true,
     }
 
     if params

@@ -57,7 +57,7 @@ similar to creating a `Selenium grid` by declaring `selenium::hub` and
 
 It is highly recommend that you read the [Selenium Grid
 documentation](http://docs.seleniumhq.org/docs/07_selenium_grid.jsp#what-is-selenium-grid)
-to determine what the best approach for your usage case(s) is. 
+to determine what the best approach for your usage case(s) is.
 
 ### Simple
 
@@ -193,16 +193,17 @@ override the default values.
 ```puppet
 # defaults
 class { 'selenium':
-  user               => 'selenium',
-  manage_user        => true,
-  group              => 'selenium',
-  manage_group       => true,
-  install_root       => '/opt/selenium',
-  java               => 'java',
-  version            => '2.45.0',
-  url                => undef,
-  download_timeout   => '90',
-  nocheckcertificate => false,
+  user                => 'selenium',
+  manage_user         => true,
+  group               => 'selenium',
+  manage_group        => true,
+  install_root        => '/opt/selenium',
+  java                => 'java',
+  version             => '2.45.0',
+  url                 => undef,
+  download_timeout    => '90',
+  nocheckcertificate  => false,
+  manage_installation => true,
 }
 ```
 
@@ -272,6 +273,12 @@ Timeout to download of the package.
 
 Disables validation of the x509 certificate the Selenium jar file is retrieved
 from.
+
+##### `manage_installation`
+
+`Boolean` defaults to: `true`
+
+Let the module handle the installation of the Selenium jar file.
 
 See [Certificate Errors](#certificate-errors)
 
