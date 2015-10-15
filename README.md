@@ -274,6 +274,12 @@ Timeout to download of the package.
 Disables validation of the x509 certificate the Selenium jar file is retrieved
 from.
 
+##### `manage_logrotate`
+
+`Boolean` defaults to: `true`
+
+Uses the Logrotate module to rotate the log file of Selenium.
+
 See [Certificate Errors](#certificate-errors)
 
 #### `selenium::server`
