@@ -57,7 +57,7 @@ similar to creating a `Selenium grid` by declaring `selenium::hub` and
 
 It is highly recommend that you read the [Selenium Grid
 documentation](http://docs.seleniumhq.org/docs/07_selenium_grid.jsp#what-is-selenium-grid)
-to determine what the best approach for your usage case(s) is. 
+to determine what the best approach for your usage case(s) is.
 
 ### Simple
 
@@ -203,6 +203,7 @@ class { 'selenium':
   url                => undef,
   download_timeout   => '90',
   nocheckcertificate => false,
+  manage_logrotate   => true,
 }
 ```
 
@@ -272,6 +273,12 @@ Timeout to download of the package.
 
 Disables validation of the x509 certificate the Selenium jar file is retrieved
 from.
+
+##### `manage_logrotate`
+
+`Boolean` defaults to: `true`
+
+Uses the Logrotate module to rotate the log file of Selenium.
 
 See [Certificate Errors](#certificate-errors)
 
