@@ -28,9 +28,6 @@ SELENIUM_LOG="${SELENIUM_INSTALL_ROOT}/log/${SELENIUM_LOG_NAME}_stdout.log"
 SELENIUM_ERROR_LOG="${SELENIUM_INSTALL_ROOT}/log/${SELENIUM_LOG_NAME}_stderr.log"
 SELENIUM_DISPLAY='<%= @display %>'
 SELENIUM_OPTIONS='<%= @options %>'
-HTTP_PORT=4444
-SELENIUM_ARGS="-port $HTTP_PORT"
-SELENIUM_JAVA='<%= @java %>'
 
 [ -r /etc/default/$NAME ] && . /etc/default/$NAME
 
@@ -64,26 +61,6 @@ if [ `id -u` -ne 0 ]; then
     exit 1
 fi
 
-check_tcp_port() {
-    local service=$1
-    local assigned=$2
-    local default=$3
-
-    if [ -n "$assigned" ]; then
-        port=$assigned
-    else
-        port=$default
-    fi
-
-    count=`netstat --listen --numeric-ports | grep \:$port[[:space:]] | grep -c . `
-
-    if [ $count -ne 0 ]; then
-        echo "The selected $service port ($port) seems to be in use by another program "
-        echo "Please select another port to use for $NAME"
-        return 1
-    fi
-}
-
 #
 # Function that starts the daemon/service
 #
@@ -97,9 +74,6 @@ do_start()
     #   1 if daemon was already running
     #   2 if daemon could not be started
     $DAEMON $DAEMON_ARGS --running && return 1
-
-    # Verify that the seleniumserver port is not already in use
-    check_tcp_port "http" "$HTTP_PORT" "4444" || return 1
 
     # --user in daemon doesn't prepare environment variables like HOME, USER, LOGNAME or USERNAME,
     # so we let su do so for us now
