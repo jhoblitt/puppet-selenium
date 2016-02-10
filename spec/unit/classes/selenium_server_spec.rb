@@ -4,8 +4,8 @@ describe 'selenium::server', :type => :class do
 
   shared_examples 'server' do |params|
     p = {
-      :display => ':0',
-      :options => '-Dwebdriver.enable.native.events=1',
+      :display  => ':0',
+      :jvm_args => '-Dwebdriver.enable.native.events=1',
     }
 
     p.merge!(params) if params
@@ -13,8 +13,8 @@ describe 'selenium::server', :type => :class do
     it do
       should contain_class('selenium')
       should contain_selenium__config('server').with({
-        'display' => p[:display],
-        'options' => p[:options],
+        'display'  => p[:display],
+        'jvm_args' => p[:jvm_args],
       })
       should contain_class('selenium::server')
     end

@@ -5,7 +5,8 @@
 #
 #
 class selenium::hub(
-  $options = $selenium::params::hub_options,
+  $options  = $selenium::params::hub_options,
+  $jvm_args = $selenium::params::hub_jvm_args,
 ) inherits selenium::params {
   validate_string($options)
 
@@ -18,6 +19,7 @@ class selenium::hub(
     group        => $selenium::group,
     install_root => $selenium::install_root,
     options      => $options,
+    jvm_args     => $jvm_args,
     java         => $selenium::java,
   } ->
   anchor { 'selenium::hub::end': }

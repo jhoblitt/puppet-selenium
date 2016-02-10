@@ -5,9 +5,10 @@
 #
 #
 class selenium::node(
-  $display = $selenium::params::display,
-  $options = $selenium::params::node_options,
-  $hub     = $selenium::params::default_hub,
+  $display  = $selenium::params::display,
+  $options  = $selenium::params::node_options,
+  $jvm_args = $selenium::params::node_jvm_args,
+  $hub      = $selenium::params::default_hub,
 ) inherits selenium::params {
   validate_string($display)
   validate_string($options)
@@ -25,6 +26,7 @@ class selenium::node(
     group        => $selenium::group,
     install_root => $selenium::install_root,
     options      => $safe_options,
+    jvm_args     => $jvm_args,
     java         => $selenium::java,
   } ->
   anchor { 'selenium::node::end': }

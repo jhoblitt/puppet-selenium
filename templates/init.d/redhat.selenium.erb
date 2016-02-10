@@ -26,6 +26,7 @@ SLNM_DISPLAY='<%= @display %>'
 SLNM_USER='<%= @user %>'
 SLNM_INSTALL_ROOT='<%= @install_root %>'
 SLNM_JAR_NAME='<%= @jar_name %>'
+SLNM_JVM_ARGS='<%= @jvm_args %>'
 SLNM_OPTIONS='<%= @options %>'
 SLNM_JAVA='<%= @java %>'
 SLNM_LOG_NAME='<%= @name %>'
@@ -43,7 +44,7 @@ lockfile=/var/lock/subsys/$prog
 pidfile=/var/run/${prog}.pid
 
 # pidfile must be owned by selenium user
-exec="DISPLAY=${SLNM_DISPLAY} ${SLNM_JAVA} -jar ${SLNM_JAR} ${SLNM_OPTIONS} > ${SLNM_LOG} 2> ${SLNM_ERROR_LOG} & "'echo $!'" > ${pidfile}"
+exec="DISPLAY=${SLNM_DISPLAY} ${SLNM_JAVA} ${SLNM_JVM_ARGS} -jar ${SLNM_JAR} ${SLNM_OPTIONS} > ${SLNM_LOG} 2> ${SLNM_ERROR_LOG} & "'echo $!'" > ${pidfile}"
 
 start() {
 #    [ -x $exec ] || exit 5

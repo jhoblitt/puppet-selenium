@@ -11,7 +11,8 @@ describe 'selenium::config', :type => :define do
       :user         => 'selenium',
       :install_root => '/opt/selenium',
       :jar_name     => "selenium-server-standalone-#{DEFAULT_VERSION}.jar",
-      :options      => '-Dwebdriver.enable.native.events=1',
+      :options      => '',
+      :jvm_args     => '-Dwebdriver.enable.native.events=1',
       :java         => 'java',
     }
 
@@ -31,6 +32,7 @@ describe 'selenium::config', :type => :define do
         with_content(/SLNM_INSTALL_ROOT='#{p[:install_root]}'/).
         with_content(/SLNM_JAR_NAME='#{p[:jar_name]}'/).
         with_content(/SLNM_OPTIONS='#{p[:options]}'/).
+        with_content(/SLNM_JVM_ARGS='#{p[:jvm_args]}'/).
         with_content(/SLNM_JAVA='#{p[:java]}'/).
         with_content(/SLNM_LOG_NAME='#{title}'/).
         with_content(/prog='selenium#{title}'/)
@@ -59,7 +61,7 @@ describe 'selenium::config', :type => :define do
           :user         => 'Xselenium',
           :install_root => 'X/opt/selenium',
           :jar_name     => 'Xselenium-server-standalone-x.xx.x.jar',
-          :options      => 'X-Dwebdriver.enable.native.events=1',
+          :jvm_args     => 'X-Dwebdriver.enable.native.events=1',
           :java         => 'Xjava',
         }
 
@@ -82,7 +84,7 @@ describe 'selenium::config', :type => :define do
           :user         => 'Xselenium',
           :install_root => 'X/opt/selenium',
           :jar_name     => 'Xselenium-server-standalone-x.xx.x.jar',
-          :options      => 'X-Dwebdriver.enable.native.events=1',
+          :jvm_args     => 'X-Dwebdriver.enable.native.events=1',
           :java         => 'Xjava',
         }
 
