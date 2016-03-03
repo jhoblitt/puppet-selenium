@@ -33,7 +33,8 @@ describe 'selenium::config', :type => :define do
         with_content(/SLNM_OPTIONS='#{p[:options]}'/).
         with_content(/SLNM_JAVA='#{p[:java]}'/).
         with_content(/SLNM_LOG_NAME='#{title}'/).
-        with_content(/prog='selenium#{title}'/)
+        with_content(/prog='selenium#{title}'/).
+        with_content(/SLNM_EXEC_COMMAND='-jar #{p[:install_root]}\/jars\/#{p[:jar_name]}'/)
       should contain_service("selenium#{title}").with({
         :ensure     => 'running',
         :hasstatus  => 'true',
@@ -42,6 +43,51 @@ describe 'selenium::config', :type => :define do
       })
     end
   end
+
+  shared_examples 'config_with_classpath' do |params|
+    let :pre_condition do
+      "include selenium"
+    end
+
+    p = {
+      :display      => ':0',
+      :user         => 'selenium',
+      :install_root => '/opt/selenium',
+      :jar_name     => "selenium-server-standalone-#{DEFAULT_VERSION}.jar",
+      :options      => '-Dwebdriver.enable.native.events=1',
+      :java         => 'java',
+      :classpath    => ['/my/custom/jarfile.jar'],
+    }
+
+    p.merge!(params) if params
+
+    it do
+      should contain_file("selenium#{title}").with({
+        'ensure' => 'file',
+        'path'   => "/etc/init.d/selenium#{title}",
+        'owner'  => 'root',
+        'group'  => 'root',
+        'mode'   => '0755',
+      }).
+        with_content(/# selenium#{title} Selenium server init script/).
+        with_content(/SLNM_DISPLAY='#{p[:display]}'/).
+        with_content(/SLNM_USER='#{p[:user]}'/).
+        with_content(/SLNM_INSTALL_ROOT='#{p[:install_root]}'/).
+        with_content(/SLNM_JAR_NAME='#{p[:jar_name]}'/).
+        with_content(/SLNM_OPTIONS='#{p[:options]}'/).
+        with_content(/SLNM_JAVA='#{p[:java]}'/).
+        with_content(/SLNM_LOG_NAME='#{title}'/).
+        with_content(/prog='selenium#{title}'/).
+        with_content(/SLNM_EXEC_COMMAND='-cp #{p[:install_root]}\/jars\/#{p[:jar_name]}:#{p[:classpath].join(":")} org.openqa.grid.selenium.GridLauncher'/)
+      should contain_service("selenium#{title}").with({
+        :ensure     => 'running',
+        :hasstatus  => 'true',
+        :hasrestart => 'true',
+        :enable     => 'true',
+      })
+    end
+  end
+
 
   context 'for osfamily RedHat' do
     let(:facts) {{ :osfamily => 'RedHat' }}
@@ -67,6 +113,22 @@ describe 'selenium::config', :type => :define do
 
         it_behaves_like 'config', params
       end
+
+      context 'all params with custom classpath' do
+        params = {
+          :display      => 'X:0',
+          :user         => 'Xselenium',
+          :install_root => 'X/opt/selenium',
+          :jar_name     => 'Xselenium-server-standalone-x.xx.x.jar',
+          :options      => 'X-Dwebdriver.enable.native.events=1',
+          :java         => 'Xjava',
+          :classpath    => ['X/my/custom/jarfile.jar'],
+        }
+
+        let(:params) { params }
+
+        it_behaves_like 'config_with_classpath', params
+      end
     end
 
     context "hub" do
@@ -89,6 +151,22 @@ describe 'selenium::config', :type => :define do
         let(:params) { params }
 
         it_behaves_like 'config', params
+      end
+
+      context 'all params with custom classpath' do
+        params = {
+          :display      => 'X:0',
+          :user         => 'Xselenium',
+          :install_root => 'X/opt/selenium',
+          :jar_name     => 'Xselenium-server-standalone-x.xx.x.jar',
+          :options      => 'X-Dwebdriver.enable.native.events=1',
+          :java         => 'Xjava',
+          :classpath    => ['X/my/custom/jarfile.jar'],
+        }
+
+        let(:params) { params }
+
+        it_behaves_like 'config_with_classpath', params
       end
     end
   end
