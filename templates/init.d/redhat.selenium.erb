@@ -8,15 +8,15 @@
 #              a backslash>
 
 ### BEGIN INIT INFO
-# Provides: 
-# Required-Start: 
-# Required-Stop: 
-# Should-Start: 
-# Should-Stop: 
-# Default-Start: 
-# Default-Stop: 
-# Short-Description: 
-# Description:      
+# Provides:
+# Required-Start:
+# Required-Stop:
+# Should-Start:
+# Should-Stop:
+# Default-Start:
+# Default-Stop:
+# Short-Description:
+# Description:
 ### END INIT INFO
 
 # Source function library.
@@ -30,6 +30,7 @@ SLNM_OPTIONS='<%= @options %>'
 SLNM_JAVA='<%= @java %>'
 SLNM_LOG_NAME='<%= @name %>'
 prog='<%= @prog %>'
+SLNM_EXEC_COMMAND='<%= @exec_command %>'
 
 SLNM_LOG="${SLNM_INSTALL_ROOT}/log/${SLNM_LOG_NAME}_stdout.log"
 SLNM_ERROR_LOG="${SLNM_INSTALL_ROOT}/log/${SLNM_LOG_NAME}_stderr.log"
@@ -43,7 +44,7 @@ lockfile=/var/lock/subsys/$prog
 pidfile=/var/run/${prog}.pid
 
 # pidfile must be owned by selenium user
-exec="DISPLAY=${SLNM_DISPLAY} ${SLNM_JAVA} -jar ${SLNM_JAR} ${SLNM_OPTIONS} > ${SLNM_LOG} 2> ${SLNM_ERROR_LOG} & "'echo $!'" > ${pidfile}"
+exec="DISPLAY=${SLNM_DISPLAY} ${SLNM_JAVA} ${SLNM_EXEC_COMMAND} ${SLNM_OPTIONS} > ${SLNM_LOG} 2> ${SLNM_ERROR_LOG} & "'echo $!'" > ${pidfile}"
 
 start() {
 #    [ -x $exec ] || exit 5

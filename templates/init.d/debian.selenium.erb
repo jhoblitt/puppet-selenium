@@ -31,6 +31,7 @@ SELENIUM_OPTIONS='<%= @options %>'
 HTTP_PORT=4444
 SELENIUM_ARGS="-port $HTTP_PORT"
 SELENIUM_JAVA='<%= @java %>'
+SELENIUM_EXEC_COMMAND='<%= @exec_command %>'
 
 [ -r /etc/default/$NAME ] && . /etc/default/$NAME
 
@@ -103,7 +104,7 @@ do_start()
 
     # --user in daemon doesn't prepare environment variables like HOME, USER, LOGNAME or USERNAME,
     # so we let su do so for us now
-    $SU -l $SELENIUM_USER --shell=/bin/bash -c "$DAEMON $DAEMON_ARGS -- java -jar ${SELENIUM_JAR} ${SELENIUM_OPTIONS} > ${SELENIUM_LOG} 2> ${SELENIUM_ERROR_LOG}" || return 2
+    $SU -l $SELENIUM_USER --shell=/bin/bash -c "$DAEMON $DAEMON_ARGS -- java ${SELENIUM_EXEC_COMMAND} ${SELENIUM_OPTIONS} > ${SELENIUM_LOG} 2> ${SELENIUM_ERROR_LOG}" || return 2
 }
 
 #

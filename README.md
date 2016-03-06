@@ -294,8 +294,9 @@ Let the module handle the installation of the Selenium jar file.
 ```puppet
 # defaults
 class { 'selenium::server':
-  display => ':0',
-  options => '-Dwebdriver.enable.native.events=1',
+  display   => ':0',
+  options   => '-Dwebdriver.enable.native.events=1',
+  classpath => ['/custom/lib1.jar', '/custom/lib2.jar'],
 }
 ```
 
@@ -312,6 +313,15 @@ variable passed to Selenium Server
 
 Options passed to Selenium Server at startup.
 
+##### `classpath`
+
+`Array` defaults to: `[]`
+
+Optional classpath to pass to Selenium Server at startup. If this array is empty
+Selenium will be started with '-jar /path/to/selenium.jar', if not empty Selenium will be
+started with '-cp /path/to/selenium.jar:<list of extra jars> org.openqa.grid.selenium.GridLauncher'
+See http://www.seleniumhq.org/docs/07_selenium_grid.jsp#customizing-the-grid
+
 #### `selenium::hub`
 
 Note that by default `selenium::server` and `selenium::hub` will try to listen
@@ -320,7 +330,8 @@ on the same TCP port (`4444`) and only one of them will be able to function.
 ```puppet
 # defaults
 class { 'selenium::hub':
-  options => '-role hub',
+  options   => '-role hub',
+  classpath => ['/custom/lib1.jar', '/custom/lib2.jar'],
 }
 ```
 
@@ -330,14 +341,24 @@ class { 'selenium::hub':
 
 Options passed to Selenium Server Hub at startup.
 
+##### `classpath`
+
+`Array` defaults to: `[]`
+
+Optional classpath to pass to Selenium Server Hub at startup. If this array is empty
+Selenium will be started with '-jar /path/to/selenium.jar', if not empty Selenium will be
+started with '-cp /path/to/selenium.jar:<list of extra jars> org.openqa.grid.selenium.GridLauncher'
+See http://www.seleniumhq.org/docs/07_selenium_grid.jsp#customizing-the-grid
+
 #### `selenium::node`
 
 ```puppet
 # defaults
 class { 'selenium::node':
-  display => ':0',
-  options => '-Dwebdriver.enable.native.events=1 -role node',
-  hub     => 'http://localhost:4444/grid/register',
+  display   => ':0',
+  options   => '-Dwebdriver.enable.native.events=1 -role node',
+  hub       => 'http://localhost:4444/grid/register',
+  classpath => ['/custom/lib1.jar', '/custom/lib2.jar'],
 }
 ```
 
@@ -359,6 +380,15 @@ Options passed to Selenium Server Node at startup.
 `String` defaults to: `http://localhost:4444/grid/register`
 
 The URL of the Selenium Server Hub to connect to.
+
+##### `classpath`
+
+`Array` defaults to: `[]`
+
+Optional classpath to pass to Selenium Server Node at startup. If this array is empty
+Selenium will be started with '-jar /path/to/selenium.jar', if not empty Selenium will be
+started with '-cp /path/to/selenium.jar:<list of extra jars> org.openqa.grid.selenium.GridLauncher'
+See http://www.seleniumhq.org/docs/07_selenium_grid.jsp#customizing-the-grid
 
 
 Why Another Module?
