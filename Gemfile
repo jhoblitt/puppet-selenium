@@ -21,6 +21,7 @@ group :development, :test do
   gem 'puppet-syntax',            :require => false
   gem 'rspec-puppet', '~> 2.2',   :require => false
   gem 'metadata-json-lint',       :require => false
+  gem 'travis', '~> 1.8',         :require => false
 end
 
 group :beaker do
@@ -28,7 +29,6 @@ group :beaker do
   gem 'beaker',                   :require => false
   gem 'beaker-rspec',             :require => false
   gem 'pry',                      :require => false
-  gem 'travis-lint',              :require => false
   gem 'puppet-blacksmith',        :require => false
 end
 
