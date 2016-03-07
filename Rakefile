@@ -18,6 +18,11 @@ task :travis_lint do
   sh "travis-lint"
 end
 
+desc "Run acceptance tests"
+RSpec::Core::RakeTask.new(:acceptance) do |t|
+    t.pattern = 'spec/acceptance'
+end
+
 task :default => [
   :validate,
   :lint,
