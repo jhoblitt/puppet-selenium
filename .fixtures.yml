@@ -7,10 +7,10 @@ fixtures:
       repo: 'https://github.com/maestrodev/puppet-wget.git'
       ref: 'v1.2.2'
     logrotate:
-      repo: 'https://github.com/rodjek/puppet-logrotate.git'
+      repo: 'https://github.com/yo61/puppet-logrotate.git'
       # The current forge release (1.1.1) of logrotate is not compatible with
       # the future parser. See:
       # https://github.com/rodjek/puppet-logrotate/pull/39
-      ref: 'd569bcee1b43fa1af816c21afb5664d8e5235553'
+      ref: '499b74b577d9349e315cc27d68c8648d280fbcef'
   symlinks:
     selenium: "#{source_dir}"
