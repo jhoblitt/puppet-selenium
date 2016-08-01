@@ -18,27 +18,26 @@ class selenium::params {
   $default_hub      = 'http://localhost:4444/grid/register'
   $download_timeout = '90'
   $default_classpath = []
+
   case $::osfamily {
     'redhat': {
-      $service_template = 'redhat.selenium.erb'
+      case $::operatingsystemmajrelease {
+        6: {
+          $initsystem = 'init.d'
+          $service_template = 'redhat.selenium.erb'
+        }
+        default: {
+          $initsystem = 'systemd'
+          $service_template = 'selenium.erb'
+        }
+      }
     }
     'debian': {
       $service_template = 'debian.selenium.erb'
+      $initsystem = 'init.d'
     }
     default: {
       fail("Module ${module_name} is not supported on ${::operatingsystem}")
-    }
-  }
-  case $::osfamily {
-    'redhat': {
-      $initsystem = (
-        case $::operatingsystemmajrelease {
-          '6': { 'init.d' }
-          default { 'systemd' } }
-      )
-    }
-    default: {
-      $initsystem = 'init.d'
     }
   }
 }

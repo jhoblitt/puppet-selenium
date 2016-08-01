@@ -57,6 +57,7 @@ describe 'selenium::config', :type => :define do
       :options      => '-Dwebdriver.enable.native.events=1',
       :java         => 'java',
       :classpath    => ['/my/custom/jarfile.jar'],
+      :initsystem   => 'init.d'
     }
 
     p.merge!(params) if params
@@ -90,7 +91,7 @@ describe 'selenium::config', :type => :define do
 
 
   context 'for osfamily RedHat' do
-    let(:facts) {{ :osfamily => 'RedHat' }}
+    let(:facts) {{ :osfamily => 'RedHat', :operatingsystemmajrelease => 6 }}
 
     context "server" do
       let(:title) { 'server' }
@@ -173,7 +174,7 @@ describe 'selenium::config', :type => :define do
 
   context 'for osfamily Debian' do
     let(:title) { 'server' }
-    let(:facts) {{ :osfamily => 'Debian' }}
+    let(:facts) {{ :osfamily => 'Debian', :operatingsystemmajrelease => 8 }}
     let :pre_condition do
       "include selenium"
     end
