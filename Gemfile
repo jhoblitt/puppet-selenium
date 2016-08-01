@@ -21,6 +21,7 @@ group :development, :test do
   gem 'puppet-syntax',            :require => false
   gem 'rspec-puppet', '~> 2.2',   :require => false
   gem 'metadata-json-lint',       :require => false
+  gem 'json', '=2.0.1', :platforms => 'ruby_18'
 end
 
 group :beaker do

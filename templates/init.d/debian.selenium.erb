@@ -24,8 +24,7 @@ SELENIUM_INSTALL_ROOT='<%= @install_root %>'
 SELENIUM_JAR_NAME='<%= @jar_name %>'
 SELENIUM_JAR="${SELENIUM_INSTALL_ROOT}/jars/${SELENIUM_JAR_NAME}"
 SELENIUM_LOG_NAME='<%= @name %>'
-SELENIUM_LOG="${SELENIUM_INSTALL_ROOT}/log/${SELENIUM_LOG_NAME}_stdout.log"
-SELENIUM_ERROR_LOG="${SELENIUM_INSTALL_ROOT}/log/${SELENIUM_LOG_NAME}_stderr.log"
+SELENIUM_DAEMON_LOG="${SELENIUM_INSTALL_ROOT}/log/${SELENIUM_LOG_NAME}_deamon.log"
 SELENIUM_DISPLAY='<%= @display %>'
 SELENIUM_OPTIONS='<%= @options %>'
 HTTP_PORT=4444
@@ -36,7 +35,7 @@ SELENIUM_EXEC_COMMAND='<%= @exec_command %>'
 [ -r /etc/default/$NAME ] && . /etc/default/$NAME
 
 DAEMON=/usr/bin/daemon
-DAEMON_ARGS="--name=$NAME --inherit --output=$SELENIUM_LOG --pidfile=$PIDFILE --env='DISPLAY=${SELENIUM_DISPLAY}'"
+DAEMON_ARGS="--name=$NAME --inherit --output=$SELENIUM_DAEMON_LOG --pidfile=$PIDFILE --env='DISPLAY=${SELENIUM_DISPLAY}'"
 
 SU=/bin/su
 # Exit if the package is not installed
@@ -104,7 +103,7 @@ do_start()
 
     # --user in daemon doesn't prepare environment variables like HOME, USER, LOGNAME or USERNAME,
     # so we let su do so for us now
-    $SU -l $SELENIUM_USER --shell=/bin/bash -c "$DAEMON $DAEMON_ARGS -- java ${SELENIUM_EXEC_COMMAND} ${SELENIUM_OPTIONS} > ${SELENIUM_LOG} 2> ${SELENIUM_ERROR_LOG}" || return 2
+    $SU -l $SELENIUM_USER --shell=/bin/bash -c "$DAEMON $DAEMON_ARGS -- java ${SELENIUM_EXEC_COMMAND} ${SELENIUM_OPTIONS}" || return 2
 }
 
 #
