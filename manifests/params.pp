@@ -29,5 +29,16 @@ class selenium::params {
       fail("Module ${module_name} is not supported on ${::operatingsystem}")
     }
   }
-
+  case $::osfamily {
+    'redhat': {
+      $initsystem = (
+        case $::operatingsystemmajrelease {
+          '6': { 'init.d' }
+          default { 'systemd' } }
+      )
+    }
+    default: {
+      $initsystem = 'init.d'
+    }
+  }
 }

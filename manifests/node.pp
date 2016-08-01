@@ -9,6 +9,7 @@ class selenium::node(
   $options   = $selenium::params::node_options,
   $hub       = $selenium::params::default_hub,
   $classpath = $selenium::params::default_classpath,
+  $initsystem = $selenium::params::initsystem,
 ) inherits selenium::params {
   validate_string($display)
   validate_string($options)
@@ -27,7 +28,8 @@ class selenium::node(
     install_root => $selenium::install_root,
     options      => $safe_options,
     java         => $selenium::java,
-    classpath    => $classpath
+    classpath    => $classpath,
+    initsystem   => $initsystem,
   } ->
   anchor { 'selenium::node::end': }
 }
