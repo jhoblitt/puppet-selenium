@@ -51,7 +51,7 @@ define selenium::config(
         content => template("${module_name}/systemd/selenium.erb"),
       }
 
-      file { "$prog-config":
+      file { $prog-config:
         ensure  => 'file',
         path    => "/etc/${prog}.conf",
         owner   => 'root',
@@ -78,6 +78,6 @@ define selenium::config(
     hasstatus  => true,
     hasrestart => true,
     enable     => true,
-    require => File[$prog],
+    require    => File[$prog],
   }
 }
