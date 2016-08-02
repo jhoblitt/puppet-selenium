@@ -62,13 +62,14 @@ define selenium::config(
       }
     }
     default  : {
+      $template_name = downcase($::osfamily)
       file { $prog:
         ensure  => 'file',
         path    => "/etc/init.d/${prog}",
         owner   => 'root',
         group   => 'root',
         mode    => '0755',
-        content => template("${module_name}/init.d/${::osfamily}.selenium.erb"),
+        content => template("${module_name}/init.d/${template_name}.selenium.erb"),
       }
     }
   }
