@@ -12,7 +12,6 @@ define selenium::config(
   $jar_name     = $selenium::jar_name,
   $classpath    = $selenium::params::default_classpath,
   $initsystem   = $selenium::params::initsystem,
-
 ) {
   validate_string($display)
   validate_string($user)
@@ -43,17 +42,18 @@ define selenium::config(
 
   case $initsystem {
     'systemd' : {
-      file { "/usr/lib/systemd/system/${prog}.service":
+      file { $prog:
         ensure  => 'file',
+        path    => "/usr/lib/systemd/system/${prog}.service",
         owner   => 'root',
         group   => 'root',
         mode    => '0755',
         content => template("${module_name}/systemd/selenium.erb"),
-        notify  => Service[$prog],
       }
 
-      file { "/etc/${prog}.conf":
+      file { "$prog-config":
         ensure  => 'file',
+        path    => "/etc/${prog}.conf",
         owner   => 'root',
         group   => 'root',
         mode    => '0755',
@@ -62,13 +62,13 @@ define selenium::config(
       }
     }
     default  : {
-      file { "/etc/init.d/${prog}":
+      file { $prog:
         ensure  => 'file',
+        path    => "/etc/init.d/${prog}",
         owner   => 'root',
         group   => 'root',
         mode    => '0755',
-        content => template("${module_name}/init.d/${selenium::params::service_template}"),
-        notify  => Service[$prog],
+        content => template("${module_name}/init.d/${::osfamily}.selenium.erb"),
       }
     }
   }
@@ -78,6 +78,6 @@ define selenium::config(
     hasstatus  => true,
     hasrestart => true,
     enable     => true,
+    require => File[$prog],
   }
-
 }

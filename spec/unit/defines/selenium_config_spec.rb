@@ -13,6 +13,8 @@ describe 'selenium::config', :type => :define do
       :jar_name     => "selenium-server-standalone-#{DEFAULT_VERSION}.jar",
       :options      => '-Dwebdriver.enable.native.events=1',
       :java         => 'java',
+      :initsystem   => 'init.d',
+
     }
 
     p.merge!(params) if params
@@ -41,6 +43,74 @@ describe 'selenium::config', :type => :define do
         :hasrestart => 'true',
         :enable     => 'true',
       })
+    end
+  end
+
+  shared_examples 'config_with_systemd_classpath' do |params|
+    let :pre_condition do
+      "include selenium"
+    end
+
+    p = {
+        :display      => ':0',
+        :user         => 'seleniums',
+        :install_root => '/opt/selenium',
+        :jar_name     => "selenium-server-standalone-#{DEFAULT_VERSION}.jar",
+        :options      => '-Dwebdriver.enable.native.events=1',
+        :java         => 'java',
+        :initsystem   => 'systemd',
+    }
+
+    p.merge!(params) if params
+
+    it do
+      should contain_file("selenium#{title}").with({
+                                                          'ensure' => 'file',
+                                                          'path'   => "/usr/lib/systemd/system/selenium#{title}.service",
+                                                          'owner'  => 'root',
+                                                          'group'  => 'root',
+                                                          'mode'   => '0755',
+                                                      })
+          should contain_service("selenium#{title}").with({
+                                                              :ensure     => 'running',
+                                                              :hasstatus  => 'true',
+                                                              :hasrestart => 'true',
+                                                              :enable     => 'true',
+                                                          })
+    end
+  end
+
+  shared_examples 'config_with_systemd' do |params|
+    let :pre_condition do
+      "include selenium"
+    end
+
+    p = {
+        :display      => ':0',
+        :user         => 'seleniums',
+        :install_root => '/opt/selenium',
+        :jar_name     => "selenium-server-standalone-#{DEFAULT_VERSION}.jar",
+        :options      => '-Dwebdriver.enable.native.events=1',
+        :java         => 'java',
+        :initsystem   => 'systemd',
+    }
+
+    p.merge!(params) if params
+
+    it do
+      should contain_file("selenium#{title}").with({
+                                                       'ensure' => 'file',
+                                                       'path'   => "/usr/lib/systemd/system/selenium#{title}.service",
+                                                       'owner'  => 'root',
+                                                       'group'  => 'root',
+                                                       'mode'   => '0755',
+                                                   })
+      should contain_service("selenium#{title}").with({
+                                                          :ensure     => 'running',
+                                                          :hasstatus  => 'true',
+                                                          :hasrestart => 'true',
+                                                          :enable     => 'true',
+                                                      })
     end
   end
 
@@ -89,8 +159,93 @@ describe 'selenium::config', :type => :define do
     end
   end
 
+  context 'for osfamily RedHat 7' do
+    let(:facts) {{ :osfamily => 'RedHat', :operatingsystemmajrelease => 7 }}
 
-  context 'for osfamily RedHat' do
+    context "server" do
+      let(:title) { 'server' }
+
+      context 'no params' do
+        it_behaves_like 'config_with_systemd', {}
+      end
+
+      context 'all params' do
+        params = {
+            :display      => 'X:0',
+            :user         => 'Xselenium',
+            :install_root => 'X/opt/selenium',
+            :jar_name     => 'Xselenium-server-standalone-x.xx.x.jar',
+            :options      => 'X-Dwebdriver.enable.native.events=1',
+            :java         => 'Xjava',
+            :initsystem   => 'systemd',
+        }
+
+        let(:params) { params }
+
+        it_behaves_like 'config_with_systemd', params
+      end
+
+      context 'all params with custom classpath' do
+        params = {
+            :display      => 'X:0',
+            :user         => 'Xselenium',
+            :install_root => 'X/opt/selenium',
+            :jar_name     => 'Xselenium-server-standalone-x.xx.x.jar',
+            :options      => 'X-Dwebdriver.enable.native.events=1',
+            :java         => 'Xjava',
+            :classpath    => ['X/my/custom/jarfile.jar'],
+            :initsystem   => 'systemd',
+        }
+
+        let(:params) { params }
+
+        it_behaves_like 'config_with_systemd_classpath', params
+      end
+    end
+
+    context "hub" do
+      let(:title) { 'hub' }
+
+      context 'no params' do
+        it_behaves_like 'config_with_systemd', {}
+      end
+
+      context 'all params' do
+        params = {
+            :display      => 'X:0',
+            :user         => 'Xselenium',
+            :install_root => 'X/opt/selenium',
+            :jar_name     => 'Xselenium-server-standalone-x.xx.x.jar',
+            :options      => 'X-Dwebdriver.enable.native.events=1',
+            :java         => 'Xjava',
+            :initsystem   => 'systemd',
+        }
+
+        let(:params) { params }
+
+        it_behaves_like 'config_with_systemd', params
+      end
+
+      context 'all params with custom classpath' do
+        params = {
+            :display      => 'X:0',
+            :user         => 'Xselenium',
+            :install_root => 'X/opt/selenium',
+            :jar_name     => 'Xselenium-server-standalone-x.xx.x.jar',
+            :options      => 'X-Dwebdriver.enable.native.events=1',
+            :java         => 'Xjava',
+            :classpath    => ['X/my/custom/jarfile.jar'],
+            :initsystem   => 'systemd',
+        }
+
+        let(:params) { params }
+
+        it_behaves_like 'config_with_systemd_classpath', params
+      end
+    end
+  end
+
+  context 'for osfamily RedHat 6' do
     let(:facts) {{ :osfamily => 'RedHat', :operatingsystemmajrelease => 6 }}
 
     context "server" do
