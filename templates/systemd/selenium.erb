@@ -5,7 +5,7 @@ After=network.target network-online.target
 
 [Service]
 EnvironmentFile=/etc/<%= @prog %>.conf
-ExecStart=/usr/bin/java -jar <%= @install_root %>/jars/<%= @jar_name %> $SELENIUM_SERVER_ARGS $SELENIUM_SERVER_LOG_ARGS
+ExecStart=/usr/bin/java -jar <%= @install_root %>/jars/<%= @jar_name %> $SELENIUM_SERVER_ARGS
 KillMode=process
 User=<%= @user %>
 
