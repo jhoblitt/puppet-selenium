@@ -205,6 +205,7 @@ class { 'selenium':
   nocheckcertificate  => false,
   manage_logrotate    => true,
   manage_installation => true,
+  initsystem          => 'initd'
 }
 ```
 
@@ -289,6 +290,12 @@ Uses the Logrotate module to rotate the log file of Selenium.
 
 Let the module handle the installation of the Selenium jar file.
 
+##### `initsystem`
+
+Defines the init system to use, based on OS Version, currently Redhat 7+ is set to systemd, all others default to initd.
+
+Supported overrides, 'init.d' or 'systemd'. Uses templates to install service
+
 #### `selenium::server`
 
 ```puppet
@@ -350,6 +357,13 @@ Selenium will be started with '-jar /path/to/selenium.jar', if not empty Seleniu
 started with '-cp /path/to/selenium.jar:<list of extra jars> org.openqa.grid.selenium.GridLauncher'
 See http://www.seleniumhq.org/docs/07_selenium_grid.jsp#customizing-the-grid
 
+##### `initsystem`
+
+Defines the init system to use, based on OS Version, currently Redhat 7+ is set to systemd, all others default to initd.
+
+Supported overrides, 'init.d' or 'systemd'. Uses templates to install service
+
+
 #### `selenium::node`
 
 ```puppet
@@ -359,6 +373,7 @@ class { 'selenium::node':
   options   => '-Dwebdriver.enable.native.events=1 -role node',
   hub       => 'http://localhost:4444/grid/register',
   classpath => ['/custom/lib1.jar', '/custom/lib2.jar'],
+  initsystem => 'systemd'
 }
 ```
 
@@ -389,6 +404,12 @@ Optional classpath to pass to Selenium Server Node at startup. If this array is 
 Selenium will be started with '-jar /path/to/selenium.jar', if not empty Selenium will be
 started with '-cp /path/to/selenium.jar:<list of extra jars> org.openqa.grid.selenium.GridLauncher'
 See http://www.seleniumhq.org/docs/07_selenium_grid.jsp#customizing-the-grid
+
+##### `initsystem`
+
+Defines the init system to use, based on OS Version, currently Redhat 7+ is set to systemd, all others default to initd.
+
+Supported overrides, 'init.d' or 'systemd'. Uses templates to install service
 
 
 Why Another Module?
