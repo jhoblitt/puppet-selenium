@@ -19,7 +19,7 @@ class selenium::hub(
     user         => $selenium::user,
     group        => $selenium::group,
     install_root => $selenium::install_root,
-    options      => $options,
+    options      => "${options} -log ${selenium::install_root}/log/seleniumhub.log",
     java         => $selenium::java,
     classpath    => $classpath,
   } ->

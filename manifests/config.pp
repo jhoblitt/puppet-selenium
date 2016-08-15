@@ -25,7 +25,6 @@ define selenium::config(
 
   # prog is the 'name' of the init.d script.
   $prog = "selenium${name}"
-  $options += " -log ${install_root}/log/${prog}"
 
   case $::osfamily {
     'debian': {

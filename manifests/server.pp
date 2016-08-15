@@ -22,7 +22,7 @@ class selenium::server(
     user         => $selenium::user,
     group        => $selenium::group,
     install_root => $selenium::install_root,
-    options      => $options,
+    options      => "${options} -log ${selenium::install_root}/log/seleniumserver.log",
     java         => $selenium::java,
     classpath    => $classpath,
     initsystem   => $initsystem,

@@ -16,7 +16,6 @@ class selenium::node(
   validate_string($hub)
 
   include selenium
-
   $safe_options = "${options} -hub ${hub}"
 
   anchor { 'selenium::node::begin': } ->
@@ -26,7 +25,7 @@ class selenium::node(
     user         => $selenium::user,
     group        => $selenium::group,
     install_root => $selenium::install_root,
-    options      => $safe_options,
+    options      => "${safe_options} -log ${selenium::install_root}/log/seleniumnode.log",
     java         => $selenium::java,
     classpath    => $classpath,
     initsystem   => $initsystem,
