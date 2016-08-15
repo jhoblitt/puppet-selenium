@@ -34,7 +34,7 @@ matrix:
       bundler_args: --without development
   allow_failures:
     # XXX presumably a systemd issue
-     - env: PUPPET_VERSION="~> 3.8.0" BEAKER_set="centos-7-docker"
+    - env: PUPPET_VERSION="~> 3.8.0" BEAKER_set="centos-7-docker"
     - env: PUPPET_VERSION="~> 3.8.0" BEAKER_set="ubuntu-14.04-docker"
   fast_finish: true
 notifications:
