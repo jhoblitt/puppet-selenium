@@ -8,7 +8,7 @@ class selenium::node(
   $display   = $selenium::params::display,
   $options   = $selenium::params::node_options,
   $hub       = $selenium::params::default_hub,
-  $port      = $selenium::params::port,
+  $port      = $selenium::params::default_port,
   $classpath = $selenium::params::default_classpath,
 ) inherits selenium::params {
   validate_string($display)

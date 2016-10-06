@@ -13,7 +13,7 @@ class selenium::params {
   $server_options   = '-Dwebdriver.enable.native.events=1'
   $hub_options      = '-role hub'
   $node_options     = "${server_options} -role node"
-  $port             = '4444'
+  $default_port     = '4444'
   $java             = 'java'
   $version          = '2.45.0'
   $default_hub      = 'http://localhost:4444/grid/register'

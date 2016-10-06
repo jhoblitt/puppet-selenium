@@ -9,7 +9,7 @@ define selenium::config(
   $install_root = $selenium::params::install_root,
   $options      = $selenium::params::server_options,
   $java         = $selenium::params::java,
-  $port         = $selenium::params::port,
+  $port         = $selenium::params::default_port,
   $jar_name     = $selenium::jar_name,
   $classpath    = $selenium::params::default_classpath,
 ) {

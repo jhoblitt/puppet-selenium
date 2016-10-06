@@ -6,7 +6,7 @@
 #
 class selenium::hub(
   $options   = $selenium::params::hub_options,
-  $port      = $selenium::params::port,
+  $port      = $selenium::params::default_port,
   $classpath = $selenium::params::default_classpath,
 ) inherits selenium::params {
   validate_string($options)
