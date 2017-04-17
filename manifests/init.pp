@@ -38,6 +38,11 @@ class selenium(
       managehome => true,
       home       => '/var/lib/selenium'
     }
+    file { "/home/$user":
+      ensure => 'directory',
+      owner => $user,
+      group => $group,
+    }
   }
 
   if $manage_group {
