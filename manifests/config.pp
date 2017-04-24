@@ -51,6 +51,11 @@ define selenium::config(
     hasstatus  => true,
     hasrestart => true,
     enable     => true,
+    provider   => $selenium::params::systemd ? {
+      true     => 'systemd',
+      false    => undef,
+      default  => undef,
+    }
   }
 
 }

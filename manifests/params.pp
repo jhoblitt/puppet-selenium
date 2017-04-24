@@ -30,4 +30,14 @@ class selenium::params {
     }
   }
 
+  if $::lsbmajdistrelease > 8 {
+      $systemd = $::osfamily ? {
+        'debian' => true,
+        'redhat' => true,
+        default  => false,
+      }
+  }else{
+    $systemd = false
+  }
+
 }
