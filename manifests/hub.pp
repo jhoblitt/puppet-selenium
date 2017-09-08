@@ -13,15 +13,15 @@ class selenium::hub(
 
   include selenium
 
-  anchor { 'selenium::hub::begin': } ->
-  Class[ 'selenium' ] ->
-  selenium::config{ 'hub':
+  anchor { 'selenium::hub::begin': }
+    -> Class[ 'selenium' ]
+    -> selenium::config { 'hub':
     user         => $selenium::user,
     group        => $selenium::group,
     install_root => $selenium::install_root,
     options      => "${options} -log ${selenium::install_root}/log/seleniumhub.log",
     java         => $selenium::java,
     classpath    => $classpath,
-  } ->
-  anchor { 'selenium::hub::end': }
+  }
+    -> anchor { 'selenium::hub::end': }
 }
