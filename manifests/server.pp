@@ -4,7 +4,7 @@
 # for parameter documentation.
 #
 #
-class selenium::server(
+class selenium::server (
   $display    = $selenium::params::display,
   $options    = $selenium::params::server_options,
   $classpath  = $selenium::params::default_classpath,
@@ -15,9 +15,9 @@ class selenium::server(
 
   include selenium
 
-  anchor { 'selenium::server::begin': } ->
-  Class[ 'selenium' ] ->
-  selenium::config{ 'server':
+  anchor { 'selenium::server::begin': }
+    -> Class[ 'selenium' ]
+    -> selenium::config { 'server':
     display      => $display,
     user         => $selenium::user,
     group        => $selenium::group,
@@ -26,6 +26,6 @@ class selenium::server(
     java         => $selenium::java,
     classpath    => $classpath,
     initsystem   => $initsystem,
-  } ->
-  anchor { 'selenium::server::end': }
+  }
+    -> anchor { 'selenium::server::end': }
 }
