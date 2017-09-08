@@ -66,7 +66,7 @@ define selenium::config(
 
         path        => [ '/usr/bin', '/bin', '/usr/sbin' ],
         refreshonly => true,
-        subscribe   => Service[$prog]
+        require     => Service[$prog],
       }
     }
     default  : {
@@ -82,11 +82,17 @@ define selenium::config(
     }
   }
 
+  $service_reload = $::service_provider ? {
+    'systemd' => Exec["selenium${prog}-systemd-reload"],
+    default   => undef,
+  }
+
   service { $prog:
     ensure     => running,
     hasstatus  => true,
     hasrestart => true,
     enable     => true,
     require    => File[$prog],
+    notify     => $service_reload,
   }
 }
