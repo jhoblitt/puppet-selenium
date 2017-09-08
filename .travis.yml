@@ -1,6 +1,6 @@
 sudo: false
 language: ruby
-bundler_args: --without beaker
+bundler_args: --without beaker --full-index
 before_install: rm Gemfile.lock || true
 rvm:
   - 1.9.3
