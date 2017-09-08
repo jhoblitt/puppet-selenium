@@ -63,6 +63,7 @@ define selenium::config(
 
       exec { "selenium${prog}-systemd-reload":
         command     => 'systemctl daemon-reload',
+
         path        => [ '/usr/bin', '/bin', '/usr/sbin' ],
         refreshonly => true,
         subscribe   => Service[$prog]

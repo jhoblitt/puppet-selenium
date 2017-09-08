@@ -59,8 +59,8 @@ class selenium(
 
   file { $install_root:
     ensure => directory,
-    owner => $user,
-    group => $group,
+    owner  => $user,
+    group  => $group,
   }
 
   $jar_path = "${install_root}/jars"
@@ -77,7 +77,7 @@ class selenium(
     owner   => $user,
     group   => $group,
     target  => '/var/log/selenium',
-    require => File['/var/log/selenium']
+    require => File['/var/log/selenium'],
   }
 
   file { '/var/log/selenium':
