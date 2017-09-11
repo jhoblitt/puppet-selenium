@@ -60,6 +60,14 @@ define selenium::config(
         content => template("${module_name}/systemd/conf.erb"),
         notify  => Service[$prog],
       }
+
+      exec { "selenium${prog}-systemd-reload":
+        command     => 'systemctl daemon-reload',
+
+        path        => [ '/usr/bin', '/bin', '/usr/sbin' ],
+        refreshonly => true,
+        require     => Service[$prog],
+      }
     }
     default  : {
       $template_name = downcase($::osfamily)
@@ -74,11 +82,17 @@ define selenium::config(
     }
   }
 
+  $service_reload = $::service_provider ? {
+    'systemd' => Exec["selenium${prog}-systemd-reload"],
+    default   => undef,
+  }
+
   service { $prog:
     ensure     => running,
     hasstatus  => true,
     hasrestart => true,
     enable     => true,
     require    => File[$prog],
+    notify     => $service_reload,
   }
 }

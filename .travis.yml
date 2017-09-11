@@ -1,8 +1,8 @@
 sudo: false
 language: ruby
-bundler_args: --without beaker
+bundler_args: --without beaker --full-index
+before_install: rm Gemfile.lock || true
 rvm:
-  - 1.9.3
   - 2.0
   - 2.1
   - 2.2
@@ -13,6 +13,8 @@ matrix:
   exclude:
     - rvm: 2.2
       env: PUPPET_GEM_VERSION="~> 3.7"
+    - rvm: 2.0
+      env: PUPPET_GEM_VERSION="~> 4.0"
   include:
     - rvm: '2.1'
       sudo: required
@@ -34,6 +36,7 @@ matrix:
       bundler_args: --without development
   allow_failures:
     # XXX presumably a systemd issue
+    - env: PUPPET_VERSION="~> 3.8.0" BEAKER_set="centos-6-docker"
     - env: PUPPET_VERSION="~> 3.8.0" BEAKER_set="centos-7-docker"
     - env: PUPPET_VERSION="~> 3.8.0" BEAKER_set="ubuntu-14.04-docker"
   fast_finish: true

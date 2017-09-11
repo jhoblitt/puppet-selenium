@@ -4,11 +4,11 @@
 # parameter documentation.
 #
 #
-class selenium::node(
-  $display   = $selenium::params::display,
-  $options   = $selenium::params::node_options,
-  $hub       = $selenium::params::default_hub,
-  $classpath = $selenium::params::default_classpath,
+class selenium::node (
+  $display    = $selenium::params::display,
+  $options    = $selenium::params::node_options,
+  $hub        = $selenium::params::default_hub,
+  $classpath  = $selenium::params::default_classpath,
   $initsystem = $selenium::params::initsystem,
 ) inherits selenium::params {
   validate_string($display)
@@ -18,9 +18,9 @@ class selenium::node(
   include selenium
   $safe_options = "${options} -hub ${hub}"
 
-  anchor { 'selenium::node::begin': } ->
-  Class[ 'selenium' ] ->
-  selenium::config{ 'node':
+  anchor { 'selenium::node::begin': }
+    -> Class[ 'selenium' ]
+    -> selenium::config { 'node':
     display      => $display,
     user         => $selenium::user,
     group        => $selenium::group,
@@ -29,6 +29,6 @@ class selenium::node(
     java         => $selenium::java,
     classpath    => $classpath,
     initsystem   => $initsystem,
-  } ->
-  anchor { 'selenium::node::end': }
+  }
+    -> anchor { 'selenium::node::end': }
 }
