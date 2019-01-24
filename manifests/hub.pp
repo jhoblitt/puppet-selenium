@@ -8,6 +8,7 @@ class selenium::hub(
   $options   = $selenium::params::hub_options,
   $classpath = $selenium::params::default_classpath,
   $initsystem = $selenium::params::initsystem,
+  $jvm_args  = $selenium::params::hub_jvm_args,
 ) inherits selenium::params {
   validate_string($options)
 
@@ -20,6 +21,7 @@ class selenium::hub(
     group        => $selenium::group,
     install_root => $selenium::install_root,
     options      => "${options} -log ${selenium::install_root}/log/seleniumhub.log",
+    jvm_args     => $jvm_args,
     java         => $selenium::java,
     classpath    => $classpath,
     initsystem   => $initsystem,

@@ -10,6 +10,7 @@ class selenium::node (
   $hub        = $selenium::params::default_hub,
   $classpath  = $selenium::params::default_classpath,
   $initsystem = $selenium::params::initsystem,
+  $jvm_args  = $selenium::params::node_jvm_args,
 ) inherits selenium::params {
   validate_string($display)
   validate_string($options)
@@ -26,6 +27,7 @@ class selenium::node (
     group        => $selenium::group,
     install_root => $selenium::install_root,
     options      => "${safe_options} -log ${selenium::install_root}/log/seleniumnode.log",
+    jvm_args     => $jvm_args,
     java         => $selenium::java,
     classpath    => $classpath,
     initsystem   => $initsystem,
