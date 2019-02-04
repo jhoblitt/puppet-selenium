@@ -1,5 +1,7 @@
+.rspec-local
+vendor/
+*.iml
 .bundle
-Gemfile.lock
 junit/
 log/
 *.orig

@@ -4,26 +4,28 @@
 # for parameter documentation.
 #
 #
-class selenium::server(
-  $display   = $selenium::params::display,
-  $options   = $selenium::params::server_options,
-  $classpath = $selenium::params::default_classpath,
+class selenium::server (
+  $display    = $selenium::params::display,
+  $options    = $selenium::params::server_options,
+  $classpath  = $selenium::params::default_classpath,
+  $initsystem = $selenium::params::initsystem,
 ) inherits selenium::params {
   validate_string($display)
   validate_string($options)
 
   include selenium
 
-  anchor { 'selenium::server::begin': } ->
-  Class[ 'selenium' ] ->
-  selenium::config{ 'server':
+  anchor { 'selenium::server::begin': }
+    -> Class[ 'selenium' ]
+    -> selenium::config { 'server':
     display      => $display,
     user         => $selenium::user,
     group        => $selenium::group,
     install_root => $selenium::install_root,
-    options      => $options,
+    options      => "${options} -log ${selenium::install_root}/log/seleniumserver.log",
     java         => $selenium::java,
     classpath    => $classpath,
-  } ->
-  anchor { 'selenium::server::end': }
+    initsystem   => $initsystem,
+  }
+    -> anchor { 'selenium::server::end': }
 }

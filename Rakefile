@@ -12,6 +12,9 @@ PuppetSyntax.exclude_paths = ['spec/fixtures/**/*']
 PuppetLint::RakeTask.new :lint do |config|
   config.pattern          = 'manifests/**/*.pp'
   config.fail_on_warnings = true
+  config.disable_checks = [
+    'class_inherits_from_params_class'
+  ]
 end
 
 task :travis_lint do

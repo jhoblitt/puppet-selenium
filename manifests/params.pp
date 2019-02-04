@@ -20,14 +20,20 @@ class selenium::params {
   $default_classpath = []
   case $::osfamily {
     'redhat': {
-      $service_template = 'redhat.selenium.erb'
+      case $::operatingsystemmajrelease {
+        6: {
+          $initsystem = 'init.d'
+        }
+        default: {
+          $initsystem = 'systemd'
+        }
+      }
     }
     'debian': {
-      $service_template = 'debian.selenium.erb'
+      $initsystem = 'init.d'
     }
     default: {
       fail("Module ${module_name} is not supported on ${::operatingsystem}")
     }
   }
-
 }

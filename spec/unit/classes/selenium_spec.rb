@@ -50,16 +50,14 @@ describe 'selenium', :type => :class do
         'group'  => p[:group],
       })
       should contain_file("#{p[:install_root]}/log").with({
+        'ensure' => 'link',
+        'target' => '/var/log/selenium',
+      })
+      should contain_file('/var/log/selenium').with({
         'ensure' => 'directory',
         'owner'  => p[:user],
         'group'  => p[:group],
         'mode'   => '0755',
-      })
-      should contain_file('/var/log/selenium').with({
-        'ensure' => 'link',
-        'owner'  => 'root',
-        'group'  => 'root',
-        'target' => "#{p[:install_root]}/log",
       })
       should contain_wget__fetch('selenium-server-standalone').with({
         'source'             => "https://selenium-release.storage.googleapis.com/#{path_version}/selenium-server-standalone-#{p[:version]}.jar",
