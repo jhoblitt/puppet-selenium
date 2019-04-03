@@ -47,7 +47,7 @@ define selenium::config(
         path    => "/usr/lib/systemd/system/${prog}.service",
         owner   => 'root',
         group   => 'root',
-        mode    => '0755',
+        mode    => '0644',
         content => template("${module_name}/systemd/selenium.erb"),
       }
 
