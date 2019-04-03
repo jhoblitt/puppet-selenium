@@ -22,6 +22,7 @@ class selenium::hub(
     options      => "${options} -log ${selenium::install_root}/log/seleniumhub.log",
     java         => $selenium::java,
     classpath    => $classpath,
+    initsystem   => $initsystem,
   }
     -> anchor { 'selenium::hub::end': }
 }

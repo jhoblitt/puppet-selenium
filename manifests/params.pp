@@ -24,6 +24,9 @@ class selenium::params {
         6: {
           $initsystem = 'init.d'
         }
+        2018: {
+          $initsystem = 'init.d'
+        }
         default: {
           $initsystem = 'systemd'
         }
