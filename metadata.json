@@ -53,8 +53,8 @@
       "version_requirement": ">= 1.2.2 <2.0.0"
     },
     {
-      "name": "voxpupuli/puppet-logrotate",
-      "version_requirement": "v3.3.0"
+      "name": "puppet/logrotate",
+      "version_requirement": ">= 3.3.0"
     }
   ]
 }
