@@ -4,9 +4,10 @@ describe 'selenium::node', :type => :class do
 
   shared_examples 'node_with_initd' do |params|
     p = {
-      :display => ':0',
-      :options => '-Dwebdriver.enable.native.events=1 -role node',
-      :hub     => 'http://localhost:4444/grid/register',
+      :display  => ':0',
+      :options  => '-role node',
+      :jvm_args => '-Dwebdriver.enable.native.events=1',
+      :hub      => 'http://localhost:4444/grid/register',
     }
 
     p.merge!(params) if params
@@ -17,6 +18,7 @@ describe 'selenium::node', :type => :class do
       should contain_selenium__config('node').with({
         'options' => "#{p[:options]}",
         'initsystem' => "init.d",
+        'jvm_args' => p[:jvm_args],
       })
       should contain_class('selenium::node')
     end

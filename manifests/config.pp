@@ -8,6 +8,7 @@ define selenium::config(
   $group        = $selenium::params::group,
   $install_root = $selenium::params::install_root,
   $options      = $selenium::params::server_options,
+  $jvm_args     = $selenium::params::server_jvm_args,
   $java         = $selenium::params::java,
   $jar_name     = $selenium::jar_name,
   $classpath    = $selenium::params::default_classpath,
